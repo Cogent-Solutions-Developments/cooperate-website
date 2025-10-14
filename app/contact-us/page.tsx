@@ -2,9 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PhoneCall, Mail, MessageSquare, MapPin, Copy, Check, Globe } from "lucide-react";
+import {
+    PhoneCall,
+    Mail,
+    MapPin,
+    Copy,
+    Check,
+    Globe,
+} from "lucide-react";
 
-/* -------------------- helpers -------------------- */
+/* -------------------- utils -------------------- */
 const cx = (...a: (string | false | null | undefined)[]) => a.filter(Boolean).join(" ");
 
 function useViewportVH() {
@@ -17,7 +24,7 @@ function useViewportVH() {
     }, []);
 }
 
-/* lightweight Tilt (for illustration card) */
+/* Tilt for the illustration card */
 function Tilt({
     children,
     max = 8,
@@ -81,7 +88,7 @@ function Toast({ show, text }: { show: boolean; text: string }) {
     );
 }
 
-/* -------------------- PAGE -------------------- */
+/* -------------------- page -------------------- */
 export default function ContactUsPage() {
     useViewportVH();
 
@@ -136,51 +143,50 @@ export default function ContactUsPage() {
     }
 
     return (
-        <div className="relative min-h-[calc(var(--vh,1vh)*100)] bg-neutral-50">
-            {/* Equal-height split */}
-            <div className="mx-auto grid h-[calc(var(--vh,1vh)*100)] max-w-7xl grid-cols-1 items-stretch gap-6 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:py-8">
-                {/* LEFT PANEL */}
+        <div className="relative min-h-screen bg-neutral-50">
+            {/* equal-height split on lg+; stack on mobile */}
+            <div className="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-6 px-4 py-6 sm:px-6 lg:grid-cols-2 lg:py-8">
+                {/* LEFT COLUMN */}
                 <motion.section
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="flex h-full flex-col rounded-3xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm"
+                    className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm"
                 >
                     {/* header */}
-                    <div>
+                    <div className="space-y-3">
                         <p className="inline-flex items-center gap-2 rounded-full bg-[#0B1B4A]/5 px-3 py-1 text-xs font-semibold text-[#0B1B4A] ring-1 ring-[#0B1B4A]/10">
                             Let’s talk
                         </p>
 
-                        {/* illustration — **smaller** so the column never gets too tall */}
+                        {/* illustration now on LEFT to occupy the remaining space */}
                         <div className="mt-3">
                             <Tilt className="rounded-2xl border border-neutral-200 p-3">
                                 <div className="relative w-full overflow-hidden rounded-xl bg-neutral-50">
-                                    {/* fixed low height so page stays tight */}
                                     <img
                                         src="/undraw/directions.svg"
                                         alt="Directions"
-                                        className="h-36 w-full object-contain sm:h-40"  /* ↓ key change */
+                                        className="h-40 w-full object-contain sm:h-44"
                                         draggable={false}
                                         onError={(e) => {
                                             (e.currentTarget.parentElement as HTMLElement).innerHTML =
-                                                '<div class="h-36 w-full rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100"></div>';
+                                                '<div class="h-40 w-full rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100"></div>';
                                         }}
                                     />
                                 </div>
                             </Tilt>
                         </div>
 
-
-                        <h1 className="mt-2 text-[clamp(24px,3.2vw,34px)] font-extrabold tracking-tight text-neutral-900">
+                        <h1 className="text-[clamp(24px,3.2vw,34px)] font-extrabold tracking-tight text-neutral-900">
                             Contact Cogent Solutions<span className="text-neutral-500">™</span>
                         </h1>
-                        <p className="mt-2 max-w-xl text-[13.5px] leading-relaxed text-neutral-600">
-                            Partnerships, media, speaking, registrations, or operations — we’ll route your message
+
+                        <p className="max-w-xl text-[13.5px] leading-relaxed text-neutral-600">
+                            Partnerships, media, speaking, registrations, or operations - we’ll route your message
                             to the right team and respond quickly.
                         </p>
 
-                        <div className="mt-3 flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2">
                             <a
                                 href="tel:+97145761039"
                                 className="inline-flex items-center gap-2 rounded-xl bg-[#0B1B4A] px-3 py-2 text-xs sm:text-sm font-semibold text-white shadow hover:brightness-110 transition"
@@ -189,21 +195,12 @@ export default function ContactUsPage() {
                                 +971 4 576 1039
                             </a>
                             <a
-                                href="tel:+97145761039"
+                                href="tel:+97150645244"
                                 className="inline-flex items-center gap-2 rounded-xl bg-[#0B1B4A] px-3 py-2 text-xs sm:text-sm font-semibold text-white shadow hover:brightness-110 transition"
                             >
                                 <PhoneCall className="h-4 w-4" />
                                 +971 5 064 5244
                             </a>
-                            {/* <a
-                                href="https://wa.me/971506435244"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline-flex items-center gap-2 rounded-xl bg-[#0B1B4A]/5 px-3 py-2 text-xs sm:text-sm font-semibold text-[#0B1B4A] ring-1 ring-[#0B1B4A]/10 hover:bg-[#0B1B4A]/10 transition"
-                            >
-                                <MessageSquare className="h-4 w-4" />
-                                WhatsApp
-                            </a> */}
                             <a
                                 href="mailto:partnerships@cogentsolutions.ae"
                                 className="inline-flex items-center gap-2 rounded-xl bg-[#0B1B4A]/5 px-3 py-2 text-xs sm:text-sm font-semibold text-[#0B1B4A] ring-1 ring-[#0B1B4A]/10 hover:bg-[#0B1B4A]/10 transition"
@@ -250,34 +247,33 @@ export default function ContactUsPage() {
                                 </ul>
                             </div>
 
-                            {/* smaller map height */}
+                            {/* map slightly taller to help fill left side */}
                             <div className="overflow-hidden rounded-2xl border border-neutral-200">
                                 {offices.find((o) => o.key === activeOffice)?.map ? (
                                     <iframe
                                         src={offices.find((o) => o.key === activeOffice)!.map}
-                                        className="h-28 w-full sm:h-32"
+                                        className="h-36 w-full sm:h-40"
                                         loading="lazy"
                                         referrerPolicy="no-referrer-when-downgrade"
                                     />
                                 ) : (
-                                    <div className="flex h-28 w-full items-center justify-center bg-neutral-100 text-xs text-neutral-500 sm:h-32">
+                                    <div className="flex h-36 w-full items-center justify-center bg-neutral-100 text-xs text-neutral-500 sm:h-40">
                                         Map coming soon
                                     </div>
                                 )}
                             </div>
                         </div>
                     </div>
-
-
                 </motion.section>
 
-                {/* RIGHT PANEL */}
+                {/* RIGHT COLUMN (form + quick contacts only) */}
                 <motion.section
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut", delay: 0.05 }}
-                    className="flex h-full flex-col rounded-3xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm"
+                    className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm"
                 >
+                    {/* header row */}
                     <div className="mb-3 flex items-center justify-between">
                         <div className="inline-flex items-center gap-2 rounded-full bg-[#0B1B4A]/5 px-3 py-1 text-xs font-semibold text-[#0B1B4A] ring-1 ring-[#0B1B4A]/10">
                             Contact form
@@ -347,11 +343,11 @@ export default function ContactUsPage() {
                                 copied={copied === "phone"}
                             />
                             <CopyRow
-                                id="phone"
+                                id="phone2"
                                 icon={<PhoneCall className="h-4 w-4 text-[#0B1B4A]" />}
                                 label="+971 5 064 5244"
-                                onCopy={() => copy("+971 5 064 5244", "phone")}
-                                copied={copied === "phone"}
+                                onCopy={() => copy("+971 5 064 5244", "phone2")}
+                                copied={copied === "phone2"}
                             />
                             <CopyRow
                                 id="partnerships"
@@ -390,7 +386,7 @@ export default function ContactUsPage() {
     );
 }
 
-/* -------------------- sub components -------------------- */
+/* -------------------- subs -------------------- */
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <label className="block">

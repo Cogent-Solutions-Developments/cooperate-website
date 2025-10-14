@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock, CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Conference = {
@@ -23,7 +23,7 @@ export default function InvOnlyCon({
   const parseConferenceDate = (dateStr: string): Date | null => {
     try {
       const clean = dateStr
-        .replace(/(\d+)(st|nd|rd|th)/, "$1") // remove "st", "th", etc.
+        .replace(/(\d+)(st|nd|rd|th)/, "$1")
         .replace(",", "");
       return new Date(clean);
     } catch {
@@ -54,7 +54,7 @@ export default function InvOnlyCon({
     if (daysLeft === null || daysLeft <= 0) return null;
 
     return (
-       <div className="flex items-center gap-2 bg-[color:var(--brand-primary,#111)] text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+      <div className="flex items-center gap-2 bg-[color:var(--brand-primary,#111)] text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm">
         <Clock size={16} className="opacity-90" />
         <span>
           {daysLeft} {daysLeft === 1 ? "Day" : "Days"} Left
@@ -69,62 +69,51 @@ export default function InvOnlyCon({
         {conferences.map((conf) => (
           <div
             key={conf.id}
-            className="overflow-hidden rounded-[2rem] bg-gray-100  hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            className="overflow-hidden rounded-[2rem] bg-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
           >
-            {/* === FLOATING IMAGE WRAPPER === */}
-            <div className="p-3">
-              <div className="relative h-[200px] w-full overflow-hidden rounded-[1.5rem] shadow-2xl">
-                {/* Background Image */}
+            {/* === IMAGE === */}
+            <div className="p-2">
+              <div className="relative h-[200px] w-full overflow-hidden rounded-[1.5rem] ">
                 <Image
                   src={conf.backgroundImage}
                   alt={conf.title}
                   fill
                   className="object-cover transition-transform duration-700 ease-out hover:scale-105"
                 />
-
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                {/* Logo */}
-                <div className="absolute top-4 left-4">
-                  <div className="relative w-20 h-20 rounded-full bg-white shadow-lg overflow-hidden flex items-center justify-center">
-                    <Image
-                      src={conf.logoUrl}
-                      alt={`${conf.title} logo`}
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                </div>
-
-                {/* Title */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white font-bold text-[1.05rem] leading-snug drop-shadow-md">
-                    {conf.title}
-                  </h3>
-                </div>
               </div>
             </div>
 
-            {/* === DETAILS SECTION === */}
-            <div className="px-4 mt-5 pb-6 space-y-5">
-              {/* Date + View More in the same row */}
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-gray-900">
-                  Date – <span className="font-medium">{conf.date}</span>
-                </p>
+            {/* === CONTENT BELOW IMAGE === */}
+            <div className="flex flex-col justify-between h-full px-5 pb-6 pt-2">
+              {/* Top content area */}
+              <div className="space-y-4">
+                {/* Title */}
+                <h3 className="text-lg font-bold text-gray-900 min-h-[3.5rem] line-clamp-2">
+                  {conf.title}
+                </h3>
 
-                <a
-                  href="#"
-                  className="flex items-center gap-1 text-sm font-semibold text-gray-800 hover:text-[color:var(--brand-primary)] transition"
-                >
-                  <span>View More</span>
-                  <ArrowUpRight size={16} />
-                </a>
+                {/* Date + View More */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
+                    <CalendarDays
+                      size={16}
+                      className="text-[color:var(--brand-primary,#111)]"
+                    />
+                    <span className="font-normal">{conf.date}</span>
+                  </div>
+
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-sm font-semibold text-gray-800 hover:text-[color:var(--brand-primary)] transition"
+                  >
+                    <span>View More</span>
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
               </div>
 
-              {/* Location + Countdown Row */}
-              <div className="flex items-center justify-between gap-3 flex-wrap">
+              {/* Fixed bottom section */}
+              <div className="flex items-center justify-between gap-3 flex-wrap mt-5">
                 {/* Location chip */}
                 <div className="flex items-center bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
                   <span>{conf.location}</span>
@@ -141,7 +130,7 @@ export default function InvOnlyCon({
                   )}
                 </div>
 
-                {/* Days Left chip */}
+                {/* Countdown chip */}
                 <Countdown date={conf.date} />
               </div>
             </div>

@@ -4,23 +4,23 @@ import Image from "next/image";
 import { ArrowUpRight, Clock, CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Conference = {
+type EventItem = {
   id: string;
   title: string;
   date: string;
   location: string;
   countryFlag?: string;
-  logoUrl: string;
+  logoUrl?: string;
   backgroundImage: string;
 };
 
-export default function InvOnlyCon({
-  conferences,
+export default function EventGrid({
+  events,
 }: {
-  conferences: Conference[];
+  events: EventItem[];
 }) {
-  // Helper function to parse “4th November, 2025” → valid Date
-  const parseConferenceDate = (dateStr: string): Date | null => {
+  // --- Helper: Parse “4th November, 2025” into a valid Date ---
+  const parseEventDate = (dateStr: string): Date | null => {
     try {
       const clean = dateStr
         .replace(/(\d+)(st|nd|rd|th)/, "$1")
@@ -31,12 +31,12 @@ export default function InvOnlyCon({
     }
   };
 
-  // Countdown component
+  // --- Countdown component ---
   const Countdown = ({ date }: { date: string }) => {
     const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
     useEffect(() => {
-      const targetDate = parseConferenceDate(date);
+      const targetDate = parseEventDate(date);
       if (!targetDate) return;
 
       const updateCountdown = () => {
@@ -66,17 +66,17 @@ export default function InvOnlyCon({
   return (
     <section className="py-20 bg-white">
       <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {conferences.map((conf) => (
+        {events.map((event) => (
           <div
-            key={conf.id}
+            key={event.id}
             className="overflow-hidden rounded-[2rem] bg-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
           >
             {/* === IMAGE === */}
             <div className="p-2">
-              <div className="relative h-[200px] w-full overflow-hidden rounded-[1.5rem] ">
+              <div className="relative h-[200px] w-full overflow-hidden rounded-[1.5rem]">
                 <Image
-                  src={conf.backgroundImage}
-                  alt={conf.title}
+                  src={event.backgroundImage}
+                  alt={event.title}
                   fill
                   className="object-cover transition-transform duration-700 ease-out hover:scale-105"
                 />
@@ -89,7 +89,7 @@ export default function InvOnlyCon({
               <div className="space-y-4">
                 {/* Title */}
                 <h3 className="text-lg font-bold text-gray-900 min-h-[3.5rem] line-clamp-2">
-                  {conf.title}
+                  {event.title}
                 </h3>
 
                 {/* Date + View More */}
@@ -99,7 +99,7 @@ export default function InvOnlyCon({
                       size={16}
                       className="text-[color:var(--brand-primary,#111)]"
                     />
-                    <span className="font-normal">{conf.date}</span>
+                    <span className="font-normal">{event.date}</span>
                   </div>
 
                   <a
@@ -116,12 +116,12 @@ export default function InvOnlyCon({
               <div className="flex items-center justify-between gap-3 flex-wrap mt-5">
                 {/* Location chip */}
                 <div className="flex items-center bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
-                  <span>{conf.location}</span>
-                  {conf.countryFlag && (
+                  <span>{event.location}</span>
+                  {event.countryFlag && (
                     <div className="w-5 h-5 rounded-full overflow-hidden ml-2">
                       <Image
-                        src={conf.countryFlag}
-                        alt={conf.location}
+                        src={event.countryFlag}
+                        alt={event.location}
                         width={24}
                         height={24}
                         className="object-cover"
@@ -131,7 +131,7 @@ export default function InvOnlyCon({
                 </div>
 
                 {/* Countdown chip */}
-                <Countdown date={conf.date} />
+                <Countdown date={event.date} />
               </div>
             </div>
           </div>

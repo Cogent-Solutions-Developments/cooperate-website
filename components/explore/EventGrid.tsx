@@ -19,10 +19,24 @@ export default function EventGrid({
 }: {
   events: EventItem[];
 }) {
-  // --- Helper: Parse “4th November, 2025” into a valid Date ---
+  // --- Helper: Parse date string, handling multi-day events ---
   const parseEventDate = (dateStr: string): Date | null => {
+    if (!dateStr || dateStr.trim() === "") return null;
+    
     try {
-      const clean = dateStr
+      // Handle multi-day formats:
+      // "19th & 20th May, 2026" or "19th to 25th May, 2026"
+      let lastPart = dateStr;
+      
+      if (dateStr.includes("&")) {
+        const parts = dateStr.split("&");
+        lastPart = parts[parts.length - 1].trim();
+      } else if (dateStr.includes(" to ")) {
+        const parts = dateStr.split(" to ");
+        lastPart = parts[parts.length - 1].trim();
+      }
+      
+      const clean = lastPart
         .replace(/(\d+)(st|nd|rd|th)/, "$1")
         .replace(",", "");
       return new Date(clean);
@@ -34,6 +48,7 @@ export default function EventGrid({
   // --- Countdown component ---
   const Countdown = ({ date }: { date: string }) => {
     const [daysLeft, setDaysLeft] = useState<number | null>(null);
+    const [isToday, setIsToday] = useState(false);
 
     useEffect(() => {
       const targetDate = parseEventDate(date);
@@ -41,9 +56,23 @@ export default function EventGrid({
 
       const updateCountdown = () => {
         const now = new Date();
-        const diff = targetDate.getTime() - now.getTime();
+        now.setHours(0, 0, 0, 0);
+        
+        const target = new Date(targetDate);
+        target.setHours(0, 0, 0, 0);
+        
+        const diff = target.getTime() - now.getTime();
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        setDaysLeft(days > 0 ? days : 0);
+        
+        if (days === 0) {
+          setIsToday(true);
+          setDaysLeft(0);
+        } else if (days > 0) {
+          setIsToday(false);
+          setDaysLeft(days);
+        } else {
+          setDaysLeft(null);
+        }
       };
 
       updateCountdown();
@@ -51,7 +80,16 @@ export default function EventGrid({
       return () => clearInterval(interval);
     }, [date]);
 
-    if (daysLeft === null || daysLeft <= 0) return null;
+    if (daysLeft === null || daysLeft < 0) return null;
+
+    if (isToday) {
+      return (
+        <div className="flex items-center gap-2 bg-[color:var(--brand-primary,#111)] text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+          <Clock size={16} className="opacity-90" />
+          <span>Today</span>
+        </div>
+      );
+    }
 
     return (
       <div className="flex items-center gap-2 bg-[color:var(--brand-primary,#111)] text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm">
@@ -62,7 +100,6 @@ export default function EventGrid({
       </div>
     );
   };
-
   return (
     <section className="py-20 bg-white">
       <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -97,9 +134,9 @@ export default function EventGrid({
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
                     <CalendarDays
                       size={16}
-                      className="text-[color:var(--brand-primary,#111)]"
+                      className="text-[color:black] opacity-90"
                     />
-                    <span className="font-normal">{event.date}</span>
+                    <span className="font-normal">{event.date || "TBA"}</span>
                   </div>
 
                   <a
@@ -116,8 +153,8 @@ export default function EventGrid({
               <div className="flex items-center justify-between gap-3 flex-wrap mt-5">
                 {/* Location chip */}
                 <div className="flex items-center bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
-                  <span>{event.location}</span>
-                  {event.countryFlag && (
+                  <span>{event.location || "Location - TBA"}</span>
+                  {event.location && event.countryFlag && (
                     <div className="w-5 h-5 rounded-full overflow-hidden ml-2">
                       <Image
                         src={event.countryFlag}

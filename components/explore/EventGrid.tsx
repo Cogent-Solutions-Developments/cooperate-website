@@ -101,8 +101,8 @@ export default function EventGrid({
     );
   };
   return (
-    <section className="py-20 bg-white">
-      <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <section className="py-10 bg-white">
+      <div className="mx-auto max-w-6xl px-0 grid grid-cols-1 md:grid-cols-3 gap-10">
         {events.map((event) => (
           <div
             key={event.id}

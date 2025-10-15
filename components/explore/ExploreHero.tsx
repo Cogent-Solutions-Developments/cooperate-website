@@ -35,57 +35,62 @@ export default function ExploreHero({
   const getVisibleIndices = () => {
     const visible = [];
     const totalImages = images.length;
-    
+
     for (let i = -3; i <= 3; i++) {
       const index = (currentIndex + i + totalImages) % totalImages;
       visible.push({ index, offset: i });
     }
-    
+
     return visible;
   };
 
   const visibleCards = getVisibleIndices();
 
   return (
-    <section className="relative h-screen py-12 sm:py-16 lg:py-35 overflow-hidden">
+    <section
+      className="relative h-screen py-12 sm:py-16 lg:py-35 overflow-hidden text-white"
+      style={{
+        background:
+          "radial-gradient(100% 100% at 50% 0%, #ffffff 0%, #2f47d0 0%, #ffffff 90%)",
+      }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
         {/* Hero Content */}
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[65px] font-normal leading-0px text-[color:var(--foreground)]">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[65px] font-normal leading-0px text-white">
             {title}
           </h1>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[75px] font-semibold leading-[50px] text-[color:var(--foreground)]">
+          <h2 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[75px] font-semibold leading-[50px] text-white">
             {subtitle}
           </h2>
-          <p className="text-base sm:text-lg text-[color:var(--foreground)] max-w-2xl xl:text-[18px] font-semibold mx-auto mt-4">
+          <p className="text-base sm:text-lg text-white max-w-2xl xl:text-[18px] font-semibold mx-auto mt-4">
             {description}
           </p>
         </div>
 
         {/* 3D Carousel */}
         <div className="relative perspective-container mb-10">
-          <div 
-            className="flex items-center justify-center gap-4 lg:gap-6" 
-            style={{ 
-              transformStyle: 'preserve-3d',
-              perspective: '1200px'
+          <div
+            className="flex items-center justify-center gap-4 lg:gap-6"
+            style={{
+              transformStyle: "preserve-3d",
+              perspective: "1200px",
             }}
           >
             {visibleCards.map(({ index, offset }) => {
               const rotateY = offset * 4;
               const translateZ = Math.abs(offset) * -50;
               const scale = 1 - Math.abs(offset) * 0.07;
-              
+
               return (
                 <div
                   key={`${index}-${offset}`}
                   className="relative flex-shrink-0 transition-all duration-700 ease-in-out"
                   style={{
                     transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
-                    transformStyle: 'preserve-3d',
-                    width: '200px',
-                    height: '250px',
+                    transformStyle: "preserve-3d",
+                    width: "200px",
+                    height: "250px",
                   }}
                 >
                   <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
@@ -109,7 +114,6 @@ export default function ExploreHero({
             <Mouse className="w-8 h-8 stroke-1 text-[color:var(--foreground)] animate-bounce" />
           </div>
         )}
-
       </div>
 
       <style jsx global>{`

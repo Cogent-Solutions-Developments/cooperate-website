@@ -77,15 +77,15 @@ export default function ConferencesSection() {
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 mb-4">
+        <div className="text-center mb-24">
+          <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
             <span className="text-black">
               Invitation Only Corporate Conferences
             </span>
           </h2>
-          <p className="text-gray-500 text-base max-w-2xl mx-auto">
+          <p className="text-gray-900 text-[16px] font-semibold max-w-2xl mx-auto">
             Explore upcoming and past conferences curated by Cogent Solutions
-            <sup>TM</sup> connecting industries, ideas, and innovation.
+            <sup>TM</sup>
           </p>
         </div>
 
@@ -93,12 +93,12 @@ export default function ConferencesSection() {
         {upcoming.length > 0 && (
           <div className="mb-20">
             <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Upcoming Conferences
-              </h3>
-              <div className="h-[2px] flex-1 ml-6 bg-gradient-to-r from-[color:var(--brand-primary,#2563eb)]/70 to-transparent"></div>
+              <div className="flex items-center w-full border-b border-gray-200 pb-2">
+                <h3 className="text-[18px] md:text-[20px] font-semibold text-gray-900 tracking-tight">
+                  Upcoming Conferences ({upcoming.length})
+                </h3>
+              </div>
             </div>
-
             <EventGrid events={upcoming} />
           </div>
         )}
@@ -107,10 +107,11 @@ export default function ConferencesSection() {
         {past.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Past Conferences
-              </h3>
-              <div className="h-[2px] flex-1 ml-6 bg-gradient-to-r from-gray-300 to-transparent"></div>
+              <div className="flex items-center w-full border-b border-gray-200 pb-2">
+                <h3 className="text-[18px] md:text-[20px] font-semibold text-gray-900 tracking-tight">
+                  Past Conferences ({past.length})
+                </h3>
+              </div>
             </div>
 
             <EventGrid events={past} />

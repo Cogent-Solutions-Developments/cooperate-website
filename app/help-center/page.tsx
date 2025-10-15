@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import BreadcrumbVisual from "@/components/navigation/BreadcrumbVisual";
 import {
     ShieldCheck,
     Search,
@@ -90,9 +91,9 @@ const SECTIONS_PRIVACY = [
         </ol>
         `
     },
-    { 
-        id: "Conditions", 
-        title: "Terms and Conditions", 
+    {
+        id: "Conditions",
+        title: "Terms and Conditions",
         content: `
         <p>Payment terms of Cogent Solutions Event Management LLC: Payment of the agreed amount to be made within 5 working days. The payment terms of Cogent Solutions Event Management LLC cannot be changed after agreeing or signing a legal contract and must be honored. Under no circumstances will the sponsor be allowed to an event without the full payments having cleared through Cogent Solutions Event Management’s LLC bank account as per agreed payment terms.</p><br>
 
@@ -115,39 +116,39 @@ const SECTIONS_PRIVACY = [
                 <p class="mb-2">Client agrees that all its material shared with Cogent Solutions Event Management LLC can be published on the event marketing collateral prior, during and after the event for promotional purposes. Should the client wish for any of its shared material to be treated as confidential, this needs to be clearly indicated to Cogent Solutions Event Management LLC in writing.</p>
                 <p class="mb-2">Client agrees that all the material, documents and data shared by Cogent Solutions Event Management LLC is strictly confidential material, and cannot be sold, duplicated, replicated, or shared by the sponsor with any third party for any purposes. In case of any dispute(s), the matters will be referred to Dubai Courts and will be dealt with in accordance with the UAE laws.</p>
             </li>
-        </ul>` 
+        </ul>`
     },
-    { 
-        id: "payment", 
-        title: "Payment Policy", 
+    {
+        id: "payment",
+        title: "Payment Policy",
         content: `
-        <p>Payment of the agreed amount to be made within 5 working days. The payment terms of Cogent Solutions Event Management LLC cannot be changed after agreeing or signing a legal contract and must be honored. Under no circumstances will the sponsor be allowed to an event without the full payments having cleared through Cogent Solutions Event Management’s LLC bank account as per agreed payment terms.</p>` 
+        <p>Payment of the agreed amount to be made within 5 working days. The payment terms of Cogent Solutions Event Management LLC cannot be changed after agreeing or signing a legal contract and must be honored. Under no circumstances will the sponsor be allowed to an event without the full payments having cleared through Cogent Solutions Event Management’s LLC bank account as per agreed payment terms.</p>`
     },
 ];
 
 const SECTIONS_HELP = [
-    { 
-        id: "hc-what-is", 
-        title: "What is Event Management?", 
+    {
+        id: "hc-what-is",
+        title: "What is Event Management?",
         content: `
-        <p>Event management refers to the comprehensive process of planning, organizing, and executing a wide range of professional events. This multifaceted discipline involves meticulous coordination of various elements to ensure the smooth and successful execution of each event. Event management tasks include selecting suitable venues, managing logistics, creating budgets, implementing marketing strategies, coordinating with vendors, and overseeing on-site operations.</p>` 
+        <p>Event management refers to the comprehensive process of planning, organizing, and executing a wide range of professional events. This multifaceted discipline involves meticulous coordination of various elements to ensure the smooth and successful execution of each event. Event management tasks include selecting suitable venues, managing logistics, creating budgets, implementing marketing strategies, coordinating with vendors, and overseeing on-site operations.</p>`
     },
-    { 
-        id: "hc-which-type", 
-        title: "Which types of events does Cogent Solutions specialize in?", 
+    {
+        id: "hc-which-type",
+        title: "Which types of events does Cogent Solutions specialize in?",
         content: `
-        <p>Cogent Solutions Event Management's expertise lies in the organization of professional, B2B events such as conferences, exhibitions and boardrooms. We dedicate ourselves to promoting new discussions covering industry insights and emerging trends, facilitating networking opportunities and creating valuable connections among attendees, as we recognize the importance of bringing together individuals and fostering meaningful collaborations. Cogent Solutions Event Management aims to create remarkable experiences through our events, leaving a lasting impression and providing a platform for networking and professional growth.</p>` 
+        <p>Cogent Solutions Event Management's expertise lies in the organization of professional, B2B events such as conferences, exhibitions and boardrooms. We dedicate ourselves to promoting new discussions covering industry insights and emerging trends, facilitating networking opportunities and creating valuable connections among attendees, as we recognize the importance of bringing together individuals and fostering meaningful collaborations. Cogent Solutions Event Management aims to create remarkable experiences through our events, leaving a lasting impression and providing a platform for networking and professional growth.</p>`
     },
-    { 
-        id: "hc-what-type", 
-        title: "What types of event platforms can Cogent Solutions provide?", 
+    {
+        id: "hc-what-type",
+        title: "What types of event platforms can Cogent Solutions provide?",
         content: `
-        <p>Cogent Solutions has experience in a wide range of customized events across physical, virtual, and hybrid platforms. We understand that each event has unique specifications, and our team is dedicated to delivering a seamless experience across all platforms. By leveraging our expertise and versatility, we strive to create events that precisely match your vision, and we are committed to ensuring that we can accommodate all your needed preferences and requirements.</p>` 
+        <p>Cogent Solutions has experience in a wide range of customized events across physical, virtual, and hybrid platforms. We understand that each event has unique specifications, and our team is dedicated to delivering a seamless experience across all platforms. By leveraging our expertise and versatility, we strive to create events that precisely match your vision, and we are committed to ensuring that we can accommodate all your needed preferences and requirements.</p>`
     },
-    { 
-        id: "hc-interested", 
-        title: "I'm interested in sponsoring or exhibiting at one of Cogent Solutions' events, how can I start?", 
-        content: `<p>If you're interested in becoming one of Cogent Solutions' distinguished sponsors or exhibitors, you can contact our team to learn more at: <a class='underline' href='mailto:partnerships@csevents.ae'>partnerships@csevents.ae</a></p>` 
+    {
+        id: "hc-interested",
+        title: "I'm interested in sponsoring or exhibiting at one of Cogent Solutions' events, how can I start?",
+        content: `<p>If you're interested in becoming one of Cogent Solutions' distinguished sponsors or exhibitors, you can contact our team to learn more at: <a class='underline' href='mailto:partnerships@csevents.ae'>partnerships@csevents.ae</a></p>`
     },
 ];
 
@@ -192,11 +193,15 @@ export default function HelpCenterSinglePage() {
         <div className="min-h-screen bg-white text-slate-800">
             {/* Breadcrumb */}
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6">
-                <nav className="text-sm text-slate-500 flex items-center gap-2" aria-label="Breadcrumb">
-                    <Home className="h-4 w-4 text-darkblue-600" />
-                    <span className="opacity-60">/</span>
-                    <span className="font-medium text-darkblue-700">Help Center</span>
-                </nav>
+                <BreadcrumbVisual
+                    auto
+                    rootLabel="Home"
+                    segmentLabels={{
+                        features: "Features",
+                        "smart-routing": "Smart Routing",
+                        // add more slugs -> labels here as you add pages
+                    }}
+                />
             </div>
 
             {/* Header + Tabs */}
@@ -293,9 +298,18 @@ export default function HelpCenterSinglePage() {
                         <h3 className="text-lg font-semibold text-darkblue-800 mb-1">Still need help?</h3>
                         <p className="text-slate-700 mb-3">Contact our team for privacy requests or general support.</p>
                         <div className="flex flex-wrap gap-3 text-sm">
-                            <a href="mailto:info@cogentsolutions.ae" className="inline-flex items-center gap-2 bg-darkblue-700 text-white rounded-full px-3 py-2 hover:bg-darkblue-600"><Mail className="h-4 w-4" /> info@cogentsolutions.ae</a>
-                            <a href="tel:+971000000" className="inline-flex items-center gap-2 bg-white border border-darkblue-700 text-darkblue-700 rounded-full px-3 py-2 hover:bg-darkblue-100"><PhoneCall className="h-4 w-4" /> Call Support</a>
-                            <a href="/contact-us" className="inline-flex items-center gap-2 bg-darkblue-600 text-white rounded-full px-3 py-2 hover:bg-darkblue-500"><ScrollText className="h-4 w-4" /> Contact Form</a>
+                            <a
+                                href="mailto:info@cogentsolutions.ae"
+                                className="inline-flex items-center gap-2 bg-darkblue-700 text-white rounded-full px-3 py-2 hover:bg-darkblue-600"
+                            >
+                                <Mail className="h-4 w-4" /> info@cogentsolutions.ae
+                            </a>
+                            <a
+                                href="/contact-us"
+                                className="inline-flex items-center gap-2 bg-darkblue-600 text-white rounded-full px-3 py-2 hover:bg-darkblue-500"
+                            >
+                                <ScrollText className="h-4 w-4" /> Contact Form
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -315,27 +329,27 @@ export default function HelpCenterSinglePage() {
             </div>
 
             <style jsx global>{`
-        :root {
-          --darkblue-50: #f0f5ff;
-          --darkblue-100: #d6e4ff;
-          --darkblue-300: #84a9ff;
-          --darkblue-600: #3366ff;
-          --darkblue-700: #254eda;
-          --darkblue-800: #1939b7;
-          --darkblue-900: #102693;
-        }
-        .text-darkblue-600 { color: var(--darkblue-600); }
-        .text-darkblue-700 { color: var(--darkblue-700); }
-        .text-darkblue-800 { color: var(--darkblue-800); }
-        .bg-darkblue-50 { background-color: var(--darkblue-50); }
-        .bg-darkblue-100 { background-color: var(--darkblue-100); }
-        .bg-darkblue-600 { background-color: var(--darkblue-600); }
-        .bg-darkblue-700 { background-color: var(--darkblue-700); }
-        .bg-darkblue-900 { background-color: var(--darkblue-900); }
-        .border-darkblue-300 { border-color: var(--darkblue-300); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+                :root {
+                  --darkblue-50: #f0f5ff;
+                  --darkblue-100: #d6e4ff;
+                  --darkblue-300: #84a9ff;
+                  --darkblue-600: #3366ff;
+                  --darkblue-700: #254eda;
+                  --darkblue-800: #1939b7;
+                  --darkblue-900: #102693;
+                }
+                .text-darkblue-600 { color: var(--darkblue-600); }
+                .text-darkblue-700 { color: var(--darkblue-700); }
+                .text-darkblue-800 { color: var(--darkblue-800); }
+                .bg-darkblue-50 { background-color: var(--darkblue-50); }
+                .bg-darkblue-100 { background-color: var(--darkblue-100); }
+                .bg-darkblue-600 { background-color: var(--darkblue-600); }
+                .bg-darkblue-700 { background-color: var(--darkblue-700); }
+                .bg-darkblue-900 { background-color: var(--darkblue-900); }
+                .border-darkblue-300 { border-color: var(--darkblue-300); }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            `}</style>
         </div>
     );
 }

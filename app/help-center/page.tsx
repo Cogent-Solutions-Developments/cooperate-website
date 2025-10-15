@@ -7,13 +7,8 @@ import {
     ShieldCheck,
     Search,
     Mail,
-    PhoneCall,
     ChevronRight,
-    CheckCircle2,
-    ExternalLink,
-    FileText,
     ScrollText,
-    Home,
 } from "lucide-react";
 
 /**
@@ -25,8 +20,8 @@ import {
 // --- Replace these with real copy from your refs when ready ---
 const SECTIONS_PRIVACY = [
     {
-        id: "overview",
-        title: "Overview",
+        id: "Privacy",
+        title: "Privacy Policy Overview",
         content: `
         <p>
             <strong><em>Privacy Policy</em> Statement for Cogent Solutions Events Management LLC</strong> & it’s Events At cseventmanagement.com, accessible from <strong><a class='underline' href='https://cogentsolutions.ae/'>https://cogentsolutions.ae/</a></strong>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Cogentsolutions.ae and Cogent Solutions Events Management LLC reserves the right to use it.
@@ -256,6 +251,11 @@ export default function HelpCenterSinglePage() {
 
             {/* Main two‑column layout (TOC + content) */}
             <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 lg:grid-cols-[240px,1fr] gap-6">
+                <div>
+                    <h2 className="mt-3 text-xl sm:text-3xl text-center font-semibold text-darkblue-800">
+                        {tab === "privacy" ? "Privacy Policy" : "FAQs"}
+                    </h2>
+                </div>
                 {/* TOC */}
                 <aside className="hidden lg:block sticky top-6 self-start">
                     <div className="rounded-2xl border bg-white shadow p-4">

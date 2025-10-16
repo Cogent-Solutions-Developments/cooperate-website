@@ -20,6 +20,11 @@ export default function ExplorePage() {
           "/images/explore/hero/h3.jpeg",
           "/images/explore/hero/h1.jpg",
           "/images/explore/hero/h5.webp",
+          "/images/explore/hero/h6.png",
+          "/images/explore/hero/h7.jpeg",
+          "/images/explore/hero/h8.jpeg",
+          "/images/explore/hero/h9.jpeg",
+          "/images/explore/hero/h10.jpeg",
         ]}
       />
 

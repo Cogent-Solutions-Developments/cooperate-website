@@ -1,127 +1,163 @@
 "use client";
 
-import Image from "next/image";
 import { Mouse } from "lucide-react";
-import { useState, useEffect } from "react";
-
-type ExploreHeroProps = {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  images: string[];
-  showArrow?: boolean;
-  autoPlaySpeed?: number;
-};
+import { useEffect, useMemo, useState } from "react";
 
 export default function ExploreHero({
   title = "Explore",
   subtitle = "Our Conferences",
   description = "Exclusive, Closed-Door Platforms Where Ideas Meet Opportunity.",
-  images,
+  images = [
+    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400",
+    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400",
+    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400",
+    "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400",
+    "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400",
+    "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=400",
+    "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=400",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400",
+    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400",
+    "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400",
+    "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400",
+    "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=400",
+    "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=400",
+  ],
   showArrow = true,
-  autoPlaySpeed = 3000,
-}: ExploreHeroProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  autoPlaySpeed = 3500,
+}) {
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, autoPlaySpeed);
-
-    return () => clearInterval(interval);
+    if (images.length < 2) return;
+    const id = setInterval(
+      () => setCurrent((i) => (i + 1) % images.length),
+      autoPlaySpeed
+    );
+    return () => clearInterval(id);
   }, [images.length, autoPlaySpeed]);
 
-  // Get indices for 7 visible cards centered around currentIndex
-  const getVisibleIndices = () => {
-    const visible = [];
-    const totalImages = images.length;
-
-    for (let i = -3; i <= 3; i++) {
-      const index = (currentIndex + i + totalImages) % totalImages;
-      visible.push({ index, offset: i });
+  // Generate strip - show 7 images with current in center
+  const strip = useMemo(() => {
+    if (!images.length) return [];
+    const out = [];
+    for (let o = -4; o <= 4; o++) {
+      const idx = (current + o + images.length) % images.length;
+      out.push(images[idx]);
     }
+    return out;
+  }, [images, current]);
 
-    return visible;
-  };
-
-  const visibleCards = getVisibleIndices();
+  // SVG mask for curved ribbon
+  const ribbonMask =
+    `url('data:image/svg+xml;utf8,` +
+    encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+         <path d="
+           M 0 15
+           Q 50 45 100 15
+           L 100 85
+           Q 50 55 0 85
+           Z"
+           fill="white" />
+       </svg>`
+    ) +
+    `')`;
 
   return (
     <section
-      className="relative h-screen py-12 sm:py-16 lg:py-35 overflow-hidden text-white"
+      className="relative overflow-hidden text-neutral-900 h-screen"
       style={{
         background:
-          "radial-gradient(100% 100% at 50% 0%, #ffffff 0%, #2f47d0 0%, #ffffff 90%)",
+          "radial-gradient(120% 110% at 50% 0%, #ffffff 0%, #e9edfb 70%, #ffffff 100%)",
       }}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Hero Content */}
-        <div className="text-center space-y-4 mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[65px] font-normal leading-0px text-white">
+      {/* Subtle texture */}
+      <div className="pointer-events-none absolute inset-0 opacity-[1] mix-blend-overlay" />
+
+      <div className="relative z-10 h-full flex flex-col justify-between">
+        {/* Headings - moved above ribbon */}
+        <div className="absolute top-[24%] left-1/2 -translate-x-1/2 text-center z-20 px-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light">
             {title}
           </h1>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl xl:text-[75px] font-semibold leading-[50px] text-white">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold mt-2">
             {subtitle}
           </h2>
-          <p className="text-base sm:text-lg text-white max-w-2xl xl:text-[18px] font-semibold mx-auto mt-4">
+          <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-neutral-700 font-medium">
             {description}
           </p>
         </div>
 
-        {/* 3D Carousel */}
-        <div className="relative perspective-container mb-10">
+        {/* Curved Ribbon - FULL VIEWPORT WIDTH */}
+        <div className="relative top-[26%] flex-1 flex items-center justify-center">
           <div
-            className="flex items-center justify-center gap-4 lg:gap-6"
+            className="relative w-screen h-[300px] sm:h-[340px] md:h-[380px] lg:h-[420px] ] "
             style={{
-              transformStyle: "preserve-3d",
-              perspective: "1200px",
+              WebkitMaskImage: ribbonMask,
+              maskImage: ribbonMask,
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
             }}
           >
-            {visibleCards.map(({ index, offset }) => {
-              const rotateY = offset * 4;
-              const translateZ = Math.abs(offset) * -50;
-              const scale = 1 - Math.abs(offset) * 0.07;
+            <div className="absolute inset-0 flex items-center justify-center gap-6 sm:gap-8">
+              {strip.map((src, i) => {
+                // Center is at index 3
+                const distanceFromCenter = Math.abs(i - 4);
 
-              return (
-                <div
-                  key={`${index}-${offset}`}
-                  className="relative flex-shrink-0 transition-all duration-700 ease-in-out"
-                  style={{
-                    transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
-                    transformStyle: "preserve-3d",
-                    width: "200px",
-                    height: "250px",
-                  }}
-                >
-                  <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={images[index]}
-                      alt={`Conference ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="200px"
+                // Center SMALLEST, sides get PROGRESSIVELY BIGGER for depth
+                let width, height;
+
+                if (distanceFromCenter === 0) {
+                  // Center - smallest
+                  width = 140;
+                  height = 210;
+                } else if (distanceFromCenter === 1) {
+                  width = 170;
+                  height = 250;
+                } else if (distanceFromCenter === 2) {
+                  width = 200;
+                  height = 290;
+                } else {
+                  // Furthest (sides) - BIGGEST for depth effect
+                  width = 240;
+                  height = 340;
+                }
+
+                return (
+                  <div
+                    key={`${src}-${i}`}
+                    className="relative flex-shrink-0 rounded overflow-hidden bg-white ring-1 ring-neutral-200/50  transition-transform duration-500 ease-out hover:scale-[1.03]"
+                    style={{
+                      width: `${width}px`,
+                      height: `${height}px`,
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={`Conference ${i}`}
+                      className="object-cover w-full h-full"
                     />
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Arrow */}
+        {/* Scroll Indicator */}
         {showArrow && (
-          <div className="flex justify-center">
-            <Mouse className="w-8 h-8 stroke-1 text-[color:var(--foreground)] animate-bounce" />
+          <div className="pb-12 flex flex-col items-center text-[11px] tracking-widest text-neutral-500 uppercase mx-auto max-w-7xl px-4 text-center">
+            <Mouse className="mb-2 h-6 w-6 animate-bounce" />
+            {/* <span>Scroll to Explore</span> */}
           </div>
         )}
       </div>
 
-      <style jsx global>{`
-        .perspective-container {
-          perspective: 1200px;
-          perspective-origin: center;
-        }
-      `}</style>
+      {/* Bottom Fade */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-white via-white/85 to-transparent" />
     </section>
   );
 }

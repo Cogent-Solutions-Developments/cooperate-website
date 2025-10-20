@@ -187,7 +187,7 @@ export default function ContactUsPage() {
         >
           <div className="absolute inset-0">
             <Image
-              src="/images/bg1.jpg"
+              src="/images/BI1.jpeg"
               alt="Contact banner"
               fill
               className="object-cover opacity-80"

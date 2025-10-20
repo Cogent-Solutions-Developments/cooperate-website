@@ -190,7 +190,7 @@ export default function HelpCenterPage() {
         >
           <div className="absolute inset-0">
             <Image
-              src="/images/bg1.jpg"
+              src="/images/BI1.jpeg"
               alt="Help Center"
               fill
               className="object-cover opacity-80"

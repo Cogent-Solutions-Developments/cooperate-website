@@ -4,7 +4,8 @@ import { useState } from "react";
 import ExploreHero from "@/components/explore/ExploreHero";
 import ExploreSwitch from "@/components/explore/ExploreSwitch";
 import ConferencesSection from "@/components/explore/sections/ConferencesSection";
-// import BoardroomsSection from "@/components/explore/sections/BoardroomsSection";
+import NavBar from "@/components/layout/NavBar";
+import BoardroomSection from "@/components/explore/sections/BoardroomSection";
 // import VirtualEventsSection from "@/components/explore/sections/VirtualEventsSection";
 import { ExploreCategory } from "@/types/explore";
 
@@ -13,6 +14,8 @@ export default function ExplorePage() {
 
   return (
     <>
+     {/* ✅ Navbar always at top */}
+      <NavBar />
       <ExploreHero
         images={[
           "/images/explore/hero/h4.jpeg",
@@ -31,8 +34,8 @@ export default function ExplorePage() {
       <ExploreSwitch active={active} onChange={setActive} />
 
       {active === "conferences" && <ConferencesSection />}
-      {/* {active === "boardrooms" && <BoardroomsSection />}
-      {active === "virtual" && <VirtualEventsSection />} */}
+      {active === "boardrooms" && <BoardroomSection />}
+      {/* {active === "virtual" && <VirtualEventsSection />} */}
     </>
   );
 }

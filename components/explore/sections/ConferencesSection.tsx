@@ -11,6 +11,7 @@ type EventItem = {
   countryFlag?: string;
   logoUrl?: string;
   backgroundImage: string;
+  link: string;
 };
 
 // Parse date string - handles multi-day events by taking the last date

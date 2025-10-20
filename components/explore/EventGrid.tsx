@@ -12,22 +12,19 @@ type EventItem = {
   countryFlag?: string;
   logoUrl?: string;
   backgroundImage: string;
+  link: string;
 };
 
-export default function EventGrid({
-  events,
-}: {
-  events: EventItem[];
-}) {
+export default function EventGrid({ events }: { events: EventItem[] }) {
   // --- Helper: Parse date string, handling multi-day events ---
   const parseEventDate = (dateStr: string): Date | null => {
     if (!dateStr || dateStr.trim() === "") return null;
-    
+
     try {
       // Handle multi-day formats:
       // "19th & 20th May, 2026" or "19th to 25th May, 2026"
       let lastPart = dateStr;
-      
+
       if (dateStr.includes("&")) {
         const parts = dateStr.split("&");
         lastPart = parts[parts.length - 1].trim();
@@ -35,7 +32,7 @@ export default function EventGrid({
         const parts = dateStr.split(" to ");
         lastPart = parts[parts.length - 1].trim();
       }
-      
+
       const clean = lastPart
         .replace(/(\d+)(st|nd|rd|th)/, "$1")
         .replace(",", "");
@@ -57,13 +54,13 @@ export default function EventGrid({
       const updateCountdown = () => {
         const now = new Date();
         now.setHours(0, 0, 0, 0);
-        
+
         const target = new Date(targetDate);
         target.setHours(0, 0, 0, 0);
-        
+
         const diff = target.getTime() - now.getTime();
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        
+
         if (days === 0) {
           setIsToday(true);
           setDaysLeft(0);
@@ -104,13 +101,14 @@ export default function EventGrid({
     <section className="py-10 bg-white">
       <div className="mx-auto max-w-6xl px-0 grid grid-cols-1 md:grid-cols-3 gap-10">
         {events.map((event) => (
-          <div
+          <a
             key={event.id}
-            className="overflow-hidden rounded-[2rem] bg-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+            href={event.link}
+            className="overflow-hidden rounded-[2rem] bg-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col cursor-pointer"
           >
             {/* === IMAGE === */}
             <div className="p-2">
-              <div className="relative h-[200px] w-full overflow-hidden rounded-[1.5rem]">
+              <div className="relative h-[220px] w-full overflow-hidden rounded-[1.5rem]">
                 <Image
                   src={event.backgroundImage}
                   alt={event.title}
@@ -139,13 +137,10 @@ export default function EventGrid({
                     <span className="font-normal">{event.date || "TBA"}</span>
                   </div>
 
-                  <a
-                    href="#"
-                    className="flex items-center gap-1 text-sm font-semibold text-gray-800 hover:text-[color:var(--brand-primary)] transition"
-                  >
+                  {/* <span className="flex items-center gap-1 text-sm font-semibold text-gray-800 hover:text-[color:var(--brand-primary)] transition">
                     <span>View More</span>
                     <ArrowUpRight size={16} />
-                  </a>
+                  </span> */}
                 </div>
               </div>
 
@@ -155,13 +150,13 @@ export default function EventGrid({
                 <div className="flex items-center bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
                   <span>{event.location || "Location - TBA"}</span>
                   {event.location && event.countryFlag && (
-                    <div className="w-5 h-5 rounded-full overflow-hidden ml-2">
-                      <Image
+                   <div className="w-5 h-5 rounded-full overflow-hidden ml-2 flex-shrink-0">
+                     <Image
                         src={event.countryFlag}
                         alt={event.location}
-                        width={24}
-                        height={24}
-                        className="object-cover"
+                        width={20}
+                        height={20}
+                        className="object-cover w-full h-full scale-[1]"
                       />
                     </div>
                   )}
@@ -171,7 +166,7 @@ export default function EventGrid({
                 <Countdown date={event.date} />
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>

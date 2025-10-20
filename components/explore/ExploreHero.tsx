@@ -149,9 +149,9 @@ export default function ExploreHero({
 
         {/* Scroll Indicator */}
         {showArrow && (
-          <div className="pb-12 flex flex-col items-center text-[11px] tracking-widest text-neutral-500 uppercase mx-auto max-w-7xl px-4 text-center">
+          <div className="pb-12 flex flex-col items-center text-[11px] tracking-widest text-black  mx-auto max-w-7xl px-4 text-center">
             <Mouse className="mb-2 h-6 w-6 animate-bounce" />
-            {/* <span>Scroll to Explore</span> */}
+            <span className="text-black font-semibold">Scroll to Explore</span>
           </div>
         )}
       </div>

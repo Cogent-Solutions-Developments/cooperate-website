@@ -167,7 +167,7 @@ export default function ServicesHero() {
   }, []);
 
   return (
-    <section className="py-45 h-screen bg-white relative">
+    <section className="py-45 h-screen bg-gradient-to-b from-[#F8F9FB] to-white relative">
       {/* === Header === */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -306,11 +306,11 @@ export default function ServicesHero() {
 
                 {/* === OUR PARTNERS (smooth continuous upward scroll + fade) === */}
                 {card.type === "partners" && (
-                  <div className="w-full h-full flex flex-col justify-between bg-[#F5F5F5] rounded-[24px] overflow-hidden relative">
+                  <div className="w-full h-full flex flex-col justify-between bg-[#f9f9fa] rounded-[24px] overflow-hidden relative">
                     {/* Scrollable area with fade overlay */}
                     <div className="relative flex-1 overflow-hidden">
                       {/* Fade mask at bottom */}
-                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#F5F5F5] via-[#F5F5F5]/80 to-transparent z-10 pointer-events-none"></div>
+                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#f9f9fa] via-[#f9f9fa]/80 to-transparent z-10 pointer-events-none"></div>
 
                       {/* === Vertical scroll container === */}
                       <motion.div

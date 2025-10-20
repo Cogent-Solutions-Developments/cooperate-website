@@ -1,355 +1,380 @@
+// app/help-center/page.tsx
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import NavBar from "@/components/layout/NavBar";
 import BreadcrumbVisual from "@/components/navigation/BreadcrumbVisual";
 import {
-    ShieldCheck,
-    Search,
-    Mail,
-    ChevronRight,
-    ScrollText,
+  ShieldCheck,
+  Search,
+  Mail,
+  ChevronRight,
+  ScrollText,
+  Info,
 } from "lucide-react";
 
-/**
- * Single‑Page Help Center (Privacy Policy + Help FAQs)
- * Theme: White with Dark Blue accents
- * Drop into: app/help-center/page.tsx (or any route) — no extra files needed.
- */
-
-// --- Replace these with real copy from your refs when ready ---
+/* ================================
+   Content (edit freely)
+================================== */
 const SECTIONS_PRIVACY = [
-    {
-        id: "Privacy",
-        title: "Privacy Policy Overview",
-        content: `
-        <p>
-            <strong><em>Privacy Policy</em> Statement for Cogent Solutions Events Management LLC</strong> & it’s Events At cseventmanagement.com, accessible from <strong><a class='underline' href='https://cogentsolutions.ae/'>https://cogentsolutions.ae/</a></strong>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Cogentsolutions.ae and Cogent Solutions Events Management LLC reserves the right to use it.
-        </p><br>
-        <p>
-           By filling out the registration form to attend our event, you agree and consent to Cogent Solutions™ sharing your personal contact details, in accordance with GDPR guidelines, with our sponsors and partners.
-        </p>
-        `,
-    },
-    {
-        id: "General",
-        title: "Privacy Policies and General Terms & Conditions",
-        content: `
-        <ol class="list-decimal pl-6 space-y-2">
-            <li>
-                <strong>Acceptance of Terms</strong><br>
-                By signing, registering, attending, sponsoring, or otherwise engaging with Cogent Solutions Event Management LLC ("Cogent Solutions"), you agree to be legally bound by these Terms & Conditions, our Privacy Policy, and applicable laws including UAE Federal Decree-Law No. 45 of 2021 and GDPR (EU Regulation 2016/679).
-            </li>
-            <li>
-                <strong>Data Privacy & Consent</strong><br>
-                You consent to the collection, use, and international transfer of your personal data (including email, contact, billing, and professional details) for the purposes of event management, business communication, and marketing. Withdrawal of consent must be provided in writing and may be subject to legal or contractual obligations.
-            </li>
-            <li>
-                <strong>Payment Terms</strong><br>
-                All fees are due as invoiced and must be settled within the stated timeframe (typically within 2 business days unless otherwise specified). Cogent reserves the right to deny event access for non-payment. VAT is applicable as per UAE law and must be borne by the client.
-            </li>
-            <li>
-                <strong>Cancellation Policy</strong><br>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li>No cancellations or refunds are permitted after confirmation.</li>
-                    <li>If Cogent postpones or reschedules an event, you may choose to attend on the new date or request a credit voucher valid for one year.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>Event Modifications</strong><br>
-                Cogent reserves the right to alter the event format (virtual, hybrid, or in-person), agenda, speakers, or venue at its discretion for operational or legal reasons. Changes will be communicated in advance where feasible.
-            </li>
-            <li>
-                <strong>Use of Likeness & Materials</strong><br>
-                Attendees and sponsors grant Cogent the right to use photographs, video, and audio taken at events for promotional purposes. Materials submitted for event use may be published unless explicitly marked “Confidential.”
-            </li>
-            <li>
-                <strong>Intellectual Property</strong><br>
-                All content provided by Cogent or event participants remains the intellectual property of the respective owner. Unauthorized recording, reproduction, or distribution is strictly prohibited without prior written consent.
-            </li>
-            <li>
-                <strong>Limitation of Liability</strong><br>
-                Cogent shall not be held liable for indirect or consequential losses, including travel or accommodation costs. Total liability, if any, shall not exceed the total fees paid by the client.
-            </li>
-            <li>
-                <strong>Indemnification</strong><br>
-                Clients, sponsors, and delegates agree to indemnify and hold harmless Cogent from any claims, damages, or legal actions arising out of their participation, data misuse, or contractual breach.
-            </li>
-            <li>
-                <strong>Jurisdiction</strong><br>
-                This agreement shall be governed by and construed in accordance with the laws of the United Arab Emirates. All disputes shall be submitted to the exclusive jurisdiction of the Dubai Courts.
-            </li>
-            <li>
-                <strong>Communication & Policy Acceptance</strong><br>
-                By engaging with Cogent Solutions, you acknowledge that you have read, understood, and accepted our Privacy Policy, Terms, and this Agreement, and consent to be contacted with event-related and marketing information.
-            </li>
-        </ol>
-        `
-    },
-    {
-        id: "Conditions",
-        title: "Terms and Conditions",
-        content: `
-        <p>Payment terms of Cogent Solutions Event Management LLC: Payment of the agreed amount to be made within 5 working days. The payment terms of Cogent Solutions Event Management LLC cannot be changed after agreeing or signing a legal contract and must be honored. Under no circumstances will the sponsor be allowed to an event without the full payments having cleared through Cogent Solutions Event Management’s LLC bank account as per agreed payment terms.</p><br>
-
-        <ul class="list-disc pl-6 space-y-2">
-            <li>
-                <strong>Client Information Due Date:</strong><br>
-                Please ensure to provide all the needed information about your company, and speaker(s), if applicable, brand identity and other applicable material no later than 10 days of your official confirmation, to ensure receiving maximum benefits from your participation.
-            </li>
-            <li>
-                <strong>Cancellation Policy:</strong><br>
-                <p class="mb-2">The client cannot cancel this contract under any circumstances. There will be no refunds given to the customer if they cancel this contract for any internal or financial reasons or conflicts of schedule, lack of speaker availability, etc. It is the full responsibility of the client to ensure their full ability to execute and fulfill their obligations set in the agreed contract. If the client chooses to cancel their participation at the event due to any reasons, they are still required to make the full payment of the contract price.</p>
-
-                <p class="mb-2">If Cogent Solutions Event Management cancel the event, client will get a full refund within 20 days. If Cogent Solutions Event Management change the dates of the event the sponsor can choose to: 1) Participate at the event in its new dates or, 2) Request for a credit voucher for the amount paid by the client.</p>
-
-                <p class="mb-2">Client agrees that Cogent Solutions Event Management reserves the right to make changes to the event as seen and deemed necessary for the successful execution of the event after discussion with the client. Client also acknowledges that speakers, sessions, and other elements of the event can and may change in months leading up to the event as per any event proceedings.</p>
-            </li>
-
-            <li>
-                <strong>Miscellaneous:</strong><br>
-                <p class="mb-2">Client agrees that all its material shared with Cogent Solutions Event Management LLC can be published on the event marketing collateral prior, during and after the event for promotional purposes. Should the client wish for any of its shared material to be treated as confidential, this needs to be clearly indicated to Cogent Solutions Event Management LLC in writing.</p>
-                <p class="mb-2">Client agrees that all the material, documents and data shared by Cogent Solutions Event Management LLC is strictly confidential material, and cannot be sold, duplicated, replicated, or shared by the sponsor with any third party for any purposes. In case of any dispute(s), the matters will be referred to Dubai Courts and will be dealt with in accordance with the UAE laws.</p>
-            </li>
-        </ul>`
-    },
-    {
-        id: "payment",
-        title: "Payment Policy",
-        content: `
-        <p>Payment of the agreed amount to be made within 5 working days. The payment terms of Cogent Solutions Event Management LLC cannot be changed after agreeing or signing a legal contract and must be honored. Under no circumstances will the sponsor be allowed to an event without the full payments having cleared through Cogent Solutions Event Management’s LLC bank account as per agreed payment terms.</p>`
-    },
+  {
+    id: "overview",
+    title: "Privacy Policy Overview",
+    content: `
+      <p><strong>Cogent Solutions™</strong> respects your privacy. This policy explains what we collect, why we collect it, and how we use and protect your data across our conference, boardroom, and media platforms.</p>
+      <p>By registering for or engaging with our events, you consent to this policy and our Terms, including sharing limited business contact details with event partners in line with GDPR and applicable UAE regulations.</p>
+    `,
+  },
+  {
+    id: "data-we-collect",
+    title: "Data We Collect",
+    content: `
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Identity & contact (name, email, phone, job title, company)</li>
+        <li>Event preferences, session selections, dietary/access needs (optional)</li>
+        <li>Payment and invoicing details for paid services</li>
+        <li>Usage data: site/app interactions, device/browser information</li>
+        <li>Media captured at events (photos/video)</li>
+      </ul>
+    `,
+  },
+  {
+    id: "how-we-use",
+    title: "How We Use Your Data",
+    content: `
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Event operations (badging, communications, logistics, certificates)</li>
+        <li>Partner networking and lead delivery (only business-relevant fields)</li>
+        <li>Customer support and service improvement</li>
+        <li>Legal, compliance, and security</li>
+      </ul>
+      <p class="mt-2 text-sm">We do not sell personal data. Processing is based on consent, contract, or legitimate interest.</p>
+    `,
+  },
+  {
+    id: "your-rights",
+    title: "Your Rights",
+    content: `
+      <p>You may request access, correction, deletion, or restriction. You can also withdraw consent where processing is consent-based.</p>
+      <p class="mt-1 text-sm">To exercise rights, email <a class="underline" href="mailto:info@cogentsolutions.ae">info@cogentsolutions.ae</a>.</p>
+    `,
+  },
+  {
+    id: "security",
+    title: "Security & Retention",
+    content: `
+      <p>We apply administrative, technical, and physical safeguards. Data retention aligns with legal, tax, and operational requirements. Media captured at events may be retained for archival and promotional purposes.</p>
+    `,
+  },
+  {
+    id: "terms",
+    title: "Terms & Conditions (Summary)",
+    content: `
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Invoices payable within stated terms; access may be withheld for non-payment.</li>
+        <li>No cancellations/refunds after confirmation; postponements allow date change or credit.</li>
+        <li>Agenda/speakers/format may change; IP and recording restrictions apply.</li>
+        <li>Jurisdiction: Dubai Courts, UAE law.</li>
+      </ul>
+    `,
+  },
 ];
 
 const SECTIONS_HELP = [
-    {
-        id: "hc-what-is",
-        title: "What is Event Management?",
-        content: `
-        <p>Event management refers to the comprehensive process of planning, organizing, and executing a wide range of professional events. This multifaceted discipline involves meticulous coordination of various elements to ensure the smooth and successful execution of each event. Event management tasks include selecting suitable venues, managing logistics, creating budgets, implementing marketing strategies, coordinating with vendors, and overseeing on-site operations.</p>`
-    },
-    {
-        id: "hc-which-type",
-        title: "Which types of events does Cogent Solutions specialize in?",
-        content: `
-        <p>Cogent Solutions Event Management's expertise lies in the organization of professional, B2B events such as conferences, exhibitions and boardrooms. We dedicate ourselves to promoting new discussions covering industry insights and emerging trends, facilitating networking opportunities and creating valuable connections among attendees, as we recognize the importance of bringing together individuals and fostering meaningful collaborations. Cogent Solutions Event Management aims to create remarkable experiences through our events, leaving a lasting impression and providing a platform for networking and professional growth.</p>`
-    },
-    {
-        id: "hc-what-type",
-        title: "What types of event platforms can Cogent Solutions provide?",
-        content: `
-        <p>Cogent Solutions has experience in a wide range of customized events across physical, virtual, and hybrid platforms. We understand that each event has unique specifications, and our team is dedicated to delivering a seamless experience across all platforms. By leveraging our expertise and versatility, we strive to create events that precisely match your vision, and we are committed to ensuring that we can accommodate all your needed preferences and requirements.</p>`
-    },
-    {
-        id: "hc-interested",
-        title: "I'm interested in sponsoring or exhibiting at one of Cogent Solutions' events, how can I start?",
-        content: `<p>If you're interested in becoming one of Cogent Solutions' distinguished sponsors or exhibitors, you can contact our team to learn more at: <a class='underline' href='mailto:partnerships@csevents.ae'>partnerships@csevents.ae</a></p>`
-    },
+  {
+    id: "what-is",
+    title: "What is Event Management?",
+    content: `
+      <p>It’s the end-to-end planning and execution of professional events—venue, agenda, speakers, logistics, registration, production, and post-event reporting.</p>
+    `,
+  },
+  {
+    id: "specialization",
+    title: "What does Cogent Solutions specialize in?",
+    content: `
+      <p>High-grade B2B platforms: conferences, invitation-only boardrooms, and curated media—focused on measurable outcomes and senior stakeholder engagement.</p>
+    `,
+  },
+  {
+    id: "platforms",
+    title: "Platforms We Support",
+    content: `
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Physical conferences and closed-door boardrooms</li>
+        <li>Hybrid and virtual activations</li>
+        <li>CS Podcasts and content partnerships</li>
+      </ul>
+    `,
+  },
+  {
+    id: "sponsor",
+    title: "How do I sponsor or exhibit?",
+    content: `
+      <p>Email <a class="underline" href="mailto:partnerships@cogentsolutions.ae">partnerships@cogentsolutions.ae</a> with your objectives (audience, geography, outcomes). We’ll recommend a fit—e.g., main conference, boardroom series, or content package.</p>
+    `,
+  },
+  {
+    id: "delegate",
+    title: "Delegate & Registration Support",
+    content: `
+      <p>For delegate queries, logistics, or certificates, write to <a class="underline" href="mailto:info@cogentsolutions.ae">info@cogentsolutions.ae</a> with your event name and details.</p>
+    `,
+  },
 ];
 
+/* ================================
+   Helpers
+================================== */
 function useActiveSection(ids: string[]) {
-    const [active, setActive] = useState(ids[0] ?? "");
-    useEffect(() => {
-        const observers: IntersectionObserver[] = [];
-        ids.forEach((id) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            const obs = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((e) => {
-                        if (e.isIntersecting) setActive(id);
-                    });
-                },
-                { rootMargin: "-40% 0px -55% 0px", threshold: [0, 1] }
-            );
-            obs.observe(el);
-            observers.push(obs);
-        });
-        return () => observers.forEach((o) => o.disconnect());
-    }, [ids.join("|")]);
-    return active;
+  const [active, setActive] = useState(ids[0] ?? "");
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => e.isIntersecting && setActive(id));
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: [0, 1] }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [ids.join("|")]);
+  return active;
 }
 
-export default function HelpCenterSinglePage() {
-    const [tab, setTab] = useState<"privacy" | "help">("privacy");
-    const [q, setQ] = useState("");
+/* ================================
+   Page
+================================== */
+export default function HelpCenterPage() {
+  const [tab, setTab] = useState<"privacy" | "help">("privacy");
+  const [q, setQ] = useState("");
 
-    const baseSections = tab === "privacy" ? SECTIONS_PRIVACY : SECTIONS_HELP;
-    const sections = useMemo(() => {
-        if (!q.trim()) return baseSections;
-        const t = q.toLowerCase();
-        return baseSections.filter((s) => (s.title + s.content).toLowerCase().includes(t));
-    }, [q, baseSections]);
+  const base = tab === "privacy" ? SECTIONS_PRIVACY : SECTIONS_HELP;
+  const sections = useMemo(() => {
+    if (!q.trim()) return base;
+    const t = q.toLowerCase();
+    return base.filter((s) => (s.title + s.content).toLowerCase().includes(t));
+  }, [q, base]);
 
-    const ids = sections.map((s) => s.id);
-    const active = useActiveSection(ids);
+  const ids = sections.map((s) => s.id);
+  const active = useActiveSection(ids);
 
-    return (
-        <div className="min-h-screen bg-white text-slate-800">
-            {/* Breadcrumb */}
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6">
-                <BreadcrumbVisual
-                    auto
-                    rootLabel="Home"
-                    segmentLabels={{
-                        features: "Features",
-                        "smart-routing": "Smart Routing",
-                        // add more slugs -> labels here as you add pages
-                    }}
-                />
-            </div>
+  return (
+    <div className="min-h-screen bg-white text-slate-800">
+      {/* NavBar (site-wide) */}
+      <NavBar />
+      <div className="h-20 md:h-[84px]" />
 
-            {/* Header + Tabs */}
-            <header className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="relative overflow-hidden rounded-3xl p-6 sm:p-8 shadow-lg bg-darkblue-900 text-white"
+      {/* Breadcrumb */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+        <BreadcrumbVisual
+          auto
+          rootLabel="Home"
+          segmentLabels={{ "help-center": "Help Center" }}
+        />
+      </div>
+
+      {/* Hero – dark blue banner with image + gradient (matches Contact/Explore) */}
+      <header className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-3xl border border-[#0A1E75]/15 bg-[#0A1E75] text-white shadow-lg"
+        >
+          <div className="absolute inset-0">
+            <Image
+              src="/images/bg1.jpg"
+              alt="Help Center"
+              fill
+              className="object-cover opacity-80"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1E75]/85 via-[#0A1E75]/65 to-transparent" />
+          </div>
+
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1.15fr,0.85fr] items-center gap-6 px-6 py-10 sm:px-10 lg:px-16">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">
+                <ShieldCheck className="h-4 w-4" />
+                Support & Privacy
+              </div>
+              <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">
+                Help Center
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm sm:text-base text-white/90">
+                All the essentials on one page: FAQs and the Privacy Policy,
+                with fast search and on-page navigation.
+              </p>
+
+              {/* Tabs */}
+              <div className="mt-5 inline-flex rounded-xl bg-white/10 p-1">
+                <button
+                  onClick={() => setTab("privacy")}
+                  className={`px-4 py-2 text-sm rounded-lg transition ${
+                    tab === "privacy"
+                      ? "bg-white text-[#0A1E75]"
+                      : "text-white/85 hover:bg-white/10"
+                  }`}
                 >
-                    <div className="flex flex-col md:flex-row md:items-center gap-6">
-                        <div className="flex-1">
-                            <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-3 py-1 text-xs">
-                                <ShieldCheck className="h-4 w-4" /> Help Center
-                            </div>
-                            <h1 className="mt-3 text-3xl sm:text-4xl font-semibold">Support & Privacy</h1>
-                            <p className="mt-2 max-w-2xl text-sm opacity-90">All the essentials on one page: FAQs and the Privacy Policy, with search and in‑page navigation.</p>
-
-                            {/* Tabs (mobile/desktop) */}
-                            <div className="mt-4 inline-flex rounded-xl bg-white/10 p-1">
-                                <button
-                                    onClick={() => setTab("privacy")}
-                                    className={`px-4 py-2 text-sm rounded-lg transition ${tab === "privacy" ? "bg-white text-darkblue-900" : "text-white/80 hover:bg-white/10"}`}
-                                >
-                                    Privacy Policy
-                                </button>
-                                <button
-                                    onClick={() => setTab("help")}
-                                    className={`px-4 py-2 text-sm rounded-lg transition ${tab === "help" ? "bg-white text-darkblue-900" : "text-white/80 hover:bg-white/10"}`}
-                                >
-                                    FAQs
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Search */}
-                        <div className="md:w-[360px] w-full">
-                            <label className="relative block">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                                <input
-                                    value={q}
-                                    onChange={(e) => setQ(e.target.value)}
-                                    placeholder={`Search ${tab === "privacy" ? "policy" : "help"}...`}
-                                    className="w-full rounded-xl border border-darkblue-300 bg-white pl-11 pr-4 py-3 text-slate-800 outline-none focus:ring-4 ring-darkblue-300"
-                                />
-                            </label>
-                            <p className="mt-2 text-xs text-white/70">Tip: try “refund”, “agenda”, or “deletion”.</p>
-                        </div>
-                    </div>
-                </motion.div>
-            </header>
-
-            {/* Main two‑column layout (TOC + content) */}
-            <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 lg:grid-cols-[240px,1fr] gap-6">
-                <div>
-                    <h2 className="mt-3 text-xl sm:text-3xl text-center font-semibold text-darkblue-800">
-                        {tab === "privacy" ? "Privacy Policy" : "FAQs"}
-                    </h2>
-                </div>
-                {/* TOC */}
-                <aside className="hidden lg:block sticky top-6 self-start">
-                    <div className="rounded-2xl border bg-white shadow p-4">
-                        <p className="px-2 pb-2 text-xs font-semibold text-darkblue-700 uppercase tracking-wide">On this page</p>
-                        <ul className="space-y-1">
-                            {sections.map((s) => (
-                                <li key={s.id}>
-                                    <a
-                                        href={`#${s.id}`}
-                                        className={`group flex items-center gap-2 rounded-lg px-2 py-2 text-sm transition ${active === s.id ? "bg-darkblue-100 text-darkblue-800 font-semibold" : "hover:bg-slate-100"}`}
-                                    >
-                                        <ChevronRight className={`h-4 w-4 transition ${active === s.id ? "text-darkblue-600" : "text-slate-400"}`} />
-                                        {s.title}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </aside>
-
-                {/* Content */}
-                <section className="space-y-6">
-                    {sections.map((s, idx) => (
-                        <motion.article
-                            id={s.id}
-                            key={s.id}
-                            initial={{ opacity: 0, y: 12 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-10% 0px" }}
-                            transition={{ duration: 0.45, ease: "easeOut", delay: idx * 0.02 }}
-                            className="rounded-2xl border border-slate-200 bg-white shadow p-6"
-                        >
-                            <h2 className="text-xl font-semibold text-darkblue-800 mb-2">{s.title}</h2>
-                            <div className="prose prose-slate max-w-none" dangerouslySetInnerHTML={{ __html: s.content }} />
-                        </motion.article>
-                    ))}
-
-                    {/* CTA */}
-                    <div className="rounded-2xl border border-slate-200 bg-darkblue-50 p-6">
-                        <h3 className="text-lg font-semibold text-darkblue-800 mb-1">Still need help?</h3>
-                        <p className="text-slate-700 mb-3">Contact our team for privacy requests or general support.</p>
-                        <div className="flex flex-wrap gap-3 text-sm">
-                            <a
-                                href="mailto:info@cogentsolutions.ae"
-                                className="inline-flex items-center gap-2 bg-darkblue-700 text-white rounded-full px-3 py-2 hover:bg-darkblue-600"
-                            >
-                                <Mail className="h-4 w-4" /> info@cogentsolutions.ae
-                            </a>
-                            <a
-                                href="/contact-us"
-                                className="inline-flex items-center gap-2 bg-darkblue-600 text-white rounded-full px-3 py-2 hover:bg-darkblue-500"
-                            >
-                                <ScrollText className="h-4 w-4" /> Contact Form
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            {/* Mobile sticky quick‑nav chips for current tab */}
-            <div className="lg:hidden sticky bottom-4 inset-x-0 px-4">
-                <div className="mx-auto max-w-2xl rounded-2xl border bg-white shadow-lg p-3">
-                    <div className="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
-                        {sections.map((s) => (
-                            <a key={s.id} href={`#${s.id}`} className="text-xs shrink-0 px-3 py-1.5 rounded-full border hover:bg-slate-50">
-                                {s.title}
-                            </a>
-                        ))}
-                    </div>
-                </div>
+                  Privacy Policy
+                </button>
+                <button
+                  onClick={() => setTab("help")}
+                  className={`px-4 py-2 text-sm rounded-lg transition ${
+                    tab === "help"
+                      ? "bg-white text-[#0A1E75]"
+                      : "text-white/85 hover:bg-white/10"
+                  }`}
+                >
+                  FAQs
+                </button>
+              </div>
             </div>
 
-            <style jsx global>{`
-                :root {
-                  --darkblue-50: #f0f5ff;
-                  --darkblue-100: #d6e4ff;
-                  --darkblue-300: #84a9ff;
-                  --darkblue-600: #3366ff;
-                  --darkblue-700: #254eda;
-                  --darkblue-800: #1939b7;
-                  --darkblue-900: #102693;
-                }
-                .text-darkblue-600 { color: var(--darkblue-600); }
-                .text-darkblue-700 { color: var(--darkblue-700); }
-                .text-darkblue-800 { color: var(--darkblue-800); }
-                .bg-darkblue-50 { background-color: var(--darkblue-50); }
-                .bg-darkblue-100 { background-color: var(--darkblue-100); }
-                .bg-darkblue-600 { background-color: var(--darkblue-600); }
-                .bg-darkblue-700 { background-color: var(--darkblue-700); }
-                .bg-darkblue-900 { background-color: var(--darkblue-900); }
-                .border-darkblue-300 { border-color: var(--darkblue-300); }
-                .no-scrollbar::-webkit-scrollbar { display: none; }
-                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-            `}</style>
+            {/* Search */}
+            <div className="md:w-[380px] w-full">
+              <label className="relative block">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70" />
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder={`Search ${tab === "privacy" ? "policy" : "help"}…`}
+                  className="w-full rounded-xl border border-white/25 bg-white/10 pl-11 pr-4 py-3 text-white placeholder:text-white/70 outline-none focus:ring-4 ring-white/30"
+                />
+              </label>
+              <p className="mt-2 text-xs text-white/75">
+                Tip: try “refund”, “agenda”, or “deletion”.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </header>
+
+      {/* Main two-column layout */}
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 lg:grid-cols-[240px,1fr] gap-6">
+        {/* TOC (sticky) */}
+        <aside className="hidden lg:block sticky top-24 self-start">
+          <div className="rounded-2xl border bg-white shadow p-4">
+            <p className="px-2 pb-2 text-xs font-semibold text-[#254EDA] uppercase tracking-wide">
+              On this page
+            </p>
+            <ul className="space-y-1">
+              {sections.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className={`group flex items-center gap-2 rounded-lg px-2 py-2 text-sm transition ${
+                      active === s.id
+                        ? "bg-[var(--darkblue-100)] text-[var(--darkblue-800)] font-semibold"
+                        : "hover:bg-slate-100"
+                    }`}
+                  >
+                    <ChevronRight
+                      className={`h-4 w-4 transition ${
+                        active === s.id
+                          ? "text-[var(--darkblue-600)]"
+                          : "text-slate-400"
+                      }`}
+                    />
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+        {/* Content */}
+        <section className="space-y-6">
+          {sections.map((s, idx) => (
+            <motion.article
+              id={s.id}
+              key={s.id}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.45, ease: "easeOut", delay: idx * 0.02 }}
+              className="rounded-2xl border border-slate-200 bg-white shadow p-6"
+            >
+              <h2 className="text-xl font-semibold text-[var(--darkblue-800)] mb-2">
+                {s.title}
+              </h2>
+              <div
+                className="prose prose-slate max-w-none"
+                dangerouslySetInnerHTML={{ __html: s.content }}
+              />
+            </motion.article>
+          ))}
+
+          {/* CTA card */}
+          <div className="rounded-2xl border border-slate-200 bg-[var(--darkblue-50)] p-6">
+            <h3 className="text-lg font-semibold text-[var(--darkblue-800)] mb-1">
+              Still need help?
+            </h3>
+            <p className="text-slate-700 mb-3">
+              Contact our team for privacy requests or general support.
+            </p>
+            <div className="flex flex-wrap gap-3 text-sm">
+              <a
+                href="mailto:info@cogentsolutions.ae"
+                className="inline-flex items-center gap-2 bg-[var(--darkblue-700)] text-white rounded-full px-3 py-2 hover:bg-[var(--darkblue-600)]"
+              >
+                <Mail className="h-4 w-4" /> info@cogentsolutions.ae
+              </a>
+              <a
+                href="/contact-us"
+                className="inline-flex items-center gap-2 bg-[var(--darkblue-600)] text-white rounded-full px-3 py-2 hover:bg-[var(--darkblue-500)]"
+              >
+                <ScrollText className="h-4 w-4" /> Contact Form
+              </a>
+              <span className="inline-flex items-center gap-2 text-slate-600 px-3 py-2">
+                <Info className="h-4 w-4" /> Response within 1 - 2 business days
+              </span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Mobile quick-nav chips */}
+      <div className="lg:hidden sticky bottom-4 inset-x-0 px-4">
+        <div className="mx-auto max-w-2xl rounded-2xl border bg-white shadow-lg p-3">
+          <div className="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className="text-xs shrink-0 px-3 py-1.5 rounded-full border hover:bg-slate-50"
+              >
+                {s.title}
+              </a>
+            ))}
+          </div>
         </div>
-    );
+      </div>
+
+      {/* Theme tokens (shared with other pages) */}
+      <style jsx global>{`
+        :root {
+          --darkblue-50: #f0f5ff;
+          --darkblue-100: #d6e4ff;
+          --darkblue-300: #84a9ff;
+          --darkblue-400: #6691ff;
+          --darkblue-500: #4778ff;
+          --darkblue-600: #3366ff;
+          --darkblue-700: #254eda;
+          --darkblue-800: #1939b7;
+          --darkblue-900: #102693;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
 }

@@ -119,7 +119,7 @@ export default function ContactUsPage() {
       lines: ["2nd Floor, Green Lanka Tower", "Colombo 02, Sri Lanka"],
       map: "https://www.google.com/maps?q=Green%20Lanka%20Tower%20Colombo%2002&output=embed",
     },
-    { key: "ksa", label: "Saudi Arabia", lines: ["Riyadh — Coming Soon"], map: "" },
+    { key: "ksa", label: "Saudi Arabia", lines: ["Riyadh - Coming Soon"], map: "" },
   ] as const;
 
   const [activeOffice, setActiveOffice] =

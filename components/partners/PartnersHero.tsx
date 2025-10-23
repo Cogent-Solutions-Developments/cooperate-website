@@ -21,78 +21,45 @@ export default function PartnersHero() {
     "/images/services/logos/Blackberry.png",
   ];
 
-  // columns: 3 | 4 | 3 | 4
-  const columns = [
-    logos.slice(0, 3),
-    logos.slice(3, 7),
-    logos.slice(7, 10),
-    logos.slice(10, 14),
-    
-  ];
-
   return (
-    <section className="relative w-full min-h-screen bg-white overflow-hidden flex items-center">
-      <div className="max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-16 py-24">
-        {/* ==== Left text ==== */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start justify-center"
-        >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Our Trusted Industry Leaders &amp; Partners
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-lg mb-8">
-            Over 500+ Global Brands and Industry Leaders Have Worked With Us
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-8 py-3 bg-[#1D309D] text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all"
+    <section className="relative w-full bg-white py-50 px-6 sm:px-8 lg:px-20 flex flex-col items-center justify-center">
+      {/* ===== Heading ===== */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-center mb-16 max-w-2xl"
+      >
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          Our Trusted Industry Leaders &amp; Partners
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-600">
+          Over 500+ Global Brands and Industry Leaders Have Worked With Us
+        </p>
+      </motion.div>
+
+      {/* ===== Logos Grid ===== */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full max-w-7xl border-t border-l border-gray-200"
+      >
+        {logos.map((src, i) => (
+          <div
+            key={i}
+            className="group flex items-center justify-center border-b border-r border-gray-200 aspect-[4/3] bg-white hover:bg-[#F5F7FF] transition-all duration-300"
           >
-            Become a Partner
-          </motion.button>
-        </motion.div>
-
-        {/* ==== Right grid ==== */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="flex-1 flex justify-center items-center relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white/90 pointer-events-none" />
-
-          {/* Each column centered independently */}
-          <div className="flex justify-center items-center gap-6 w-full max-w-3xl">
-            {columns.map((col, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center gap-6"
-              >
-                {col.map((src, j) => (
-                  <LogoCard key={j} src={src} />
-                ))}
-              </div>
-            ))}
+            <Image
+              src={src}
+              alt={`Partner Logo ${i + 1}`}
+              width={120}
+              height={80}
+              className="object-contain opacity-80 group-hover:opacity-100 transition-all duration-300"
+            />
           </div>
-        </motion.div>
-      </div>
+        ))}
+      </motion.div>
     </section>
-  );
-}
-
-function LogoCard({ src }: { src: string }) {
-  return (
-    <div className="bg-white p-4 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center w-[90px] h-[90px] sm:w-[100px] sm:h-[100px] opacity-90 hover:opacity-100 transition-all">
-      <Image
-        src={src}
-        alt="Partner Logo"
-        width={80}
-        height={80}
-        className="object-contain"
-      />
-    </div>
   );
 }

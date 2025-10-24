@@ -1,4 +1,5 @@
 import PartnersHero from "@/components/partners/PartnersHero";
+import IndustryLogos from "@/components/partners/IndustryLogos";
 import NavBar from "@/components/layout/NavBar";
 
 export default function PartnersPage() {
@@ -6,6 +7,7 @@ export default function PartnersPage() {
     <>
       <NavBar/> 
       <PartnersHero />
+      <IndustryLogos />
     </>
   );
 }

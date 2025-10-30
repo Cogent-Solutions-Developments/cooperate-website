@@ -9,6 +9,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import IndustryPartners from "@/components/home/IndustryPartners";
 import About from "@/components/home/About";
 import WallOfTrust from "@/components/home/TestimonialsBreaker";
+import GetInTouch from "@/components/home/GetInTouch";
 import Image from "next/image";
 
 export default function Home() {
@@ -22,7 +23,8 @@ export default function Home() {
       {/* <UpcomingConferences /> */}
       {/* <PartnersSection /> */}
       <IndustryPartners />
-      <WallOfTrust /> 
+      <WallOfTrust />
+      <GetInTouch /> 
     </>
   );
 }

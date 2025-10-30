@@ -1,23 +1,26 @@
 import AboutSection from "@/components/home/AboutSection";
+import NavBarDark from "@/components/layout/NavBarDark";
+import Hero from "@/components/home/Hero";
 import ExploreConferences from "@/components/home/ExploreConferences";
 import PartnersSection from "@/components/home/PartnersSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import UpcomingConferences from "@/components/home/UpcomingConferences";
+import About from "@/components/home/About";
+import WallOfTrust from "@/components/home/TestimonialsBreaker";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="font-sans">
-      <AboutSection 
-        videoSrc="/videos/cogent.mp4" 
-        poster="/images/about-thumbnail.jpg" 
-      />
+  return  (
+    <>
+      <NavBarDark />
+      <Hero />
+      <About />
       <StatsStrip />
       <ExploreConferences />
       <UpcomingConferences />
       <PartnersSection />
-      <TestimonialsSection />
-    </div>
+      <WallOfTrust /> 
+    </>
   );
 }

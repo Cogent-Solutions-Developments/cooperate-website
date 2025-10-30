@@ -2,14 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-// Easing for a smooth ramp-up
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-
-// Format with thousand separators
 const fmt = (n: number) => n.toLocaleString();
 
 export default function StatsStrip() {
-  // Targets (hard-coded to your screenshot)
   const targets = useMemo(() => [200, 500, 15, 5000], []);
   const [values, setValues] = useState([0, 0, 0, 0]);
   const [started, setStarted] = useState(false);
@@ -27,32 +23,26 @@ export default function StatsStrip() {
       if (started) return;
       setStarted(true);
 
-      // If user prefers reduced motion, jump to final instantly
       if (prefersReduced) {
         setValues(targets);
         return;
       }
 
-      const duration = 1400; // ms
+      const duration = 1400;
       const startTime = performance.now();
 
       const tick = (ts: number) => {
         const t = Math.min(1, (ts - startTime) / duration);
         const eased = easeOutCubic(t);
-
         setValues(targets.map((target) => Math.round(target * eased)));
 
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          setValues(targets); // snap to final
-        }
+        if (t < 1) requestAnimationFrame(tick);
+        else setValues(targets);
       };
 
       requestAnimationFrame(tick);
     };
 
-    // Trigger when the section is ~30% visible
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -62,7 +52,7 @@ export default function StatsStrip() {
           }
         }
       },
-      { root: null, threshold: 0.3 }
+      { threshold: 0.3 }
     );
 
     io.observe(rootRef.current);
@@ -70,59 +60,60 @@ export default function StatsStrip() {
   }, [started, targets]);
 
   return (
-    <section ref={rootRef} className="">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ">
-        {/* subtle top divider */}
-        <div className="h-px w-full bg-black/5 mb-8" />
-
-        <div className="grid grid-cols-1 gap-y-10 gap-x-28 sm:grid-cols-2 px-5 lg:grid-cols-4 text-[color:var(--foreground)]">
-          {/* Item 1 */}
-          <div className="group">
-            <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {fmt(values[0])}+
+    <section ref={rootRef} className="bg-white py-[-35]">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Title | Divider | Stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1px_1fr] items-start gap-y-10 lg:gap-x-6">
+          {/* Left title */}
+          <div>
+            <h2 className="text-2xl font-bold text-black">Our Stats</h2>
+            <p className="text-gray-800 font-medium text-sm mt-3 leading-relaxed max-w-xs">
+              We help you to unleash the power <br />within your business.
             </p>
-            <p className="mt-2 text-sm leading-6">
-              Exclusive Industry Focused<br />Conferences Delivered
-            </p>
-            <div className="mt-3 h-[2px] w-10 bg-black/10 transition-all duration-500 group-hover:w-16" />
           </div>
 
-          {/* Item 2 */}
-          <div className="group">
-            <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {fmt(values[1])}+
-            </p>
-            <p className="mt-2 text-sm leading-6">
-              Government and Regulatory<br />Entities Partnered
-            </p>
-            <div className="mt-3 h-[2px] w-10 bg-black/10 transition-all duration-500 group-hover:w-16" />
-          </div>
+          {/* Divider */}
+          <div className="hidden lg:block h-24 bg-gray-200"></div>
 
-          {/* Item 3 */}
-          <div className="group">
-            <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {fmt(values[2])}+
-            </p>
-            <p className="mt-2 text-sm leading-6">
-              Countries Reached Through<br />Our Business Platforms
-            </p>
-            <div className="mt-3 h-[2px] w-10 bg-black/10 transition-all duration-500 group-hover:w-16" />
-          </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-center lg:text-left">
+            <div>
+              <p className="text-3xl font-semibold text-[#1D309D]">
+                {fmt(values[0])}+
+              </p>
+              <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                Exclusive Conferences Delivered
+              </p>
+            </div>
 
-          {/* Item 4 */}
-          <div className="group">
-            <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {fmt(values[3])}+
-            </p>
-            <p className="mt-2 text-sm leading-6">
-              Leaders from Fortune<br />500 Companies Engaged
-            </p>
-            <div className="mt-3 h-[2px] w-10 bg-black/10 transition-all duration-500 group-hover:w-16" />
+            <div>
+              <p className="text-3xl font-semibold text-[#1D309D]">
+                {fmt(values[1])}+
+              </p>
+              <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                Government & Regulatory Partners
+              </p>
+            </div>
+
+            <div>
+              <p className="text-3xl font-semibold text-[#1D309D]">
+                {fmt(values[2])}+
+              </p>
+              <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                Countries Reached Our Business
+              </p>
+            </div>
+
+            <div>
+              <p className="text-3xl font-semibold text-[#1D309D]">
+                {fmt(values[3])}+
+              </p>
+              <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                Fortune 500 Company Leaders Engaged
+              </p>
+            </div>
           </div>
         </div>
-
-        {/* subtle bottom divider */}
-        <div className="mt-10 h-px w-full bg-black/5" />
       </div>
     </section>
   );

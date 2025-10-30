@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ExploreHero from "@/components/explore/ExploreHero";
+import ExploreHero3 from "@/components/explore/ExploreHero3";
 import ExploreSwitch from "@/components/explore/ExploreSwitch";
 import ConferencesSection from "@/components/explore/sections/ConferencesSection";
 import NavBar from "@/components/layout/NavBar";
@@ -16,7 +17,7 @@ export default function ExplorePage() {
     <>
      {/* ✅ Navbar always at top */}
       <NavBar />
-      <ExploreHero
+      {/* <ExploreHero
         images={[
           "/images/explore/hero/h4.jpeg",
           "/images/explore/hero/h2.jpg",
@@ -29,7 +30,9 @@ export default function ExplorePage() {
           "/images/explore/hero/h9.jpeg",
           "/images/explore/hero/h10.jpeg",
         ]}
-      />
+      /> */}
+
+      <ExploreHero3 />
 
       <ExploreSwitch active={active} onChange={setActive} />
 

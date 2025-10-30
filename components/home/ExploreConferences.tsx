@@ -5,7 +5,7 @@ import Folder from "./imports/Folder";
 
 export default function ExploreConferences() {
   return (
-    <section className="py-24 bg-transparent text-white relative z-[0]">
+    <section className="py-28 bg-transparent text-white relative z-[0]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-[9999]">
         {/* Outer Card */}
         <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 bg-[#0A1E75] rounded-3xl border border-[#0A1E75]/30 shadow-[0_8px_30px_rgba(0,0,0,0.25)] px-10 lg:px-14 py-14 overflow-visible z-[9999]">
@@ -13,7 +13,7 @@ export default function ExploreConferences() {
           {/* === LEFT SIDE (Text Content) === */}
           <div className="flex-1 space-y-6 relative z-[10000]">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-normal leading-tight whitespace-nowrap">
-              Exolore Our Conferences
+              Explore Our Conferences
             </h2>
 
             <p className="max-w-xl text-sm sm:text-base font-medium text-white/90 leading-relaxed">

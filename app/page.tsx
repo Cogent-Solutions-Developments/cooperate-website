@@ -5,7 +5,8 @@ import ExploreConferences from "@/components/home/ExploreConferences";
 import PartnersSection from "@/components/home/PartnersSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
-import UpcomingConferences from "@/components/home/UpcomingConferences";
+// import UpcomingConferences from "@/components/home/UpcomingConferences";
+import IndustryPartners from "@/components/home/IndustryPartners";
 import About from "@/components/home/About";
 import WallOfTrust from "@/components/home/TestimonialsBreaker";
 import Image from "next/image";
@@ -18,8 +19,9 @@ export default function Home() {
       <About />
       <StatsStrip />
       <ExploreConferences />
-      <UpcomingConferences />
-      <PartnersSection />
+      {/* <UpcomingConferences /> */}
+      {/* <PartnersSection /> */}
+      <IndustryPartners />
       <WallOfTrust /> 
     </>
   );

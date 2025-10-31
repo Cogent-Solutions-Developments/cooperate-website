@@ -56,7 +56,7 @@ export default function IndustryPartners() {
         </div>
 
         {/* === LOOP 2 (Right Scroll, slower for parallax effect) === */}
-        <div className="mt-10 opacity-90">
+        {/* <div className="mt-10 opacity-90">
           <LogoLoop
             logos={[...logos].reverse()}
             speed={35}
@@ -69,7 +69,7 @@ export default function IndustryPartners() {
             fadeOutColor="transparent"
             ariaLabel="Trusted industry partners secondary row"
           />
-        </div>
+        </div> */}
         {/* === EXPLORE BUTTON === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -62,7 +62,7 @@ const testimonials = {
 
 export default function WallOfTrust() {
   return (
-    <section className="relative w-full bg-white py-28 overflow-hidden">
+    <section className="relative w-full bg-white py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* === Header === */}
         <motion.div

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function PartnersSection() {
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-16 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-[color:var(--foreground)] space-y-12 sm:space-y-16">
         {/* Government & Regulatory Partners */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 sm:items-start">

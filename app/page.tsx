@@ -5,7 +5,7 @@ import ExploreConferences from "@/components/home/ExploreConferences";
 import PartnersSection from "@/components/home/PartnersSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
-// import UpcomingConferences from "@/components/home/UpcomingConferences";
+import UpcomingEventsSection from "@/components/home/UpcomingEventsSection";
 import IndustryPartners from "@/components/home/IndustryPartners";
 import About from "@/components/home/About";
 import WallOfTrust from "@/components/home/TestimonialsBreaker";
@@ -18,9 +18,9 @@ export default function Home() {
       <NavBarDark />
       <Hero />
       <About />
-      <StatsStrip />
+      {/* <StatsStrip /> */}
       <ExploreConferences />
-      {/* <UpcomingConferences /> */}
+      <UpcomingEventsSection />
       {/* <PartnersSection /> */}
       <IndustryPartners />
       <WallOfTrust />

@@ -5,7 +5,7 @@ import Folder from "./imports/Folder";
 
 export default function ExploreConferences() {
   return (
-    <section className="py-28 bg-transparent text-white relative z-[0]">
+    <section className="py-14 bg-transparent text-white relative z-[0]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-[9999]">
         {/* Outer Card */}
         <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 bg-[#0A1E75] rounded-3xl border border-[#0A1E75]/30 shadow-[0_8px_30px_rgba(0,0,0,0.25)] px-10 lg:px-14 py-14 overflow-visible z-[9999]">

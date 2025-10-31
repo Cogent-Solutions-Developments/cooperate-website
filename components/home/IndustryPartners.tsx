@@ -56,7 +56,7 @@ export default function IndustryPartners() {
         </div>
 
         {/* === LOOP 2 (Right Scroll, slower for parallax effect) === */}
-        {/* <div className="mt-10 opacity-90">
+        <div className="mt-10 opacity-90">
           <LogoLoop
             logos={[...logos].reverse()}
             speed={35}
@@ -69,14 +69,14 @@ export default function IndustryPartners() {
             fadeOutColor="transparent"
             ariaLabel="Trusted industry partners secondary row"
           />
-        </div> */}
+        </div>
         {/* === EXPLORE BUTTON === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 flex justify-center"
+          className="mt-10 mb-16 flex justify-center"
         >
           <button className="group relative flex items-center justify-start gap-2 bg-[#2f53bd] hover:bg-[#3d64df] text-white font-semibold rounded-full px-6 py-2.5 shadow-md transition-all duration-300 hover:scale-105 active:scale-95">
             <svg

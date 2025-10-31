@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function GetInTouch() {
   return (
-    <section className="relative w-full bg-white py-5  border-gray-100 overflow-hidden">
+    <section className="relative w-full bg-white py-16  border-gray-100 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-16">
         {/* === LEFT TEXT CONTENT === */}
         <motion.div

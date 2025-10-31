@@ -17,7 +17,7 @@ export default function ExplorePage() {
     <>
      {/* ✅ Navbar always at top */}
       <NavBar />
-      {/* <ExploreHero
+      <ExploreHero
         images={[
           "/images/explore/hero/h4.jpeg",
           "/images/explore/hero/h2.jpg",
@@ -30,9 +30,9 @@ export default function ExplorePage() {
           "/images/explore/hero/h9.jpeg",
           "/images/explore/hero/h10.jpeg",
         ]}
-      /> */}
+      />
 
-      <ExploreHero3 />
+      {/* <ExploreHero3 /> */}
 
       <ExploreSwitch active={active} onChange={setActive} />
 

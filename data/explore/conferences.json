@@ -91,15 +91,6 @@
   },
   {
     "id": "11",
-    "title": "9th Asset Integrity Management - FRP & CUI Innovations",
-    "date": "24th & 25th February, 2025",
-    "location": "KSA",
-    "backgroundImage": "/images/explore/cards/dp/airport_expansion_conference.png",
-    "countryFlag": "",
-    "link": "https://cogentsolutions.ae/events/upcoming-physical-events/airport-expansion/"
-  },
-  {
-    "id": "12",
     "title": "7th Open Banking Conference",
     "date": "26th November 2024",
     "location": "KSA",
@@ -108,7 +99,7 @@
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/7th-open-banking/"
   },
   {
-    "id": "13",
+    "id": "12",
     "title": "10th Regtech Conference",
     "date": "14th November,2024",
     "location": "UAE",
@@ -117,7 +108,7 @@
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/10th-regtech/"
   },
   {
-    "id": "14",
+    "id": "13",
     "title": "Water Management Conference",
     "date": "10th September, 2024",
     "location": "UAE",
@@ -126,7 +117,7 @@
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/water-management-conference/"
   },
   {
-    "id": "15",
+    "id": "14",
     "title": "2nd Digital Transformation Conference",
     "date": "4th September, 2024",
     "location": "KSA",
@@ -135,7 +126,7 @@
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/2nd-digital-transformation/"
   },
   {
-    "id": "16",
+    "id": "15",
     "title": "Qatari Banking Conference",
     "date": "5th June, 2024",
     "location": "Qatar",
@@ -144,7 +135,7 @@
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/qatari-banking-conference/"
   },
   {
-    "id": "17",
+    "id": "16",
     "title": " 5th Asset Integrity Management Conference",
     "date": "21st & 22nd May, 2024",
     "location": "Qatar",

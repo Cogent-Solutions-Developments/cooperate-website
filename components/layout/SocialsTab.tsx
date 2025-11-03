@@ -42,7 +42,7 @@ export default function SocialsTab() {
         }
       `}
     >
-      <div className="flex flex-col items-center gap-6 bg-[#141415] border-3 border-[#393939] rounded-full px-3 py-6 backdrop-blur-lg">
+      <div className="flex flex-col items-center gap-6 bg-[#141415] border-3 border-[#393939] rounded-2xl px-3 py-6 backdrop-blur-lg">
         {socials.map((item) => (
           <a
             key={item.name}

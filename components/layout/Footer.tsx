@@ -10,7 +10,7 @@ export default function Footer() {
       <footer
         className="
           mx-6 sm:mx-10 lg:mx-4 mb-4
-          bg-[#0A1E75] text-white rounded-2xl
+          bg-[#0a1e75] text-white rounded-2xl
           shadow-[0_12px_45px_rgba(0,0,0,0.25)]
           border border-white/10
           px-8 sm:px-10 lg:px-16 py-14

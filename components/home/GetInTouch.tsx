@@ -50,7 +50,7 @@ export default function GetInTouch() {
           </p>
            <div className="mt-8">
               <button
-                className="button relative z-[10000]"
+                className="button relative z-0"
                 style={{ ["--clr" as any]: "#2f53bd" }}
               >
                 <span className="button__icon-wrapper">

@@ -62,98 +62,126 @@ const testimonials = {
 
 export default function WallOfTrust() {
   return (
-    <section className="relative w-full bg-white py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        {/* === Header === */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-[-5rem]">
+    <section className="relative py-14 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Title + Subtitle (same as Upcoming Events section) */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-semibold text-gray-900 mb-3">
             Wall of Trust
           </h2>
-        </motion.div>
+          <p className="text-gray-600 text-[15px] font-medium max-w-xl mx-auto">
+            Hear what our clients and partners have to say about their
+            experience with Cogent Solutions delivering impact that goes
+            beyond the conference hall.
+          </p>
+        </div>
 
-        {/* === Cards wrapper (with fade effect limited to this area) === */}
-        <div className="relative max-h-[750px] overflow-hidden mt-20">
-          {/* Fades only on card region */}
-          <div className="pointer-events-none absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white via-white/95 to-transparent z-20" />
+        {/* === Cards wrapper === */}
+        <div className="relative max-h-[750px] overflow-hidden">
+          {/* Fade masks */}
+          <div className="pointer-events-none absolute top-0 inset-x-0 h-25 bg-gradient-to-b from-white via-white/95 to-transparent z-20" />
           <div className="pointer-events-none absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white via-white/95 to-transparent z-20" />
 
-          {/* 3-column layout with staggered heights */}
+          {/* === Columns === */}
           <div className="relative z-0 flex flex-col sm:flex-row justify-center gap-6 sm:gap-8 pb-24">
-            {/* Column 1 */}
-            <div className="flex-1 space-y-8 mt-20">
-              {testimonials.col1.map((t, i) => (
-                <Card key={`col1-${i}`} t={t} delay={i * 0.05} />
+            {/* Column 1 – Upward */}
+            <motion.div
+              className="flex-1 space-y-8 mt-20"
+              animate={{ y: ["0%", "-50%"] }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...testimonials.col1, ...testimonials.col1].map((t, i) => (
+                <Card key={`col1-${i}`} t={t} />
               ))}
-            </div>
+            </motion.div>
 
-            {/* Column 2 (center, higher) */}
-            <div className="flex-1 space-y-8 mt-0">
-              {testimonials.col2.map((t, i) => (
-                <Card key={`col2-${i}`} t={t} delay={i * 0.05} />
+            {/* Column 2 – Downward */}
+            <motion.div
+              className="flex-1 space-y-8 mt-0"
+              animate={{ y: ["-50%", "0%"] }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...testimonials.col2, ...testimonials.col2].map((t, i) => (
+                <Card key={`col2-${i}`} t={t} />
               ))}
-            </div>
+            </motion.div>
 
-            {/* Column 3 */}
-            <div className="flex-1 space-y-8 mt-20">
-              {testimonials.col3.map((t, i) => (
-                <Card key={`col3-${i}`} t={t} delay={i * 0.05} />
+            {/* Column 3 – Upward */}
+            <motion.div
+              className="flex-1 space-y-8 mt-20"
+              animate={{ y: ["0%", "-50%"] }}
+              transition={{
+                duration: 28,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...testimonials.col3, ...testimonials.col3].map((t, i) => (
+                <Card key={`col3-${i}`} t={t} />
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* === CTA buttons === */}
-        <div className="mt-10 flex justify-center flex-wrap gap-4">
-          <button className="bg-gray-100 text-gray-800 text-sm px-5 py-3 rounded-full hover:bg-gray-200 transition-all">
-            View the impact on our clients
-          </button>
-          <button className="bg-black text-white text-sm px-6 py-3 rounded-full hover:bg-gray-800 transition-all">
-            Browse customer stories
-          </button>
+        {/* === CTA Button (same design as Upcoming Events) === */}
+        <div className="flex justify-center mt-10">
+          <a
+            href="/testimonials"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-900 transition-all duration-300"
+          >
+            View More Testimonials
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-/* === Reusable Card Component === */
-function Card({
-  t,
-  delay,
-}: {
-  t: { logo: string; quote: string; name: string; title: string };
-  delay: number;
-}) {
+/* === Card Component === */
+function Card({ t }: { t: { logo: string; quote: string; name: string; title: string } }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay }}
-      viewport={{ once: true }}
-      className="bg-white border border-gray-200 rounded-2xl p-8 text-left transition-all duration-500"
+    <div
+      className="
+        relative
+        bg-white
+        rounded-2xl
+        border
+        border-[#e8e8e8]
+        p-8
+        text-left
+        transition-all
+        duration-300
+        overflow-hidden
+        shadow-[0_2px_4px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.8)]
+        hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)]
+        hover:-translate-y-[2px]
+      "
+      style={{
+        background:
+          "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(245,245,245,0.95))",
+      }}
     >
-      <div className="mb-5 w-28 h-12 relative">
-        <Image
-          src={t.logo}
-          alt={`${t.name} logo`}
-          fill
-          className="object-contain"
-        />
+      {/* subtle light overlay for a clean tech feel */}
+      <div className="absolute inset-0 rounded-2xl pointer-events-none [mask-image:linear-gradient(to_bottom,white_70%,transparent)] bg-white/20" />
+
+      <div className="relative z-10">
+        <div className="mb-5 w-28 h-12 relative">
+          <Image src={t.logo} alt={`${t.name} logo`} fill className="object-contain" />
+        </div>
+
+        <p className="text-gray-800 text-[15px] leading-relaxed mb-6">“{t.quote}”</p>
+
+        <p className="font-semibold text-gray-900 text-sm tracking-wide">{t.name}</p>
+        <p className="text-gray-500 text-xs">{t.title}</p>
       </div>
-
-      <p className="text-gray-800 text-[15px] leading-relaxed mb-6">
-        “{t.quote}”
-      </p>
-
-      <p className="font-semibold text-gray-900 text-sm tracking-wide">
-        {t.name}
-      </p>
-      <p className="text-gray-500 text-xs">{t.title}</p>
-    </motion.div>
+    </div>
   );
 }

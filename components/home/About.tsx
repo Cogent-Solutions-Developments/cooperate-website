@@ -97,7 +97,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
             {/* Left Title */}
             <div>
               <h2 className="text-2xl font-bold text-black">Our Stats</h2>
-              <p className="text-gray-800 font-medium text-sm mt-3 leading-relaxed max-w-xs">
+              <p className="text-gray-700 font-semibold text-md mt-3 leading-relaxed max-w-xs">
                 We help you to unleash the power <br />within your business.
               </p>
             </div>
@@ -111,7 +111,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
                 <p className="text-3xl font-semibold text-[#1D309D]">
                   {fmt(values[0])}+
                 </p>
-                <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                <p className="mt-2 text-md font-semibold text-gray-800 leading-relaxed">
                   Exclusive Conferences Delivered
                 </p>
               </div>
@@ -120,7 +120,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
                 <p className="text-3xl font-semibold text-[#1D309D]">
                   {fmt(values[1])}+
                 </p>
-                <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                <p className="mt-2 text-md font-semibold text-gray-800 leading-relaxed">
                   Government & Regulatory Partners
                 </p>
               </div>
@@ -129,7 +129,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
                 <p className="text-3xl font-semibold text-[#1D309D]">
                   {fmt(values[2])}+
                 </p>
-                <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                <p className="mt-2 text-md font-semibold text-gray-800 leading-relaxed">
                   Countries Reached Our Business
                 </p>
               </div>
@@ -138,7 +138,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
                 <p className="text-3xl font-semibold text-[#1D309D]">
                   {fmt(values[3])}+
                 </p>
-                <p className="mt-2 text-sm font-medium text-gray-800 leading-relaxed">
+                <p className="mt-2 text-md font-semibold text-gray-800 leading-relaxed">
                   Fortune 500 Company Leaders Engaged
                 </p>
               </div>

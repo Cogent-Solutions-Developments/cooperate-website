@@ -11,6 +11,7 @@ import About from "@/components/home/About";
 import WallOfTrust from "@/components/home/TestimonialsBreaker";
 import GetInTouch from "@/components/home/GetInTouch";
 import Image from "next/image";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return  (
@@ -25,6 +26,7 @@ export default function Home() {
       <IndustryPartners />
       <WallOfTrust />
       <GetInTouch /> 
+      <Footer />
     </>
   );
 }

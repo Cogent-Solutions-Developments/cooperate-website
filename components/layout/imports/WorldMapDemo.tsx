@@ -14,6 +14,7 @@ export function WorldMapDemo() {
           { start: { lat: 25.276987, lng: 55.296249 }, end: { lat: 9.05785, lng: 7.49508 } },  // Nigeria 🇳🇬 (Abuja)
           { start: { lat: 25.276987, lng: 55.296249 }, end: { lat: 51.5074, lng: -0.1278 } }, // United Kingdom 🇬🇧 (London)
           { start: { lat: 25.276987, lng: 55.296249 }, end: { lat: 40.7128, lng: -74.006 } }, // United States 🇺🇸 (New York)
+          { start: { lat: 25.276987, lng: 55.296249 }, end: { lat: 64.7558, lng: 120.6173 } },  // Russia 🇷🇺 (Moscow)
         ]}
         lineColor="#60A5FA"
       />

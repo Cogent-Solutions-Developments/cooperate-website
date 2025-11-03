@@ -1,10 +1,13 @@
 "use client";
 
+type HeroProps = {
+  className?: string;
+};
 import HeroUpdates from "./imports/HeroUpdates/HeroUpdates";
 
-export default function Hero() {
+export default function Hero({ className = "" }: HeroProps) {
   return (
-    <section className="relative h-[100svh] min-h-[650px] w-full overflow-hidden text-white">
+    <section className={`relative h-[100svh] min-h-[650px] w-full overflow-hidden text-white ${className}`}>
       {/* Background */}
       <img
         src="/images/herobg.png"

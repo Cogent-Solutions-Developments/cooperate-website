@@ -45,7 +45,7 @@ export default function WorldMap({
       {/* Transparent dotted map */}
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="h-full w-full opacity-60 pointer-events-none select-none"
+        className="h-full w-full opacity-100 pointer-events-none select-none"
         alt="world map"
         draggable={false}
       />
@@ -92,7 +92,7 @@ export default function WorldMap({
                   cy={p.y}
                   r="2"
                   fill={lineColor}
-                  animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.3, 1] }}
+                  animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.3, 1] }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,

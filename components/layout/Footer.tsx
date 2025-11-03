@@ -9,7 +9,7 @@ export default function Footer() {
     <section className="relative mt-5 bg-transparent">
       <footer
         className="
-          mx-6 sm:mx-10 lg:mx-8 mb-8
+          mx-6 sm:mx-10 lg:mx-4 mb-4
           bg-[#0A1E75] text-white rounded-2xl
           shadow-[0_12px_45px_rgba(0,0,0,0.25)]
           border border-white/10
@@ -33,7 +33,7 @@ export default function Footer() {
                   <h2 className="text-xl font-semibold tracking-wide">
                     Cogent Solutions<sup>™</sup>
                   </h2>
-                  <p className="text-sm text-white/80 leading-relaxed mt-4 max-w-sm">
+                  <p className="text-sm font-semibold text-white/80 leading-relaxed mt-4 max-w-sm">
                     Through our conferences we transform your business challenges
                     into opportunities. Our clients and customers are leading
                     government entities and the Fortune 500 companies.
@@ -41,7 +41,7 @@ export default function Footer() {
                 </div>
 
                 {/* Awards under description */}
-                <div className="flex flex-wrap items-center gap-2 pt-1">
+                <div className="flex flex-wrap items-start gap-1 pt-1">
                   {[
                     "/images/1fi.png",
                     "/images/2fi.png",
@@ -62,11 +62,11 @@ export default function Footer() {
 
               {/* === COLUMN 2: Links === */}
               <div className="space-y-6">
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-white/60">
+                <h4 className="text-md font-semibold uppercase tracking-wide text-white/90">
                   Links
                 </h4>
 
-                <ul className="grid grid-cols-2 gap-y-3 gap-x-8 text-sm text-white/80">
+                <ul className="grid grid-cols-2 font-semibold gap-y-3 gap-x-8 text-sm text-white/80">
                   {[
                     "About Us",
                     "Conferences",
@@ -197,7 +197,7 @@ export default function Footer() {
 
           {/* === RIGHT: Our Locations === */}
           <div className="md:col-span-1">
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-white/60 mb-3">
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-white/90 mb-3">
               Our Locations
             </h4>
 

@@ -12,12 +12,13 @@ import WallOfTrust from "@/components/home/TestimonialsBreaker";
 import GetInTouch from "@/components/home/GetInTouch";
 import Image from "next/image";
 import Footer from "@/components/layout/Footer";
+import SocialsTab from "@/components/layout/SocialsTab";
 
 export default function Home() {
-  return  (
+  return (
     <>
       <NavBarDark />
-      <Hero />
+      <Hero className="hero" /> {/* ✅ Add className='hero' so scroll detection works */}
       <About />
       {/* <StatsStrip /> */}
       <ExploreConferences />
@@ -25,8 +26,11 @@ export default function Home() {
       {/* <PartnersSection /> */}
       <IndustryPartners />
       <WallOfTrust />
-      <GetInTouch /> 
+      <GetInTouch />
       <Footer />
+
+      {/* ✅ Place SocialsTab at the end, so it stays fixed & global */}
+      <SocialsTab />
     </>
   );
 }

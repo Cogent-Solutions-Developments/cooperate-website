@@ -66,7 +66,7 @@ export default function UpcomingEventsSection() {
 
   return (
     <section className="relative py-14 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-6xl sm:px-6 lg:px-8  mx-auto px-6">
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-semibold text-gray-900 mb-3">

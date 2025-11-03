@@ -255,7 +255,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Cogent Solutions Event Management LLC. All Rights Reserved.
           </p>
           <div className="flex gap-6 mt-4 sm:mt-0">
-            <Link href="#" className="hover:text-white">Terms</Link>
+            <Link href="#" className="hover:text-white">Terms & Conditions</Link>
             <Link href="#" className="hover:text-white">Privacy</Link>
             <Link href="#" className="hover:text-white">Payment Policy</Link>
           </div>

@@ -42,7 +42,7 @@ export default function SocialsTab() {
         }
       `}
     >
-      <div className="flex flex-col items-center gap-6 bg-[#133391] border-2 border-[#3A5ABA] rounded-full px-4 py-6 backdrop-blur-lg">
+      <div className="flex flex-col items-center gap-6 bg-[#141415] border-3 border-[#393939] rounded-full px-3 py-6 backdrop-blur-lg">
         {socials.map((item) => (
           <a
             key={item.name}
@@ -50,7 +50,7 @@ export default function SocialsTab() {
             aria-label={item.name}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white transition-transform hover:scale-120"
+            className="text-white transition-transform hover:scale-110"
           >
             {item.icon}
           </a>
@@ -69,7 +69,7 @@ const socials = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-4 h-4"
       >
         <path d="M100.28 448H7.4V148.9h92.88zm-46.44-341C24.11 107 0 82.89 0 53.64A53.64 53.64 0 0 1 53.84 0a53.64 53.64 0 0 1 53.84 53.64c0 29.25-24.11 53.36-53.84 53.36zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.68V148.9h88.94v40.8h1.3c12.4-23.5 42.5-48.3 87.4-48.3 93.5 0 110.7 61.6 110.7 141.6V448z" />
       </svg>
@@ -83,7 +83,7 @@ const socials = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-4 h-4"
       >
         <path d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.404.595 24 1.326 24h11.494v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.313h3.586l-.467 3.622h-3.119V24h6.116C23.404 24 24 23.404 24 22.674V1.326C24 .595 23.404 0 22.675 0z" />
       </svg>
@@ -97,7 +97,7 @@ const socials = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-4 h-4"
       >
         <path d="M389.2 48h70.6L305.6 224.2 480 464H340L232.3 316.4 106.5 464H36.4l164.8-187.5L32 48h144l99.2 132.5L389.2 48zM364 422.3h38.6L152.5 88h-41L364 422.3z" />
       </svg>

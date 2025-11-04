@@ -137,7 +137,7 @@ export default function ServicesHero() {
     },
   ];
 
-  const heights = [360, 260, 160, 260, 360];
+  const heights = [360, 360, 360, 360, 360];
   const [activeStat, setActiveStat] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");

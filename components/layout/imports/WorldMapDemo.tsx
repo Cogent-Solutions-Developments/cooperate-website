@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function WorldMapDemo() {
   return (
-    <div className="absolute inset-0 w-full h-full opacity-[1]">
+    <div className="absolute inset-0 w-full h-full opacity-[0.5]">
       <WorldMap
         dots={[
           // Base: Dubai (HQ)

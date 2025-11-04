@@ -10,7 +10,7 @@ export default function Footer() {
       <footer
         className="
           mx-6 sm:mx-10 lg:mx-4 mb-4
-          bg-[#0a1e75] text-white rounded-2xl
+          bg-[#172573] text-white rounded-2xl
           shadow-[0_12px_45px_rgba(0,0,0,0.25)]
           border border-white/10
           px-8 sm:px-10 lg:px-16 py-14
@@ -203,32 +203,32 @@ export default function Footer() {
 
             <div className="space-y-5 text-sm text-white/80 leading-relaxed">
               <div>
-                <p className="font-medium text-white">Head Office</p>
-                <p>
+                <p className="font-bold text-white">Head Office</p>
+                <p className="font-semibold">
                   Office 802, Al Moosa Tower 1,<br />
                   Sheikh Zayed Road, Dubai, UAE
                 </p>
               </div>
 
               <div>
-                <p className="font-medium text-white/95">Middle East & Africa HQ</p>
-                <p>
+                <p className="font-bold text-white/95">Middle East & Africa HQ</p>
+                <p className="font-semibold">
                   Office No: 209, The Metropolis Tower,<br />
                   Business Bay, Dubai, United Arab Emirates
                 </p>
               </div>
 
               <div>
-                <p className="font-medium text-white/95">Asia Pacific HQ</p>
-                <p>
+                <p className="font-bold text-white/95">Asia Pacific HQ</p>
+                <p className="font-semibold">
                   2nd Floor, Green Lanka Tower,<br />
                   Colombo, Sri Lanka
                 </p>
               </div>
 
               <div>
-                <p className="font-medium text-white/95">Saudi Arabia HQ</p>
-                <p>Riyadh, Saudi Arabia</p>
+                <p className="font-bold text-white/95">Saudi Arabia HQ</p>
+                <p className="font-semibold">Riyadh, Saudi Arabia</p>
               </div>
 
               <div className="pt-2 space-y-1 text-white/85">

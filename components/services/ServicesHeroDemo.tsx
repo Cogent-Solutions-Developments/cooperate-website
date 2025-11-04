@@ -2,30 +2,60 @@
 
 import React from "react";
 import CardSwap, { Card } from "./imports/CardSwap";
+import { motion } from "framer-motion";
 
 export default function ServicesHeroDemo() {
+  const stats = [
+    { number: "500+", label: "Events Delivered" },
+    { number: "200+", label: "Industry Partners" },
+    { number: "15+", label: "Countries Reached" },
+  ];
+
   return (
     <section
       className="
         relative w-full min-h-screen flex items-center overflow-hidden
-        bg-gradient-to-b from-[#F8F9FB] to-white
-        before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_left,rgba(29,48,157,0.22)_0%,transparent_70%)]
+        bg-white
+        before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_left,rgba(29,48,157,0.12)_0%,transparent_70%)]
         before:w-full before:h-full before:opacity-90 before:pointer-events-none
       "
     >
-      {/* === Outer Container === */}
+      {/* === Outer Container (aligned with navbar padding) === */}
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
         
         {/* === LEFT SIDE TEXT === */}
         <div className="flex flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
-          <h1 className="text-5xl md:text-7xl font-semibold text-neutral-900 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-semibold text-neutral-900 leading-tight">
             Our Services
           </h1>
-          <p className="mt-5 text-base md:text-lg text-neutral-600 max-w-xl mx-auto md:mx-0">
+          <p className="mt-5 text-base md:text-md text-neutral-600 max-w-xl mx-auto md:mx-0">
             We craft experiences that connect decision-makers, ideas, and stories
             empowering industries to collaborate, innovate, and grow through our global platforms.
           </p>
 
+          {/* === Sleek One-Line Corporate Stats === */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="
+              mt-12 flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-x-10 gap-y-2
+            "
+          >
+            {stats.map((s, i) => (
+              <div key={i} className="flex flex-col items-center md:items-start">
+                <span className="text-4xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+                  {s.number}
+                </span>
+                <span className="text-[15px] md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+
+             {/* === Button === */}
           <div className="mt-8">
             <button
               className="button relative z-[10000]"
@@ -44,7 +74,6 @@ export default function ServicesHeroDemo() {
                     fill="currentColor"
                   ></path>
                 </svg>
-
                 <svg
                   viewBox="0 0 14 15"
                   fill="none"
@@ -61,29 +90,15 @@ export default function ServicesHeroDemo() {
               Explore All
             </button>
           </div>
+
+
         </div>
 
         {/* === RIGHT SIDE (Cards) === */}
         <div className="flex justify-end items-center relative z-10">
-          <div
-            className="
-              relative
-              w-full
-              flex
-              items-center
-              justify-center
-              md:justify-end
-            "
-          >
+          <div className="relative w-full flex items-center justify-center md:justify-end">
             <div
-              className="
-                relative
-                md:mr-[15%]
-                sm:mr-0
-                flex
-                items-center
-                justify-center
-              "
+              className="relative md:mr-[15%] sm:mr-0 flex items-center justify-center"
               style={{
                 height: "400px",
                 maxWidth: "520px",

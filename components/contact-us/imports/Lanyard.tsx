@@ -28,8 +28,8 @@ declare module '@react-three/fiber' {
 }
 
 // ✅ absolute public paths (Next.js safe)
-const cardGLB = '/images/lanyard/card.glb';
-const lanyard = '/images/lanyard/lanyard.png';
+const cardGLB = '/images/lanyard/card3.glb';
+const lanyard = '/images/lanyard/lanyardcs.png';
 
 // ✅ preload assets early (prevents reload issues)
 useGLTF.preload(cardGLB);
@@ -222,7 +222,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, 4.2, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />

@@ -169,38 +169,58 @@ export default function ServicesHeroDemo() {
                 delay={5000}
                 pauseOnHover={false}
               >
-                <Card className="flex items-center justify-center text-white text-xl font-semibold bg-[#0A1E75]">
-                  <div className="p-8 text-center">
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h4.jpeg"
+                    alt="Boardrooms"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
                     <h3 className="text-2xl mb-2">Boardrooms</h3>
                     <p className="text-sm">
                       Exclusive leadership meetings for high-level
                       decision-makers.
                     </p>
-                  </div>
+                  </div> */}
                 </Card>
 
-                <Card className="flex items-center justify-center text-white text-xl font-semibold bg-[#111827]">
-                  <div className="p-8 text-center">
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h3.jpeg"
+                    alt="Podcasts"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
                     <h3 className="text-2xl mb-2">Podcasts</h3>
                     <p className="text-sm">
                       We bring your brand stories to life through engaging
                       conversations and interviews.
                     </p>
-                  </div>
+                  </div> */}
                 </Card>
 
-                <Card className="flex items-center justify-center text-white text-xl font-semibold bg-[#8d1b3d]">
-                  <div className="p-8 text-center">
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h6.png"
+                    alt="Conference Series"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
                     <h3 className="text-2xl mb-2">Conference Series</h3>
                     <p className="text-sm">
                       Global industries converge for collaboration and
                       innovation.
                     </p>
-                  </div>
+                  </div> */}
                 </Card>
 
-                <Card className="flex items-center justify-center text-white text-xl font-semibold bg-[#04502f]">
-                  <div className="p-8 text-center">
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h5.webp"
+                    alt="Exhibitions"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  <div className="relative z-10 p-8 text-center">
                     <h3 className="text-2xl mb-2">Exhibitions</h3>
                     <p className="text-sm">
                       Immersive showcases connecting innovators with investors

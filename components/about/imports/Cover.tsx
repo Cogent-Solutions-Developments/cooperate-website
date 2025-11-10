@@ -36,7 +36,7 @@ export const Cover = ({
       ref={ref}
       className={twMerge(
         // ✅ Changed hover + bg colors to light tones
-        "relative group/cover inline-block bg-[#fdfeff] hover:bg-[#f5f7fa] border border-[#dbe8ff] px-2 py-3 transition duration-200 rounded-md shadow-sm",
+        "relative group/cover inline-block bg-[#ffffff] hover:bg-[#ffffff] border border-[#dbe8ff] px-2 py-3 transition duration-200 rounded-md shadow-sm",
         className
       )}
     >

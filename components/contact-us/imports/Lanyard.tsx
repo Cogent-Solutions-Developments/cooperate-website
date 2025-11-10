@@ -28,8 +28,8 @@ declare module '@react-three/fiber' {
 }
 
 // ✅ absolute public paths (Next.js safe)
-const cardGLB = '/images/lanyard/card3.glb';
-const lanyard = '/images/lanyard/lanyardcs.png';
+const cardGLB = '/images/lanyard/card4.glb';
+const lanyard = '/images/lanyard/lanyardcs1.png';
 
 // ✅ preload assets early (prevents reload issues)
 useGLTF.preload(cardGLB);
@@ -50,13 +50,14 @@ export default function Lanyard({
   transparent = true,
 }: LanyardProps) {
   return (
-    <div className="relative w-full h-full">
+    <div className="absolute w-full h-full">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0xffffff), transparent ? 0 : 1);
           gl.outputColorSpace = THREE.SRGBColorSpace;
+          
         }}
       >
         <Suspense fallback={null}>
@@ -222,7 +223,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
 
   return (
     <>
-      <group position={[0, 4.2, 0]}>
+      <group position={[-1.8, 4.2, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
@@ -278,7 +279,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
           useMap
           map={texture}
           repeat={[-3, 1]}
-          lineWidth={2}
+          lineWidth={0.8}
         />
       </mesh>
     </>

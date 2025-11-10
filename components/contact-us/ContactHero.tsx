@@ -1,23 +1,19 @@
-'use client';
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
+"use client";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 // ✅ keep your dynamic import exactly as-is
-const Lanyard = dynamic(() => import('./imports/Lanyard'), { ssr: false });
+const Lanyard = dynamic(() => import("./imports/Lanyard"), { ssr: false });
 
 export default function ContactHero() {
   return (
     <section className="relative w-full h-screen bg-white text-black overflow-hidden">
       {/* 2-column layout, stacks on mobile */}
       <div className="grid grid-cols-1 lg:grid-cols-2 h-full max-w-7xl mx-auto px-6 lg:px-12 gap-8">
-
         {/* === Left: 3D card === */}
-        <div className="relative order-2 lg:order-1 h-[320px] sm:h-[420px] lg:h-full">
-          {/* Keep canvas clicks off; don’t block the right content */}
-          <div className="absolute inset-0 pointer-events-none">
-            {/* keep your same props; only position moved to left column */}
-            <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
-          </div>
+        <div className="relative  order-2 lg:order-1 h-full w-full z-40 sm:h-full lg:h-full"></div>
+        <div className="absolute  z-500 inset-0 pointer-events-none">
+          <Lanyard position={[0, 0, 11]} gravity={[0, -40, 0]} />
         </div>
 
         {/* === Right: Text content === */}
@@ -26,25 +22,27 @@ export default function ContactHero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
               className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight"
             >
-              <span className="text-[#1D309D]">Let’s Connect</span> <br className="hidden sm:block" />
+              <span className="text-[#1D309D]">Let’s Connect</span>{" "}
+              <br className="hidden sm:block" />
               <span className="text-black">& Collaborate</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.9, ease: 'easeOut' }}
+              transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
               className="mt-5 max-w-md text-neutral-700 text-base sm:text-lg md:text-[17px] leading-relaxed mx-auto lg:mx-0"
             >
-             Whether you're exploring sponsorships, partnerships, or event collaborations, our team is here to help you make it happen.
+              Whether you're exploring sponsorships, partnerships, or event
+              collaborations, our team is here to help you make it happen.
             </motion.p>
 
             <div className="mt-4">
               <button
-                className="button relative z-[10000]"
+                className="button relative z-[50]"
                 style={{ ["--clr" as any]: "#2f53bd" }}
               >
                 <span className="button__icon-wrapper">

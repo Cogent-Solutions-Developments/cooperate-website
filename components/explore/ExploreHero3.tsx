@@ -7,12 +7,12 @@ export default function ExploreHero3() {
   const revealImgRef = useRef<HTMLImageElement | null>(null);
 
   return (
-    <section
+    <div
       style={{
-        height: "100vh",
+        height: "800px",
         position: "relative",
         overflow: "hidden",
-        backgroundColor: "#A9AFCE",
+        backgroundColor: "#060010",
       }}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -32,22 +32,22 @@ export default function ExploreHero3() {
         }
       }}
     >
-      {/* Laser Beam Background */}
+      {/* === Laser Shader Background === */}
       <LaserFlow
         horizontalBeamOffset={0.1}
         verticalBeamOffset={0.0}
-        color="#ffffff"
+        color="#FF79C6"
       />
 
-      {/* Main Content Box (Shifted Down) */}
+      {/* === Floating Box (optional content area) === */}
       <div
         style={{
           position: "absolute",
-          top: "75%", // 👈 shifted lower
+          top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "translateX(-50%)",
           width: "86%",
-          height: "55%",
+          height: "60%",
           backgroundColor: "#060010",
           borderRadius: "20px",
           border: "2px solid #FF79C6",
@@ -57,17 +57,15 @@ export default function ExploreHero3() {
           color: "white",
           fontSize: "2rem",
           zIndex: 6,
-          boxShadow: "0 0 25px rgba(255, 121, 198, 0.15)",
-          transition: "all 0.5s ease",
         }}
       >
-        Your content here
+        {/* Your content here */}
       </div>
 
-      {/* Reveal Image Mask */}
+      {/* === Interactive Reveal Layer === */}
       <img
         ref={revealImgRef}
-        src="/path/to/image.jpg"
+        src="/images/herobg.png"
         alt="Reveal effect"
         style={
           {
@@ -89,6 +87,6 @@ export default function ExploreHero3() {
           } as React.CSSProperties
         }
       />
-    </section>
+    </div>
   );
 }

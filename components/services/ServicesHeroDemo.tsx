@@ -115,7 +115,7 @@ export default function ServicesHeroDemo() {
           </motion.div>
 
           {/* === Button === */}
-          <div className="mt-10">
+          {/* <div className="mt-10">
             <button
               className="button relative z-[10000]"
               style={{ ["--clr" as any]: "#2f53bd" }}
@@ -148,7 +148,7 @@ export default function ServicesHeroDemo() {
               </span>
               Explore Our Events
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* === RIGHT SIDE (Cards) === */}

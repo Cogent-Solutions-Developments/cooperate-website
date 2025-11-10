@@ -19,7 +19,7 @@ export default function NavBar() {
   return (
     <>
       <header
-        className={`fixed w-full z-50 transition-all duration-700 ease-in-out ${
+        className={`fixed w-full z-1000 transition-all duration-700 ease-in-out ${
           menuOpen ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
         } ${scrolled ? "top-6 left-0 right-0 px-6" : "top-0 left-0"}`}
       >
@@ -113,7 +113,7 @@ export default function NavBar() {
 
       {/* === Modern Dropdown Menu === */}
       <div
-        className={`fixed top-6 left-6 right-6 z-40 max-w-5xl mx-auto transition-all duration-300 ease-out ${
+        className={`fixed top-6 left-6 right-6 z-1000 max-w-5xl mx-auto transition-all duration-300 ease-out ${
           menuOpen
             ? "opacity-100 visible translate-y-0"
             : "opacity-0 invisible -translate-y-4 pointer-events-none"

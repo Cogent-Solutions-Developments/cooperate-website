@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import BounceCards from "./imports/BounceCards";
 import { Cover } from "./imports/Cover";
 
 export default function AboutHero() {
   const [hovered, setHovered] = useState(false);
+  const [showFade, setShowFade] = useState(false);
 
-  // 🔧 tweak this to your actual fixed header height
   const NAV_HEIGHT = 88; // px
 
   const images = [
@@ -19,23 +19,29 @@ export default function AboutHero() {
     "/images/explore/hero/h4.jpeg",
   ];
 
-const transforms = [
-  "rotate(-5deg) translate(-230px, -10px)",
-  "rotate(-7deg) translate(-120px, 5px)",
-  "rotate(3deg) translate(0px, -5px)",
-  "rotate(-2deg) translate(120px, -5px)",
-  "rotate(6deg) translate(230px, -5px)",
-];
+  const transforms = [
+    "rotate(-5deg) translate(-230px, -10px)",
+    "rotate(-7deg) translate(-120px, 5px)",
+    "rotate(3deg) translate(0px, -5px)",
+    "rotate(-2deg) translate(120px, -5px)",
+    "rotate(6deg) translate(230px, -5px)",
+  ];
+
+  // 👇 Fade appears after small scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFade(window.scrollY > 40); // show after 40px scroll
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section
       className="relative w-full bg-white overflow-hidden"
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
-      {/* spacer so content never sits under the fixed navbar */}
       <div className="h-[var(--nav-h)]" />
-
-      {/* this wrapper fills the remaining viewport height and centers everything */}
       <div className="mx-auto max-w-6xl px-6">
         <div className="min-h-[calc(100vh-var(--nav-h))] flex flex-col items-center justify-center gap-0 md:gap-0">
           {/* === TEXT === */}
@@ -81,7 +87,7 @@ const transforms = [
 
             <div className="mt-5">
               <button
-                className="button relative z-[10000]"
+                className="button relative z-[10]"
                 style={{ ["--clr" as any]: "#2f53bd" }}
               >
                 <span className="button__icon-wrapper">
@@ -111,15 +117,13 @@ const transforms = [
                     ></path>
                   </svg>
                 </span>
-                Explore Our Services
+                Explore Our Conferences
               </button>
             </div>
-
           </div>
 
           {/* === CARDS === */}
           <div className="relative mt-[-60px] flex justify-center">
-            {/* Desktop */}
             <BounceCards
               images={images}
               transformStyles={transforms}
@@ -131,7 +135,6 @@ const transforms = [
               enableHover={false}
               className="hidden md:flex"
             />
-            {/* Mobile */}
             <BounceCards
               images={images.slice(1, 4)}
               transformStyles={[
@@ -150,6 +153,20 @@ const transforms = [
           </div>
         </div>
       </div>
+
+      {/* === Bottom Fade (only after scroll) === */}
+      {showFade && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute bottom-0 left-0 w-full h-40 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%)",
+          }}
+        />
+      )}
     </section>
   );
 }

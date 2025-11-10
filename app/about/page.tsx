@@ -1,17 +1,19 @@
-// In your page
-// import BestWorkplace from "../../components/about/BestWorkplace";
+"use client";
+
 import NavBar from "@/components/layout/NavBar";
-// import OurStory from "../../components/about/OurStory";
-// import WhatWeDo from "../../components/about/WhatWe";
-import Hero from "@/components/about/Hero";    
+import Hero from "@/components/about/Hero";
+import StoryTabs from "@/components/about/StoryTabs";
+import Footer from "@/components/layout/Footer";
+
 export default function AboutPage() {
   return (
     <>
       <NavBar />
-      <Hero />
-      {/* <OurStory imageSrc="/images/about/team-photo.png" />
-      <WhatWeDo imageSrc="/images/about/event1.jpg" />
-      <BestWorkplace /> */}
+      <section className="relative h-screen">
+        <Hero />
+      </section>
+      <StoryTabs />
+      <Footer />
     </>
   );
 }

@@ -8,36 +8,36 @@ import { rotate } from "three/tsl";
 export default function ExploreHero3() {
   const revealImgRef = useRef<HTMLImageElement | null>(null);
 
-//   const logos = [
-//     {
-//       src: "/images/intel3d.png",
-//       width: 80,
-//       rotation: 25,
-//       opacity: 0.8,
-//       position: { bottom: "8%", left: "70%" },
-//     },
-//     {
-//       src: "/images/nvidia3d.png",
-//       width: 60,
-//       rotation: 15,
-//       opacity: 0.5,
-//       position: { bottom: "45%", right: "14%" },
-//     },
-//     {
-//       src: "/images/oracle3d.png",
-//       width: 70,
-//       rotation: -25,
-//       opacity: 0.65,
-//       position: { bottom: "18%", right: "10%" },
-//     },
-//     {
-//       src: "/images/fifa3d.png",
-//       width: 60,
-//       rotation: -15,
-//       opacity: 0.4,
-//       position: { bottom: "35%", right: "22%" },
-//     },
-//   ];
+  //   const logos = [
+  //     {
+  //       src: "/images/intel3d.png",
+  //       width: 80,
+  //       rotation: 25,
+  //       opacity: 0.8,
+  //       position: { bottom: "8%", left: "70%" },
+  //     },
+  //     {
+  //       src: "/images/nvidia3d.png",
+  //       width: 60,
+  //       rotation: 15,
+  //       opacity: 0.5,
+  //       position: { bottom: "45%", right: "14%" },
+  //     },
+  //     {
+  //       src: "/images/oracle3d.png",
+  //       width: 70,
+  //       rotation: -25,
+  //       opacity: 0.65,
+  //       position: { bottom: "18%", right: "10%" },
+  //     },
+  //     {
+  //       src: "/images/fifa3d.png",
+  //       width: 60,
+  //       rotation: -15,
+  //       opacity: 0.4,
+  //       position: { bottom: "35%", right: "22%" },
+  //     },
+  //   ];
 
   return (
     <section
@@ -62,16 +62,89 @@ export default function ExploreHero3() {
     >
       {/* === Laser Shader Background === */}
       <LaserFlow
-        horizontalBeamOffset={0.3}
-        verticalBeamOffset={-0.5}
+        horizontalBeamOffset={0}
+        verticalBeamOffset={-0.05}
         color="#AED3FF"
         horizontalSizing={2}
-        verticalSizing={2}
+        verticalSizing={1}
         fogIntensity={0.01}
         fogScale={0}
         fogFallSpeed={0}
         decay={0.8}
       />
+      <div
+        style={{
+          position: "absolute",
+          top: "55%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "86%",
+          height: "60%",
+          borderRadius: "20px",
+          border: "2px solid transparent",
+          background:
+            "linear-gradient(#060010, #060010) padding-box, linear-gradient(to bottom, rgba(230, 245, 255, 1) 0%, rgba(174, 211, 255, 0.95) 15%, rgba(15, 20, 40, 0.25) 70%, rgba(6, 0, 16, 1) 100%) border-box",
+          display: "flex",
+        //   alignItems: "center",
+        //   justifyContent: "space-between",
+        //   color: "white",
+          zIndex: 20,
+          padding: "4rem 4rem",
+        }}
+      >
+        {/* === Left: Title === */}
+        <div className="flex-1 pr-8">
+          <h1 className="text-4xl md:text-[2.8rem] font-semibold leading-[1.15] text-white">
+            Empowering Industry Leaders,
+            <br />
+            Through Intelligent Alliances
+          </h1>
+        </div>
+
+        {/* === Right: Paragraph + Button === */}
+        <div className="flex-1 pl-4">
+          <p className="mt-0 text-base md:text-lg text-white/80 leading-relaxed mb-6">
+Here at Cogent Solutions, we partner with global organizations, government bodies, and Fortune 500 enterprises to craft exclusive, high-impact platforms that redefine B2B engagement.    </p>
+
+               <div className="mt-0 ">
+            <button
+              className="button relative z-[6]"
+              style={{ ["--clr" as any]: "#2f53bd" }}
+            >
+              <span className="button__icon-wrapper">
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg"
+                  width="11"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  width="11"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg button__icon-svg--copy"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </span>
+              Explore Our Events
+            </button>
+          </div>
+
+
+        </div>
+            
+      </div>
 
       {/* === Light Reveal Layer === */}
       <img
@@ -102,18 +175,18 @@ export default function ExploreHero3() {
       {/* === Content Wrapper (Two-column layout) === */}
       <div className="absolute inset-0 z-10 flex flex-col lg:flex-row items-center justify-between px-10 lg:px-24 gap-10">
         {/* === Text Side === */}
-        <div className="max-w-2xl text-left">
-          <h1 className="text-5xl md:text-[4rem] font-semibold leading-[1.15]">
-            Empowering Industry Leaders Through Intelligent Alliances
-          </h1>
+        <div className="max-w-xl text-left">
+          {/* <h1 className="text-4xl md:text-[3rem] font-semibold leading-[1.15]">
+            Empowering Industry Leaders, Through Intelligent Alliances
+          </h1> */}
 
-          <p className="mt-6 text-lg text-white/80 leading-relaxed">
+          {/* <p className="mt-6 text-lg text-white/80 leading-relaxed">
             Here at Cogent Solutions, We Partner with Global Organizations,
             Government Bodies, and Fortune-500 Enterprises to Craft Exclusive,
             High-Impact Platforms That Redefine B2B Engagement.
-          </p>
+          </p> */}
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <button
               className="button relative z-[10]"
               style={{ ["--clr" as any]: "#2f53bd" }}
@@ -146,7 +219,7 @@ export default function ExploreHero3() {
               </span>
               Become a Partner
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* === Partner Logos Layer === */}

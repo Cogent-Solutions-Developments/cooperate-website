@@ -179,7 +179,7 @@ export default function ServicesHero() {
           Our Services
         </h1>
         <p className="mt-0 text-sm text-neutral-600 max-w-2xl mx-auto">
-          We craft experiences that connect decision-makers, ideas, and stories.
+          We Craft Experiences That Connect Decision-Makers, Ideas, and Stories.
         </p>
       </motion.div>
 

@@ -1,12 +1,15 @@
-import PartnersHero from "@/components/partners/PartnersHero";
+// import PartnersHero from "@/components/partners/PartnersHero";
+import Hero from "@/components/partners/Hero";
 import IndustryLogos from "@/components/partners/IndustryLogos";
-import NavBar from "@/components/layout/NavBar";
+import NavBarDark from "@/components/layout/NavBarDark";
 
 export default function PartnersPage() {
    return (
     <>
-      <NavBar/> 
-      <PartnersHero />
+
+      <NavBarDark />
+      <Hero />
+      {/* <PartnersHero /> */}
       <IndustryLogos />
     </>
   );

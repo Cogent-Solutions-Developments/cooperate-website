@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import LaserFlow from "./sections/LaserFlow";
+// import LaserFlow from "./sections/LaserFlow";
 
 export default function ExploreHero3() {
   const revealImgRef = useRef<HTMLImageElement | null>(null);
@@ -33,11 +33,11 @@ export default function ExploreHero3() {
       }}
     >
       {/* === Laser Shader Background === */}
-      <LaserFlow
+      {/* <LaserFlow
         horizontalBeamOffset={0.1}
         verticalBeamOffset={0.0}
         color="#FF79C6"
-      />
+      /> */}
 
       {/* === Floating Box (optional content area) === */}
       <div

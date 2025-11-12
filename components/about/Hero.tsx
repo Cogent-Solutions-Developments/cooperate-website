@@ -160,7 +160,7 @@ export default function AboutHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 w-full h-40 pointer-events-none"
+          className="absolute bottom-0 left-0 w-full h-30 pointer-events-none"
           style={{
             background:
               "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%)",

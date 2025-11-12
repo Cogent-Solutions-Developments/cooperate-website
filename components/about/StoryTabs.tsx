@@ -114,7 +114,7 @@ export default function ModernTabsSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-3xl md:text-5xl font-semibold text-neutral-900 mb-6"
+          className="text-2xl md:text-4xl font-semibold text-neutral-900 mb-6"
         >
           About Us
         </motion.h2>
@@ -123,7 +123,7 @@ export default function ModernTabsSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-          className="text-lg md:text-xl text-neutral-700 font-medium leading-relaxed max-w-3xl mx-auto"
+          className="text-md md:text-lg text-neutral-700 font-medium leading-relaxed max-w-3xl mx-auto"
         >
           Through our conferences we transform your business challenges into
           opportunities. Our clients and customers are leading government
@@ -144,7 +144,7 @@ export default function ModernTabsSection() {
                 onClick={() => setActiveTab(tab)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-3xl text-sm font-semibold transition-all duration-300 ${
                   activeTab.id === tab.id
-                    ? "bg-[#f1f7fd] text-[#172573] shadow-sm"
+                    ? "bg-[#eaf3ff] text-[#172573] "
                     : "text-neutral-600 hover:bg-neutral-100"
                 }`}
               >

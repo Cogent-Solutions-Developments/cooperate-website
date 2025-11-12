@@ -65,10 +65,10 @@ export default function ServicesHeroDemo() {
           <h1 className="text-5xl md:text-6xl font-semibold text-neutral-900 leading-tight">
             Our Services
           </h1>
-          <p className="mt-5 text-base md:text-md text-neutral-600 max-w-xl mx-auto md:mx-0">
-            We craft experiences that connect decision-makers, ideas, and
-            stories — empowering industries to collaborate, innovate, and grow
-            through our global platforms.
+          <p className="mt-5 text-base md:text-md  text-neutral-600 max-w-xl mx-auto md:mx-0">
+            We Craft Experiences That Connect Decision-Makers, Ideas, and
+            Stories, Empowering Industries to Collaborate, Innovate, and Grow
+            Through Our Global Platforms.
           </p>
 
           {/* === Stats Counters === */}

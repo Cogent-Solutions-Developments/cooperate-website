@@ -40,7 +40,7 @@ export function FeaturesSectionDemo() {
     },
   ];
   return (
-    <div className="relative bg-black z-20 py-12 lg:py-20 max-w-full mx-auto">
+    <div className="relative bg-[#000000] z-20 py-12 lg:py-20 max-w-full mx-auto">
       <div className="px-8 ">
         <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-semibold text-black dark:text-white">
           About Us

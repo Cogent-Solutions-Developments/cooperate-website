@@ -1,162 +1,102 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Search, Target, CheckCircle, Users, CalendarDays } from "lucide-react";
 
-export default function HowWeOpe() {
+export default function HowWeOperateAppwriteStyleFixedSize() {
+  const cogentBlue = "#1D309D"; // Your primary brand blue
+  const neutralBlack = "#1A1A1A"; // For primary text
+  const darkGray = "#4A5568";     // For secondary text
+  const dividerGray = "#E0E4EB";   // For the subtle grid lines
+
   const steps = [
     {
       num: "01",
-      desc:
-        "Conducting extensive research and developing tailored content to ensure that your value message resonates with your target audience.",
+      title: "Strategic Research & Content",
+      desc: "We conduct in-depth market research to develop bespoke content strategies, ensuring your value proposition profoundly resonates with your target audience.",
+      icon: <Search size={20} style={{ color: cogentBlue }} />,
     },
     {
       num: "02",
-      desc:
-        "Thoroughly researching and identifying prospects that align with your products and services.",
+      title: "Precision Prospect Identification",
+      desc: "Our rigorous process identifies and vets prospects, ensuring a precise alignment with your product and service offerings for optimal engagement.",
+      icon: <Target size={20} style={{ color: cogentBlue }} />,
     },
     {
       num: "03",
-      desc:
-        "Pre-qualifying attendees based on your specific requirements to ensure relevance and fit.",
+      title: "Qualified Attendee Vetting",
+      desc: "Attendees undergo a thorough pre-qualification process based on your explicit criteria, guaranteeing the highest relevance and fit for your events.",
+      icon: <CheckCircle size={20} style={{ color: cogentBlue }} />,
     },
     {
       num: "04",
-      desc:
-        "Confirming the attendance of all pre-qualified individuals using your defined parameters.",
+      title: "Confirmed Engagement & Outreach",
+      desc: "We meticulously confirm the participation of all pre-qualified individuals, employing robust parameters to secure their attendance effectively.",
+      icon: <Users size={20} style={{ color: cogentBlue }} />,
     },
     {
       num: "05",
-      desc:
-        "Organizing your event for the right pre-qualified audience, ensuring maximum impact.",
+      title: "Optimized Event Orchestration",
+      desc: "Every event is meticulously organized and executed for your pre-qualified audience, maximizing impact and fostering productive interactions.",
+      icon: <CalendarDays size={20} style={{ color: cogentBlue }} />,
     },
+    // Optional: Add a 6th dummy item if you strictly need a perfect 3x2 grid.
+    // {
+    //   num: "06",
+    //   title: "Continuous Improvement",
+    //   desc: "Regular feedback loops and performance analysis ensure our processes are constantly optimized for future success.",
+    //   icon: <Activity size={20} style={{ color: cogentBlue }} />,
+    // },
   ];
 
-  const [active, setActive] = useState(2);
-  const [hover, setHover] = useState(-1);
-
   return (
-    <section className="w-full bg-white py-28">
+    <section className="w-full bg-white py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* ========= TITLE ========= */}
-        <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 text-center tracking-tight">
-          How We Operate
+        {/* Main Headline */}
+        <h2 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight" style={{ color: neutralBlack }}>
+          Our Methodical <br />
+          <span style={{ color: cogentBlue }}>Operational Framework</span>
         </h2>
 
-        <p className="text-lg md:text-xl text-neutral-600 text-center mt-6 max-w-3xl mx-auto leading-relaxed">
-          A streamlined five-step operational framework designed for maximum impact.
+        {/* Subtitle */}
+        <p className="text-xl md:text-2xl mt-6 max-w-3xl leading-relaxed" style={{ color: darkGray }}>
+          A refined, five-step approach meticulously designed to ensure precision, engagement, and measurable success.
         </p>
 
-        {/* ========= TIMELINE ========= */}
-        <div className="relative mt-24">
-
-          {/* LEFT fade */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 h-[10px] bg-gradient-to-r from-white to-transparent z-30 pointer-events-none" />
-          {/* RIGHT fade */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-[10px] bg-gradient-to-l from-white to-transparent z-30 pointer-events-none" />
-
-          {/* BASE TRACK */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[4px] bg-neutral-200 rounded-full" />
-
-          {/* FLUID BAR (UNCHANGED) */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[10px] rounded-full overflow-hidden">
-            <motion.div
-              animate={{ x: ["-10%", "10%", "-10%"] }}
-              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-0 w-[120%] h-full 
-                bg-gradient-to-r from-[#172573] via-[#3A4FBF] to-[#7AA2FF]
-                opacity-[0.65] blur-[12px]"
-            />
-            <motion.div
-              animate={{ x: ["5%", "-5%", "5%"] }}
-              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-0 w-[130%] h-full 
-                bg-gradient-to-r from-[#7AA2FF] via-[#3A4FBF] to-[#172573]
-                opacity-[0.55] blur-[14px]"
-            />
-            <motion.div
-              animate={{ x: ["-15%", "15%", "-15%"] }}
-              transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-0 w-[140%] h-full 
-                bg-gradient-to-r from-[#3A4FBF] via-[#172573] to-[#7AA2FF]
-                opacity-[0.50] blur-[16px]"
-            />
-            <motion.div
-              animate={{ x: ["8%", "-8%", "8%"] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-0 w-[160%] h-full 
-                bg-gradient-to-r from-[#172573] via-[#3A4FBF] to-[#7AA2FF]
-                opacity-[0.45] blur-[18px]"
-            />
-
-            {/* END FADES */}
-            <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent pointer-events-none z-20" />
-            <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent pointer-events-none z-20" />
-          </div>
-
-          {/* ========= STEPS ========= */}
-          <div className="grid grid-cols-5 relative">
-            {steps.map((step, i) => {
-
-              // distance from the middle (index 2)
-              const dist = Math.abs(i - 2);
-
-              // new base sizes (bigger)
-              const baseSize = 80 - dist * 12; // 80 → 68 → 56
-
-              // hover enlargement
-              const hoverBoost = hover === i ? 6 : 0;
-              const activeBoost = active === i ? 4 : 0;
-
-              const finalSize = baseSize + hoverBoost + activeBoost;
-
-              return (
-                <div
-                  key={i}
-                  onMouseEnter={() => setHover(i)}
-                  onMouseLeave={() => setHover(-1)}
-                  onClick={() => setActive(i)}
-                  className="flex flex-col items-center text-center relative cursor-pointer select-none"
-                >
-                  <div
-                    className="
-                      absolute top-1/2 -translate-y-1/2
-                      bg-white border rounded-full flex items-center justify-center
-                      text-neutral-800 font-semibold
-                    "
-                    style={{
-                      width: `${finalSize}px`,
-                      height: `${finalSize}px`,
-                      fontSize: `${20 - dist * 2}px`,
-                      borderColor:
-                        active === i ? "#172573" : "rgb(209 213 219)",
-                      color: active === i ? "#172573" : "rgb(87 87 87)",
-                      transition: "all 0.25s ease"
-                    }}
-                  >
-                    {step.num}
-                  </div>
-
-                  <p className="text-neutral-800 font-medium text-sm mt-28">
-                    Step {step.num}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ========= DESCRIPTION ========= */}
-        <motion.p
-          key={active}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="mt-20 max-w-3xl mx-auto text-center text-neutral-700 text-[17px] leading-relaxed"
+        {/* Grid Container with subtle dividers */}
+        <div
+          className={`
+            grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-px gap-y-px
+            mt-24 border-t border-l
+          `}
+          style={{ borderColor: dividerGray }}
         >
-          {steps[active].desc}
-        </motion.p>
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className={`
+                flex flex-col items-start p-8 bg-white
+                border-b border-r min-h-[220px] lg:min-h-[250px]
+              `}
+              style={{ borderColor: dividerGray }}
+            >
+              {/* Icon & Title Row */}
+              <div className="flex items-center mb-4">
+                {step.icon}
+                <h3 className="text-xl font-semibold ml-3" style={{ color: neutralBlack }}>
+                  {step.title}
+                </h3>
+              </div>
+
+              {/* Description */}
+              <p className="text-base leading-relaxed" style={{ color: darkGray }}>
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -30,7 +30,7 @@ export default function AboutHero() {
   // 👇 Fade appears after small scroll
   useEffect(() => {
     const handleScroll = () => {
-      setShowFade(window.scrollY > 40); // show after 40px scroll
+      setShowFade(window.scrollY > 10); // show after 40px scroll
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -155,7 +155,7 @@ export default function AboutHero() {
       </div>
 
       {/* === Bottom Fade (only after scroll) === */}
-      {showFade && (
+      {/* {showFade && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -166,7 +166,7 @@ export default function AboutHero() {
               "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%)",
           }}
         />
-      )}
+      )} */}
     </section>
   );
 }

@@ -1,107 +1,162 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Search, Users, ClipboardCheck, CalendarCheck } from "lucide-react";
+import { useState } from "react";
 
-const steps = [
-  {
-    id: "01",
-    icon: <Search size={22} className="text-[#172573]" />,
-    title: "Research & Tailored Content",
-    description:
-      "Conducting extensive research and developing tailored content to ensure that your value message resonates with your target audience.",
-  },
-  {
-    id: "02",
-    icon: <Users size={22} className="text-[#172573]" />,
-    title: "Prospect Identification",
-    description:
-      "Thoroughly researching and identifying prospects that align with your products and services to reach the most relevant audience.",
-  },
-  {
-    id: "03",
-    icon: <ClipboardCheck size={22} className="text-[#172573]" />,
-    title: "Pre-Qualification",
-    description:
-      "Pre-qualifying attendees based on your specific requirements to ensure they are a perfect match for your offerings.",
-  },
-  {
-    id: "04",
-    icon: <CheckCircle size={22} className="text-[#172573]" />,
-    title: "Confirmation of Attendance",
-    description:
-      "Confirming the attendance of pre-qualified individuals based on your parameters to guarantee optimal event outcomes.",
-  },
-  {
-    id: "05",
-    icon: <CalendarCheck size={22} className="text-[#172573]" />,
-    title: "Event Execution",
-    description:
-      "Organizing your event for the pre-qualified attendees to ensure that you have access to the right audience under one roof.",
-  },
-];
+export default function HowWeOpe() {
+  const steps = [
+    {
+      num: "01",
+      desc:
+        "Conducting extensive research and developing tailored content to ensure that your value message resonates with your target audience.",
+    },
+    {
+      num: "02",
+      desc:
+        "Thoroughly researching and identifying prospects that align with your products and services.",
+    },
+    {
+      num: "03",
+      desc:
+        "Pre-qualifying attendees based on your specific requirements to ensure relevance and fit.",
+    },
+    {
+      num: "04",
+      desc:
+        "Confirming the attendance of all pre-qualified individuals using your defined parameters.",
+    },
+    {
+      num: "05",
+      desc:
+        "Organizing your event for the right pre-qualified audience, ensuring maximum impact.",
+    },
+  ];
 
-export default function HowWeOperate() {
+  const [active, setActive] = useState(2);
+  const [hover, setHover] = useState(-1);
+
   return (
-    <section className="w-full min-h-screen bg-white py-24 flex items-center justify-center">
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
-        {/* === Section Header === */}
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-semibold text-neutral-900 mb-4"
-          >
-            How We Operate
-          </motion.h2>
+    <section className="w-full bg-white py-28">
+      <div className="max-w-7xl mx-auto px-6">
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto leading-relaxed"
-          >
-            Our value proposition entails a comprehensive five-step approach aimed at maximizing
-            the impact of your investment.
-          </motion.p>
-        </div>
+        {/* ========= TITLE ========= */}
+        <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 text-center tracking-tight">
+          How We Operate
+        </h2>
 
-        {/* === Steps Grid === */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, index) => (
+        <p className="text-lg md:text-xl text-neutral-600 text-center mt-6 max-w-3xl mx-auto leading-relaxed">
+          A streamlined five-step operational framework designed for maximum impact.
+        </p>
+
+        {/* ========= TIMELINE ========= */}
+        <div className="relative mt-24">
+
+          {/* LEFT fade */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 h-[10px] bg-gradient-to-r from-white to-transparent z-30 pointer-events-none" />
+          {/* RIGHT fade */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-[10px] bg-gradient-to-l from-white to-transparent z-30 pointer-events-none" />
+
+          {/* BASE TRACK */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[4px] bg-neutral-200 rounded-full" />
+
+          {/* FLUID BAR (UNCHANGED) */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[10px] rounded-full overflow-hidden">
             <motion.div
-              key={step.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative flex flex-col p-8 bg-[#f8f9fb] rounded-3xl border border-neutral-200 hover:border-[#172573] transition-all duration-300"
-            >
-              {/* Number Badge */}
-              <div className="absolute -top-4 -left-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#172573] text-white text-sm font-semibold shadow-md">
-                {step.id}
-              </div>
+              animate={{ x: ["-10%", "10%", "-10%"] }}
+              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-0 top-0 w-[120%] h-full 
+                bg-gradient-to-r from-[#172573] via-[#3A4FBF] to-[#7AA2FF]
+                opacity-[0.65] blur-[12px]"
+            />
+            <motion.div
+              animate={{ x: ["5%", "-5%", "5%"] }}
+              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-0 top-0 w-[130%] h-full 
+                bg-gradient-to-r from-[#7AA2FF] via-[#3A4FBF] to-[#172573]
+                opacity-[0.55] blur-[14px]"
+            />
+            <motion.div
+              animate={{ x: ["-15%", "15%", "-15%"] }}
+              transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-0 top-0 w-[140%] h-full 
+                bg-gradient-to-r from-[#3A4FBF] via-[#172573] to-[#7AA2FF]
+                opacity-[0.50] blur-[16px]"
+            />
+            <motion.div
+              animate={{ x: ["8%", "-8%", "8%"] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-0 top-0 w-[160%] h-full 
+                bg-gradient-to-r from-[#172573] via-[#3A4FBF] to-[#7AA2FF]
+                opacity-[0.45] blur-[18px]"
+            />
 
-              {/* Icon */}
-              <div className="mb-4 p-3 rounded-full bg-[#e7e9ff] w-fit">
-                {step.icon}
-              </div>
+            {/* END FADES */}
+            <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent pointer-events-none z-20" />
+            <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent pointer-events-none z-20" />
+          </div>
 
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-neutral-900 mb-3">
-                {step.title}
-              </h3>
+          {/* ========= STEPS ========= */}
+          <div className="grid grid-cols-5 relative">
+            {steps.map((step, i) => {
 
-              {/* Description */}
-              <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
-                {step.description}
-              </p>
+              // distance from the middle (index 2)
+              const dist = Math.abs(i - 2);
 
-              {/* Hover Accent Line */}
-              <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-[#172573] transition-all duration-300 group-hover:w-full rounded-b-3xl"></div>
-            </motion.div>
-          ))}
+              // new base sizes (bigger)
+              const baseSize = 80 - dist * 12; // 80 → 68 → 56
+
+              // hover enlargement
+              const hoverBoost = hover === i ? 6 : 0;
+              const activeBoost = active === i ? 4 : 0;
+
+              const finalSize = baseSize + hoverBoost + activeBoost;
+
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setHover(i)}
+                  onMouseLeave={() => setHover(-1)}
+                  onClick={() => setActive(i)}
+                  className="flex flex-col items-center text-center relative cursor-pointer select-none"
+                >
+                  <div
+                    className="
+                      absolute top-1/2 -translate-y-1/2
+                      bg-white border rounded-full flex items-center justify-center
+                      text-neutral-800 font-semibold
+                    "
+                    style={{
+                      width: `${finalSize}px`,
+                      height: `${finalSize}px`,
+                      fontSize: `${20 - dist * 2}px`,
+                      borderColor:
+                        active === i ? "#172573" : "rgb(209 213 219)",
+                      color: active === i ? "#172573" : "rgb(87 87 87)",
+                      transition: "all 0.25s ease"
+                    }}
+                  >
+                    {step.num}
+                  </div>
+
+                  <p className="text-neutral-800 font-medium text-sm mt-28">
+                    Step {step.num}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
+        {/* ========= DESCRIPTION ========= */}
+        <motion.p
+          key={active}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="mt-20 max-w-3xl mx-auto text-center text-neutral-700 text-[17px] leading-relaxed"
+        >
+          {steps[active].desc}
+        </motion.p>
       </div>
     </section>
   );

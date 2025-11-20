@@ -45,7 +45,7 @@ export default function Hero() {
             {/* 🔥 ANIMATED IMAGE BEFORE "Say" */}
             <motion.div
               whileHover={{
-                rotate: 3,
+                rotate: -3,
                 scale: 1.05,
                 y: -4,
               }}
@@ -54,10 +54,10 @@ export default function Hero() {
                 stiffness: 200,
                 damping: 12,
               }}
-              className="w-[115px] h-[75px] overflow-hidden rounded-3xl border-[4px] border-[#dcdcdc] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
+              className="w-[115px] -rotate-2 h-[75px] overflow-hidden rounded-3xl border-[4px] border-[#dcdcdc] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
             >
               <Image
-                src="/images/BI1.jpeg"
+                src="/images/hand3.webp"
                 alt="decor"
                 width={1000}
                 height={1000}

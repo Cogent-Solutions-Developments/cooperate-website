@@ -17,7 +17,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-[12vw] md:text-[6.5vw] font-semibold tracking-tight whitespace-nowrap leading-[1.2]"
+            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight whitespace-nowrap leading-[1.2]"
           >
             <span className="text-black">What </span>
             <span className="text-neutral-900">Our</span>
@@ -28,7 +28,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="text-[12vw] md:text-[6.5vw] font-semibold tracking-tight whitespace-nowrap leading-[0.9]"
+            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight whitespace-nowrap leading-[0.9]"
           >
             <span className="text-[#2f53bd]">Sponsors </span>
             <span className="text-black">& </span>
@@ -40,7 +40,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1 }}
-            className="text-[12vw] md:text-[6.5vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.5]"
+            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.5]"
           >
             {/* 🔥 ANIMATED IMAGE BEFORE "Say" */}
             <motion.div
@@ -54,7 +54,7 @@ export default function Hero() {
                 stiffness: 200,
                 damping: 12,
               }}
-              className="w-[115px] h-[75px] overflow-hidden rounded-3xl border-[6px] border-[#d9d9d9] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
+              className="w-[115px] h-[75px] overflow-hidden rounded-3xl border-[4px] border-[#dcdcdc] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
             >
               <Image
                 src="/images/BI1.jpeg"
@@ -73,10 +73,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
-            className="mt-6 text-[4vw] md:text-[1.25vw] text-[#444] font-medium leading-relaxed max-w-3xl"
+            className="mt-6 text-[4vw] md:text-[1.10vw] text-[#444] font-medium leading-relaxed max-w-3xl"
           >
-            Trusted industry leaders share their authentic experiences with Cogent Solutions.
-            Here’s what our valued sponsors and partners truly think about collaborating with us.
+            Leaders across government, industry, and our global event ecosystem including speakers, sponsors, and strategic partners share their professional experiences with Cogent Solutions. Here’s what they say about working with us.
           </motion.p>
 
         </div>
@@ -91,7 +90,7 @@ export default function Hero() {
           <CometCard>
             <button
               type="button"
-              className="flex w-72 md:w-80 flex-col items-stretch rounded-[16px] bg-[#1F2121] p-3"
+              className="flex w-72 md:w-80 flex-col items-stretch rounded-[16px] bg-[#000000] p-3"
             >
               <div className="mx-2 flex-1">
                 <div className="relative mt-2 aspect-[3/4] w-full">
@@ -105,7 +104,7 @@ export default function Hero() {
 
               <div className="mt-3 flex items-center justify-between p-4 font-mono text-white">
                 <div className="text-xs">Sponsor Insight</div>
-                <div className="text-xs opacity-50">#SP01</div>
+                <div className="text-xs opacity-50">AIM Qatar</div>
               </div>
             </button>
           </CometCard>

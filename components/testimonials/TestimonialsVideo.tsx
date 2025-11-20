@@ -9,13 +9,38 @@ type Video = {
 };
 
 const videos: Video[] = [
-  { id: "yarIwDAuCJk", name: "Mr. Adam Woolford" },
-  { id: "YOUTUBE_ID_2", name: "Mr. Mohammed Idris" },
-  { id: "YOUTUBE_ID_3", name: "Mr. Mohamed Rousdhy" },
-  { id: "YOUTUBE_ID_4", name: "Mr. Wael Saikaly" },
-  { id: "YOUTUBE_ID_5", name: "Mr. Ahmed El-Shanawany" },
-  { id: "YOUTUBE_ID_6", name: "Mr. Ramakrishnan Natarajan" },
-  // ...add all 20 YouTube IDs
+  { id: "yarIwDAuCJk", name: "" },
+  { id: "1O0bVtyk2ss", name: "" },
+  { id: "lSioSjk9Xbg", name: "" },
+  { id: "NO5qX2O4ibA", name: "" },
+  { id: "pi4LDHQGPqw", name: "" },
+  { id: "fUD1GOCg7Uw", name: "" },
+  { id: "hC4-3JZc-1E", name: "" },
+  { id: "AsdeUVNB70Q", name: "" },
+  { id: "sDHfSq7fQY0", name: "" },
+  { id: "rqPLdo__ieg", name: "" },
+  { id: "isNOHkjVoPs", name: "" },
+  { id: "xY6WCLUdrsU", name: "" },
+  { id: "_N5diypr6RA", name: "" },
+  { id: "85jDSHKiIUs", name: "" },
+  { id: "nd0eg4Wc0dc", name: "" },
+  { id: "1L-qNeWCbuc", name: "" },
+  { id: "Vz0orFsHE2s", name: "" },
+  { id: "RY6fB4QI3BM", name: "" },
+  { id: "Ad8Fplt7_CQ", name: "" },
+  { id: "YXlpxYzso70", name: "" },
+  { id: "pocBwZNi1ao", name: "" },
+  { id: "Nxx2omWHHb0", name: "" },
+  { id: "KWldU3KhRNg", name: "" },
+  { id: "fY-CiPLc3Q4", name: "" },
+  { id: "XJGxnXchhUc", name: "" },
+  { id: "j90904oU7Ic", name: "" },
+  { id: "5Qv0pD1wc58", name: "" },
+  { id: "iN6LI0Q1oL0", name: "" },
+  { id: "_XfEiA6Ponc", name: "" },
+  { id: "Un6QxeZalWQ", name: "" },
+  { id: "ouwrkQgGmL0", name: "" },
+  { id: "6C0sDl705ig", name: "" },
 ];
 
 export default function TestimonialsVideo() {
@@ -23,7 +48,7 @@ export default function TestimonialsVideo() {
 
   return (
     <section className="relative w-full bg-white py-28 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="max-w-full mx-auto px-0 text-center">
         {/* === Header === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,13 +66,13 @@ export default function TestimonialsVideo() {
         </motion.div>
 
         {/* === Video Grid (with fade limit) === */}
-        <div className="relative max-h-[750px] overflow-hidden">
+        <div className="relative max-h-full overflow-hidden">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-24 z-0"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 pb-24 z-0"
           >
             {videos.map((video, i) => (
               <div
@@ -58,7 +83,7 @@ export default function TestimonialsVideo() {
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative"
+                  className=" overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative"
                 >
                   {/* Thumbnail (16:9 ratio) */}
                   <div className="relative w-full aspect-video">
@@ -74,7 +99,7 @@ export default function TestimonialsVideo() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 68 48"
                         width="50"
-                        className="opacity-90 drop-shadow-md"
+                        className="opacity-75 drop-shadow-md"
                       >
                         <path
                           className="fill-red-600"

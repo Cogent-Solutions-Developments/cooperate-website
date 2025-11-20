@@ -41,6 +41,7 @@ const videos: Video[] = [
   { id: "Un6QxeZalWQ", name: "" },
   { id: "ouwrkQgGmL0", name: "" },
   { id: "6C0sDl705ig", name: "" },
+  { id: "nTU2XQkqbIw", name: "" },
 ];
 
 export default function TestimonialsVideo() {
@@ -48,7 +49,7 @@ export default function TestimonialsVideo() {
 
   return (
     <section className="relative w-full bg-white py-28 overflow-hidden">
-      <div className="max-w-full mx-auto px-0 text-center">
+      <div className="max-w-6xl mx-auto px-0 text-center">
         {/* === Header === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +73,7 @@ export default function TestimonialsVideo() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 pb-24 z-0"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pb-24 z-0"
           >
             {videos.map((video, i) => (
               <div

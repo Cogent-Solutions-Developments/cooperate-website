@@ -13,6 +13,27 @@ export default function HelpCenterHero() {
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
       {/* === ORB ABOVE BG BUT BEHIND CONTENT === */}
+
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            transform: "scale(3)", // ⬅ bigger orb
+            top: "-100%",
+            transformOrigin: "center", // keep it centered
+          }}
+        >
+          <Orb
+            hoverIntensity={0.5}
+            rotateOnHover={true}
+            hue={0}
+            forceHoverState={false}
+          />
+        </div>
+      </div>
+
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div
           style={{
@@ -45,8 +66,8 @@ export default function HelpCenterHero() {
           "
         >
           {/* === TITLE === */}
-          <h1 className="relative text-4xl sm:text-8xl font-semibold text-neutral-900 leading-tight">
-            Help Centre
+          <h1 className="relative text-4xl sm:text-7xl font-semibold text-neutral-900 leading-tight">
+            Policy, FAQ & Support Centre
           </h1>
 
           {/* === SUBTEXT === */}
@@ -57,13 +78,13 @@ export default function HelpCenterHero() {
           </p>
 
           {/* === SEARCH BAR === */}
-          <div className="relative w-full flex justify-center mt-4 px-4">
+          <div className="relative w-full flex justify-center mt-4 mb-30 px-4">
             <div className="w-full max-w-xl">
               <input
                 type="text"
                 placeholder="Search resources, policies, FAQs..."
                 className="
-                  w-full px-5 py-3 rounded-3xl border border-neutral-300
+                  w-full px-5 py-3 rounded-4xl border border-neutral-300
                   bg-white text-neutral-800 shadow-sm placeholder-neutral-400
                   focus:outline-none focus:ring-1 focus:ring-[#2f53bd]/10
                   focus:border-[#a9c8e8] transition-all duration-200
@@ -71,10 +92,12 @@ export default function HelpCenterHero() {
               />
             </div>
           </div>
+          
 
           {/* === FOUR CARDS (single row) — TALL + STICK TO BOTTOM === */}
           <div className="absolute bottom-0 w-full flex justify-center px-4 z-10 mb-0">
             <div className="grid grid-cols-4 w-full max-w-5xl">
+                
               {[
                 { title: "FAQ", link: "/help-centre/faq" },
                 {

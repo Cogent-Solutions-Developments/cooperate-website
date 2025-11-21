@@ -12,7 +12,7 @@ export default function Hero() {
         {/* LEFT SIDE */}
         <div className="leading-tight max-w-3xl pt-16 md:pt-24">
 
-          {/* LINE 1 — What Our */}
+          {/* LINE 1 */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -23,7 +23,7 @@ export default function Hero() {
             <span className="text-neutral-900">Our</span>
           </motion.h1>
 
-          {/* LINE 2 — Sponsors & Partners */}
+          {/* LINE 2 */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,14 +35,13 @@ export default function Hero() {
             <span className="text-[#2f53bd]">Partners</span>
           </motion.h1>
 
-          {/* LINE 3 — Animated image + Say */}
+          {/* LINE 3 */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1 }}
             className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.5]"
           >
-            {/* 🔥 ANIMATED IMAGE BEFORE "Say" */}
             <motion.div
               whileHover={{
                 rotate: -3,
@@ -68,7 +67,7 @@ export default function Hero() {
             <span className="text-[#000000]">Say</span>
           </motion.h1>
 
-          {/* ⭐ MINI PARAGRAPH UNDER TITLE */}
+          {/* MINI PARAGRAPH */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,7 +79,7 @@ export default function Hero() {
 
         </div>
 
-        {/* RIGHT SIDE — COMET CARD */}
+        {/* RIGHT SIDE — COMET CARD with VIDEO */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,15 +89,21 @@ export default function Hero() {
           <CometCard>
             <button
               type="button"
-              className="flex w-72 md:w-80 flex-col items-stretch rounded-[16px] bg-[#000000] p-3"
+              className="flex w-72 md:w-80 flex-col items-stretch rounded-[16px] bg-black p-3"
             >
               <div className="mx-2 flex-1">
-                <div className="relative mt-2 aspect-[3/4] w-full">
-                  <img
-                    src="/images/BI1.jpeg"
+                <div className="relative mt-2 aspect-[3/4] w-full rounded-[16px] overflow-hidden">
+
+                  {/* ⭐ VIDEO HERE */}
+                  <video
+                    src="/videos/sponsor-clip.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
-                    alt="Comet Image"
                   />
+
                 </div>
               </div>
 

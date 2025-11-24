@@ -149,16 +149,16 @@ Here at Cogent Solutions, we partner with global organizations, government bodie
       {/* === Light Reveal Layer === */}
       <img
         ref={revealImgRef}
-        src="/images/03.png"
+        src="/images/hand.webp.jpg"
         alt="Reveal effect"
         style={
           {
             position: "absolute",
             width: "100%",
-            top: "-50%",
+            top: "-25%",
             zIndex: 0,
             mixBlendMode: "lighten",
-            opacity: 0.1,
+            opacity: 0.9,
             pointerEvents: "none",
             "--mx": "-9999px",
             "--my": "-9999px",

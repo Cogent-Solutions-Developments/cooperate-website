@@ -1,0 +1,103 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Search, Target, CheckCircle, Users, CalendarDays } from "lucide-react";
+
+export default function HowWeOperateAppwriteStyleFixedSize() {
+  const cogentBlue = "#1D309D"; // Your primary brand blue
+  const neutralBlack = "#1A1A1A"; // For primary text
+  const darkGray = "#4A5568";     // For secondary text
+  const dividerGray = "#E0E4EB";   // For the subtle grid lines
+
+  const steps = [
+    {
+      num: "01",
+      title: "Strategic Research & Content",
+      desc: "We conduct in-depth market research to develop bespoke content strategies, ensuring your value proposition profoundly resonates with your target audience.",
+      icon: <Search size={20} style={{ color: cogentBlue }} />,
+    },
+    {
+      num: "02",
+      title: "Precision Prospect Identification",
+      desc: "Our rigorous process identifies and vets prospects, ensuring a precise alignment with your product and service offerings for optimal engagement.",
+      icon: <Target size={20} style={{ color: cogentBlue }} />,
+    },
+    {
+      num: "03",
+      title: "Qualified Attendee Vetting",
+      desc: "Attendees undergo a thorough pre-qualification process based on your explicit criteria, guaranteeing the highest relevance and fit for your events.",
+      icon: <CheckCircle size={20} style={{ color: cogentBlue }} />,
+    },
+    {
+      num: "04",
+      title: "Confirmed Engagement & Outreach",
+      desc: "We meticulously confirm the participation of all pre-qualified individuals, employing robust parameters to secure their attendance effectively.",
+      icon: <Users size={20} style={{ color: cogentBlue }} />,
+    },
+    {
+      num: "05",
+      title: "Optimized Event Orchestration",
+      desc: "Every event is meticulously organized and executed for your pre-qualified audience, maximizing impact and fostering productive interactions.",
+      icon: <CalendarDays size={20} style={{ color: cogentBlue }} />,
+    },
+    // Optional: Add a 6th dummy item if you strictly need a perfect 3x2 grid.
+    // {
+    //   num: "06",
+    //   title: "Continuous Improvement",
+    //   desc: "Regular feedback loops and performance analysis ensure our processes are constantly optimized for future success.",
+    //   icon: <Activity size={20} style={{ color: cogentBlue }} />,
+    // },
+  ];
+
+  return (
+    <section className="w-full bg-white py-28 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Main Headline */}
+        <h2 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight" style={{ color: neutralBlack }}>
+          Our Methodical <br />
+          <span style={{ color: cogentBlue }}>Operational Framework</span>
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-xl md:text-2xl mt-6 max-w-3xl leading-relaxed" style={{ color: darkGray }}>
+          A refined, five-step approach meticulously designed to ensure precision, engagement, and measurable success.
+        </p>
+
+        {/* Grid Container with subtle dividers */}
+        <div
+          className={`
+            grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-px gap-y-px
+            mt-24 border-t border-l
+          `}
+          style={{ borderColor: dividerGray }}
+        >
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className={`
+                flex flex-col items-start p-8 bg-white
+                border-b border-r min-h-[220px] lg:min-h-[250px]
+              `}
+              style={{ borderColor: dividerGray }}
+            >
+              {/* Icon & Title Row */}
+              <div className="flex items-center mb-4">
+                {step.icon}
+                <h3 className="text-xl font-semibold ml-3" style={{ color: neutralBlack }}>
+                  {step.title}
+                </h3>
+              </div>
+
+              {/* Description */}
+              <p className="text-base leading-relaxed" style={{ color: darkGray }}>
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

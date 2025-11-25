@@ -12,67 +12,68 @@ export default function Hero() {
         {/* LEFT SIDE */}
         <div className="leading-tight max-w-3xl pt-16 md:pt-24">
 
-          {/* LINE 1 */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight whitespace-nowrap leading-[1.2]"
-          >
-            <span className="text-black">What </span>
-            <span className="text-neutral-900">Our</span>
-          </motion.h1>
+  {/* LINE 1 */}
+<motion.h1
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  className="text-[12vw] md:text-[5.5vw] font-semibold tracking-tight whitespace-nowrap leading-[1.2]"
+>
+  <span className="text-black">What </span>
+  <span className="text-neutral-900">The</span>
+</motion.h1>
 
-          {/* LINE 2 */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight whitespace-nowrap leading-[0.9]"
-          >
-            <span className="text-[#2f53bd]">Sponsors </span>
-            <span className="text-black">& </span>
-            <span className="text-[#2f53bd]">Partners</span>
-          </motion.h1>
+{/* LINE 2 — World + IMAGE + Says */}
+<motion.h1
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.9 }}
+  className="text-[12vw] md:text-[5.5vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.15]"
+>
+  <span className="text-[#2f53bd]">World</span>
 
-          {/* LINE 3 */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1 }}
-            className="text-[12vw] md:text-[6.25vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.5]"
-          >
-            <motion.div
-              whileHover={{
-                rotate: -3,
-                scale: 1.05,
-                y: -4,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 12,
-              }}
-              className="w-[115px] -rotate-2 h-[75px] overflow-hidden rounded-3xl border-[4px] border-[#dcdcdc] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
-            >
-              <Image
-                src="/images/hand3.webp"
-                alt="decor"
-                width={1000}
-                height={1000}
-                className="object-cover w-full h-full rounded-2xl"
-              />
-            </motion.div>
+  <motion.div
+    whileHover={{
+      rotate: -3,
+      scale: 1.05,
+      y: -4,
+    }}
+    transition={{
+      type: "spring",
+      stiffness: 200,
+      damping: 12,
+    }}
+    className="w-[105px] -rotate-2 h-[70px] overflow-hidden rounded-3xl border-[4px] border-[#e3e3e3] bg-white shadow-[0px_10px_35px_rgba(0,0,0,0.08)] cursor-pointer"
+  >
+    <Image
+      src="/images/si.jpeg"
+      alt="decor"
+      width={1000}
+      height={1000}
+      className="object-cover w-full h-full rounded-2xl"
+    />
+  </motion.div>
 
-            <span className="text-[#000000]">Say</span>
-          </motion.h1>
+  <span className="text-black">Says</span>
+</motion.h1>
+
+{/* LINE 3 — About Cogent */}
+<motion.h1
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1.1 }}
+  className="text-[12vw] md:text-[5.5vw] font-semibold tracking-tight whitespace-nowrap leading-[1.1]"
+>
+  <span className="text-black">About </span>
+  <span className="text-neutral-900">Us</span>
+</motion.h1>
 
           {/* MINI PARAGRAPH */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
-            className="mt-6 text-[4vw] md:text-[1.10vw] text-[#444] font-medium leading-relaxed max-w-3xl"
+            className="mt-6 text-[4vw] md:text-[1.15vw] text-[#444] font-medium leading-relaxed max-w-2xl"
           >
             Leaders across government, industry, and our global event ecosystem including speakers, sponsors, and strategic partners share their professional experiences with Cogent Solutions. Here’s what they say about working with us.
           </motion.p>

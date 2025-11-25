@@ -59,17 +59,30 @@ export default function ServicesHeroDemo() {
         before:w-full before:h-full before:opacity-90 before:pointer-events-none
       "
     >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-8 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
         {/* === LEFT SIDE === */}
         <div className="flex  flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
-          <h1 className="text-5xl md:text-7xl font-semibold text-neutral-900 leading-tight">
-            Our Services
-          </h1>
-          <p className="mt-5 text-base md:text-md  text-neutral-600 max-w-xl mx-auto md:mx-0">
-            We Craft Experiences That Connect Decision-Makers, Ideas, and
-            Stories, Empowering Industries to Collaborate, Innovate, and Grow
-            Through Our Global Platforms.
-          </p>
+          {/* TITLE WITH MOTION */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-5xl md:text-7xl font-semibold text-neutral-900 leading-tight whitespace-nowrap"
+          >
+            What We Deliver
+          </motion.h1>
+
+          {/* SUBTITLE WITH MOTION */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="mt-5 text-base md:text-md text-neutral-600 max-w-xl mx-auto md:mx-0"
+          >
+            We Craft High Impact Experiences That Connect Decision Makers,
+            Ideas, and Industries Empowering Organizations to Collaborate,
+            Innovate, and Grow.
+          </motion.p>
 
           {/* === Stats Counters === */}
           <motion.div

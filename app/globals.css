@@ -75,3 +75,64 @@ body {
   transition: transform 0.3s ease-in-out 0.1s;
   transform: translate(0);
 }
+
+
+
+.glass-button {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+
+  /* SAME padding as original */
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+
+  border-radius: 10rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+
+  /* 🔥 ONLY DIFFERENCE → GLASS BG */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: #ffffff;
+
+  /* keep original animation */
+  transition: background 0.3s, border 0.3s;
+}
+
+
+/* Glass hover */
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.glass-button:hover .button__icon-wrapper {
+  color: #000e55;
+}
+.glass-button .button__icon-wrapper{
+  color: rgb(46, 49, 58);
+}
+
+.glass-button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.glass-button:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.glass-button:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}

@@ -9,12 +9,12 @@ export default function HelpCenterHero() {
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden"
+      className="relative w-full bg-black overflow-hidden"
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
-      {/* === ORB ABOVE BG BUT BEHIND CONTENT === */}
+       {/* === ORB ABOVE BG BUT BEHIND CONTENT === */}
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
         <div
           style={{
             width: "100%",
@@ -34,7 +34,7 @@ export default function HelpCenterHero() {
         </div>
       </div>
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <div
           style={{
             width: "100%",
@@ -66,83 +66,51 @@ export default function HelpCenterHero() {
           "
         >
           {/* === TITLE === */}
-          <h1 className="relative text-4xl sm:text-7xl font-semibold text-neutral-900 leading-tight">
+          <h1 className="relative text-4xl sm:text-7xl font-semibold text-white/90 leading-tight">
             Policy, FAQ & Support Centre
           </h1>
 
           {/* === SUBTEXT === */}
-          <p className="relative mx-auto max-w-3xl text-neutral-600 text-[16px] leading-relaxed">
+          <p className="relative mx-auto max-w-3xl text-white/80 text-[16px] leading-relaxed">
             Your Central Hub for Documentation, Policies, FAQs and Essential
             Support Resources Designed to Offer Clarity, Transparency and Smooth
             Navigation.
           </p>
+<button className="glass-button">
+  <span className="button__icon-wrapper">
+    <svg
+      viewBox="0 0 14 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="button__icon-svg"
+      width="11"
+    >
+      <path
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+        fill="currentColor"
+      ></path>
+    </svg>
 
-          {/* === SEARCH BAR === */}
-          <div className="relative w-full flex justify-center mt-4 mb-30 px-4">
-            <div className="w-full max-w-xl">
-              <input
-                type="text"
-                placeholder="Search resources, policies, FAQs..."
-                className="
-                  w-full px-5 py-3 rounded-4xl border border-neutral-300
-                  bg-white text-neutral-800 shadow-sm placeholder-neutral-400
-                  focus:outline-none focus:ring-1 focus:ring-[#2f53bd]/10
-                  focus:border-[#a9c8e8] transition-all duration-200
-                "
-              />
-            </div>
-          </div>
+    <svg
+      viewBox="0 0 14 15"
+      fill="none"
+      width="11"
+      className="button__icon-svg button__icon-svg--copy"
+    >
+      <path
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  </span>
+  Contact Support
+</button>
+
           
 
-          {/* === FOUR CARDS (single row) — TALL + STICK TO BOTTOM === */}
-          <div className="absolute bottom-0 w-full flex justify-center px-4 z-10 mb-0">
-            <div className="grid grid-cols-4 w-full max-w-5xl">
-                
-              {[
-                { title: "FAQ", link: "/help-centre/faq" },
-                {
-                  title: "Privacy Policy",
-                  link: "/help-centre/privacy-policy",
-                },
-                { title: "Terms & Conditions", link: "/help-centre/terms" },
-                {
-                  title: "Payment Policy",
-                  link: "/help-centre/payment-policy",
-                },
-              ].map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={item.link}
-                  className="
-          h-[150px]                 /* ⬅ taller height */
-          p-6
-          border border-neutral-200 
-          bg-white shadow-sm
-          hover:shadow-md hover:border-neutral-300 
-          transition-all duration-300
-          flex flex-col justify-center
-        "
-                >
-                  <h3 className="text-xl font-semibold text-neutral-900">
-                    {item.title}
-                  </h3>
+          
 
-                  <p className="text-neutral-500 text-sm mt-1">
-                    View details & info
-                  </p>
-
-                  <span
-                    className="
-            text-[#2f53bd] text-sm mt-2 inline-block
-            opacity-0 group-hover:opacity-100 transition-all
-          "
-                  >
-                    Learn more →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
+        
         </div>
       </div>
     </section>

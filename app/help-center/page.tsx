@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from "@/components/layout/NavBar";
+import NavBar from "@/components/layout/NavBarDark";
 import HelpCenterHero from "@/components/help-center/Hero";
 import FAQSection from "@/components/help-center/FAQSection";
 import PrivacyPolicy from "@/components/help-center/PrivacyPolicy";

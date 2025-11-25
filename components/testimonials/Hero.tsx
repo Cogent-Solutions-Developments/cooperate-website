@@ -40,10 +40,10 @@ export default function Hero() {
             transition={{ duration: 1.2 }}
             className="mt-6 text-[4vw] md:text-[1.15vw] text-[#444] font-medium leading-relaxed max-w-3xl"
           >
-            Leaders across government, industry, and our global event ecosystem
-            including speakers, sponsors, and strategic partners share their
-            professional experiences with Cogent Solutions. Here’s what they say
-            about working with us.
+            Leaders Across Government, Industry, And Our Global Event Ecosystem
+            Including Speakers, Sponsors, And Strategic Partners Share Their
+            Professional Experiences With Cogent Solutions. Here’s What They Say
+            About Working With Us.
           </motion.p>
 
           {/* BUTTON WITH SAME MOTION EFFECT */}

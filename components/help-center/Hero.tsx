@@ -3,146 +3,152 @@
 import { motion } from "framer-motion";
 import Orb from "./imports/Orb";
 import Link from "next/link";
+import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
 export default function HelpCenterHero() {
-  const NAV_HEIGHT = 88;
+  const people = [
+    {
+      id: 1,
+      name: "General",
+      designation: "info@cogentsolutions.com",
+      image:
+        "https://plus.unsplash.com/premium_photo-1681487874673-976050b1dcab?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 2,
+      name: "Marketing",
+      designation: "marketing@cogentsolutions.com",
+      image:
+        "https://plus.unsplash.com/premium_photo-1681487872232-fa622a6dd59e?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 3,
+      name: "Sales",
+      designation: "sales@cogentsolutions.com",
+      image:
+        "https://plus.unsplash.com/premium_photo-1681488188364-20b8f14db588?q=80&w=1542&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 4,
+      name: "Delegates",
+      designation: "delegates@cogentsolutions.com",
+      image:
+        "https://plus.unsplash.com/premium_photo-1726797756953-30e3edeea563?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+
+  ];
 
   return (
-    <section
-      className="relative w-full bg-white overflow-hidden"
-      style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
-    >
-      {/* === ORB ABOVE BG BUT BEHIND CONTENT === */}
+    <section className="relative w-full h-screen bg-black overflow-hidden">
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      {/* === ORBS === */}
+      <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
         <div
           style={{
             width: "100%",
             height: "100%",
             position: "relative",
-            transform: "scale(3)", // ⬅ bigger orb
+            transform: "scale(3)",
             top: "-100%",
-            transformOrigin: "center", // keep it centered
+            transformOrigin: "center",
           }}
         >
-          <Orb
-            hoverIntensity={0.5}
-            rotateOnHover={true}
-            hue={0}
-            forceHoverState={false}
-          />
+          <Orb hoverIntensity={0.5} rotateOnHover={true} hue={0} forceHoverState={false} />
         </div>
       </div>
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <div
           style={{
             width: "100%",
             height: "100%",
             position: "relative",
-            transform: "scale(1.8)", // ⬅ bigger orb
+            transform: "scale(1.8)",
             top: "70%",
-            transformOrigin: "center", // keep it centered
+            transformOrigin: "center",
           }}
         >
-          <Orb
-            hoverIntensity={0.5}
-            rotateOnHover={true}
-            hue={0}
-            forceHoverState={false}
-          />
+          <Orb hoverIntensity={0.5} rotateOnHover={true} hue={0} forceHoverState={false} />
         </div>
       </div>
 
-      {/* Spacer for navbar */}
-      <div className="h-[var(--nav-h)]" />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
-        {/* FULL CENTERING */}
+      {/* === CONTENT WRAPPER === */}
+      <div className="relative mt-8 z-10 mx-auto max-w-6xl px-6 h-full">
         <div
           className="
-            min-h-[calc(100vh-var(--nav-h))]
-            flex flex-col items-center justify-center text-center gap-4
+            h-full
+            flex flex-col items-center justify-center
+            text-center gap-3
           "
         >
+
+          {/* === SUPPORT LINE + AVATARS === */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="
+              flex flex-col md:flex-row
+              items-center justify-center
+              gap-4 md:gap-6
+            "
+          >
+            <p className="text-sm md:text-base text-white/90 font-semibold leading-snug text-center md:text-left">
+              We're Here to, <br />
+              <span className="text-[#f4f4f4]">Guide You Through</span>
+            </p>
+
+            <div className="hidden md:block h-6 w-px bg-gray-300/60" />
+
+            <div className="flex -space-x-4">
+              <AnimatedTooltip items={people} />
+            </div>
+          </motion.div>
+
           {/* === TITLE === */}
-          <h1 className="relative text-4xl sm:text-7xl font-semibold text-neutral-900 leading-tight">
+          <h1 className="relative text-4xl sm:text-[80px] font-semibold text-white/90 leading-tight">
             Policy, FAQ & Support Centre
           </h1>
 
           {/* === SUBTEXT === */}
-          <p className="relative mx-auto max-w-3xl text-neutral-600 text-[16px] leading-relaxed">
+          <p className="relative mt-5 mx-auto max-w-3xl text-white/80 text-[16px] leading-relaxed">
             Your Central Hub for Documentation, Policies, FAQs and Essential
             Support Resources Designed to Offer Clarity, Transparency and Smooth
             Navigation.
           </p>
 
-          {/* === SEARCH BAR === */}
-          <div className="relative w-full flex justify-center mt-4 mb-30 px-4">
-            <div className="w-full max-w-xl">
-              <input
-                type="text"
-                placeholder="Search resources, policies, FAQs..."
-                className="
-                  w-full px-5 py-3 rounded-4xl border border-neutral-300
-                  bg-white text-neutral-800 shadow-sm placeholder-neutral-400
-                  focus:outline-none focus:ring-1 focus:ring-[#2f53bd]/10
-                  focus:border-[#a9c8e8] transition-all duration-200
-                "
-              />
-            </div>
-          </div>
-          
+          {/* === GLASS BUTTON === */}
+          <button className="glass-button mt-4">
+            <span className="button__icon-wrapper">
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="button__icon-svg"
+                width="11"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
 
-          {/* === FOUR CARDS (single row) — TALL + STICK TO BOTTOM === */}
-          <div className="absolute bottom-0 w-full flex justify-center px-4 z-10 mb-0">
-            <div className="grid grid-cols-4 w-full max-w-5xl">
-                
-              {[
-                { title: "FAQ", link: "/help-centre/faq" },
-                {
-                  title: "Privacy Policy",
-                  link: "/help-centre/privacy-policy",
-                },
-                { title: "Terms & Conditions", link: "/help-centre/terms" },
-                {
-                  title: "Payment Policy",
-                  link: "/help-centre/payment-policy",
-                },
-              ].map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={item.link}
-                  className="
-          h-[150px]                 /* ⬅ taller height */
-          p-6
-          border border-neutral-200 
-          bg-white shadow-sm
-          hover:shadow-md hover:border-neutral-300 
-          transition-all duration-300
-          flex flex-col justify-center
-        "
-                >
-                  <h3 className="text-xl font-semibold text-neutral-900">
-                    {item.title}
-                  </h3>
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="11"
+                className="button__icon-svg button__icon-svg--copy"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </span>
+            Contact Support
+          </button>
 
-                  <p className="text-neutral-500 text-sm mt-1">
-                    View details & info
-                  </p>
-
-                  <span
-                    className="
-            text-[#2f53bd] text-sm mt-2 inline-block
-            opacity-0 group-hover:opacity-100 transition-all
-          "
-                  >
-                    Learn more →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

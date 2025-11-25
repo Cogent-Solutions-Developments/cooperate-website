@@ -62,7 +62,7 @@ export default function ServicesHeroDemo() {
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
         {/* === LEFT SIDE === */}
         <div className="flex  flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
-          <h1 className="text-5xl md:text-6xl font-semibold text-neutral-900 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-semibold text-neutral-900 leading-tight">
             Our Services
           </h1>
           <p className="mt-5 text-base md:text-md  text-neutral-600 max-w-xl mx-auto md:mx-0">
@@ -99,10 +99,10 @@ export default function ServicesHeroDemo() {
             className="
               mt-8 flex flex-col md:flex-row
               items-center justify-center md:justify-start
-              gap-4 md:gap-6
+              gap-4 md:gap-4
             "
           >
-            <p className="text-sm md:text-base text-neutral-700 font-semibold leading-snug text-center md:text-left">
+            <p className="text-sm md:text- text-neutral-700 font-semibold leading-snug text-center md:text-left">
               We are Trusted by <br />
               <span className="text-[#1D309D]">Industry Leaders</span>
             </p>

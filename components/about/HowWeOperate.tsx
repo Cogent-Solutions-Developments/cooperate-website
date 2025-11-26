@@ -53,13 +53,13 @@ export default function HowWeOperateAppwriteStyleFixedSize() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Main Headline */}
         <h2 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight" style={{ color: neutralBlack }}>
-          Our Methodical <br />
-          <span style={{ color: cogentBlue }}>Operational Framework</span>
+          The Strategy <br />
+          <span style={{ color: cogentBlue }}>Behind Our Results</span>
         </h2>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl mt-6 max-w-3xl leading-relaxed" style={{ color: darkGray }}>
-          A refined, five-step approach meticulously designed to ensure precision, engagement, and measurable success.
+        <p className="text-xl md:text-xl mt-6 max-w-3xl leading-relaxed" style={{ color: darkGray }}>
+          Our Value Proposition Entails A Comprehensive Five-Step Approach Aimed At Maximizing The Impact Of Your Investment
         </p>
 
         {/* Grid Container with subtle dividers */}

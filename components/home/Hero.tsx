@@ -22,22 +22,23 @@ export default function Hero({ className = "" }: HeroProps) {
       </video>
 
       {/* === Gradient Overlay === */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0C123B]/90 via-[#0C123B]/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0C123B]/90 via-[#0C123B]/50 to-transparent"></div>
 
       {/* === Content === */}
-      <div className="relative z-10 flex flex-col lg:flex-row justify-between items-end h-full max-w-7xl mx-auto px-6 lg:px-12 pb-10">
+      <div className="relative z-10 flex flex-col h-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-12 pb-12 pt-24 sm:pt-32 lg:pt-0 justify-end">
         {/* === LEFT TEXT === */}
-        <div className="flex flex-col items-start justify-end max-w-3xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-            Your Trusted <br /> Business Intelligence Partner
+        <div className="flex flex-col items-start max-w-3xl text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+            Your Trusted <br className="sm:block" />
+            Business Intelligence Partner
           </h1>
 
-          <p className="mt-4 text-[18px] leading-relaxed text-gray-200 max-w-2xl">
+          <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-200 max-w-xl sm:max-w-2xl">
             We are a leading business intelligence firm founded on the belief of
             getting the right information to the right people at the right time.
           </p>
 
-          <div className="mt-4">
+          <div className="mt-6 sm:mt-8">
             <button
               className="button relative z-[10000]"
               style={{ ["--clr" as any]: "#2f53bd" }}

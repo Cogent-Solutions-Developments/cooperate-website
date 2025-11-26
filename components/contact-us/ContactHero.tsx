@@ -38,46 +38,6 @@ export default function ContactHero() {
             >
               Tell Us What You're Looking For Partnerships, Event Collaborations, Speaker Information, Or General Inquiries. Our Team Ensures Your Message Reaches The Right Experts.
             </motion.p>
-
-            <div className="mt-6">
-  <motion.button
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.7, duration: 0.9, ease: "easeOut" }}
-    className="button relative z-[50]"
-    style={{ ["--clr" as any]: "#2f53bd" }}
-  >
-    <span className="button__icon-wrapper">
-      <svg
-        viewBox="0 0 14 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="button__icon-svg"
-        width="11"
-      >
-        <path
-          d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-          fill="currentColor"
-        ></path>
-      </svg>
-
-      <svg
-        viewBox="0 0 14 15"
-        fill="none"
-        width="11"
-        xmlns="http://www.w3.org/2000/svg"
-        className="button__icon-svg button__icon-svg--copy"
-      >
-        <path
-          d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-          fill="currentColor"
-        ></path>
-      </svg>
-    </span>
-    Get in Touch
-  </motion.button>
-</div>
-
           </div>
         </div>
       </div>

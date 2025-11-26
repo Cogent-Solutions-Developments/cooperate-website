@@ -17,64 +17,67 @@ export default function ContactHero() {
         </div>
 
         {/* === Right: Text content === */}
-        <div className="relative order-1 lg:order-2 flex flex-col items-center lg:items-start justify-center text-center lg:text-left px-0 lg:px-8">
+        <div className="relative order-1 lg:order-2 flex flex-col items-center lg:items-start justify-center text-center lg:text-left px-0 lg:px-0">
           <div className="pointer-events-auto">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-tight"
             >
-              <span className="text-[#1D309D]">Let’s Connect</span>{" "}
+              <span className="text-[#1D309D]">We're Here to</span>{" "}
               <br className="hidden sm:block" />
-              <span className="text-black">& Collaborate</span>
+              <span className="text-black">Support You</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
-              className="mt-5 max-w-md text-neutral-700 text-base sm:text-lg md:text-[17px] leading-relaxed mx-auto lg:mx-0"
+              className="mt-5 max-w-xl text-neutral-700 text-base sm:text-lg md:text-[17px] leading-relaxed mx-auto lg:mx-0"
             >
-              Whether you're exploring sponsorships, partnerships, or event
-              collaborations, our team is here to help you make it happen.
+              Tell Us What You're Looking For Partnerships, Event Collaborations, Speaker Information, Or General Inquiries. Our Team Ensures Your Message Reaches The Right Experts.
             </motion.p>
 
-            <div className="mt-4">
-              <button
-                className="button relative z-[50]"
-                style={{ ["--clr" as any]: "#2f53bd" }}
-              >
-                <span className="button__icon-wrapper">
-                  <svg
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="button__icon-svg"
-                    width="11"
-                  >
-                    <path
-                      d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
+            <div className="mt-6">
+  <motion.button
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.7, duration: 0.9, ease: "easeOut" }}
+    className="button relative z-[50]"
+    style={{ ["--clr" as any]: "#2f53bd" }}
+  >
+    <span className="button__icon-wrapper">
+      <svg
+        viewBox="0 0 14 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="button__icon-svg"
+        width="11"
+      >
+        <path
+          d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+          fill="currentColor"
+        ></path>
+      </svg>
 
-                  <svg
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    width="11"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="button__icon-svg button__icon-svg--copy"
-                  >
-                    <path
-                      d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </span>
-                Get in Touch
-              </button>
-            </div>
+      <svg
+        viewBox="0 0 14 15"
+        fill="none"
+        width="11"
+        xmlns="http://www.w3.org/2000/svg"
+        className="button__icon-svg button__icon-svg--copy"
+      >
+        <path
+          d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </span>
+    Get in Touch
+  </motion.button>
+</div>
+
           </div>
         </div>
       </div>

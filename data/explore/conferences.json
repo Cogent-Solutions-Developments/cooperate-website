@@ -37,10 +37,10 @@
   },
   {
     "id": "5",
-    "title": "10th Asset Integrity Management Conference",
+    "title": "12th Asset Integrity Maintenance Corrossion & Turnaround Conference",
     "date": "19th & 20th May, 2026",
     "location": "Qatar",
-    "backgroundImage": "/images/explore/cards/dp/AIM-11th-edition.png",
+    "backgroundImage": "/images/explore/cards/dp/AIMQatar.webp",
     "countryFlag": "/images/explore/cards/flags/qatar-flag.jpg",
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/11th-asset-integrity-management/"
   },
@@ -141,6 +141,25 @@
     "location": "Qatar",
     "backgroundImage": "/images/explore/cards/dp/AIM-qatar-edition.png",
     "countryFlag": "/images/explore/cards/flags/qatar-flag.jpg",
+    "link": "https://cogentsolutions.ae/events/upcoming-physical-events/5th-asset-integrity-management/"
+  },
+  {
+    "id": "17",
+    "title": " 2nd DNFBP Compliance & Risk Summit",
+    "date": "16th April, 2026",
+    "location": "UAE",
+    "backgroundImage": "/images/explore/cards/dp/2nd-dnfbp-logo.webp",
+    "countryFlag": "/images/explore/cards/flags/uae-flag.webp",
+    "link": "https://cogentsolutions.ae/events/upcoming-physical-events/5th-asset-integrity-management/"
+  }
+  ,
+  {
+    "id": "17",
+    "title": " 11th Asset Integrity Maintenance Corrossion & Turnaround Conference2nd DNFBP Compliance & Risk Summit",
+    "date": "21st April, 2026",
+    "location": "KSA",
+    "backgroundImage": "/images/explore/cards/dp/AIMSaudi.webp",
+    "countryFlag": "",
     "link": "https://cogentsolutions.ae/events/upcoming-physical-events/5th-asset-integrity-management/"
   }
 ]

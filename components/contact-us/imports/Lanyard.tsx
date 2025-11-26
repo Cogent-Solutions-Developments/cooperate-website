@@ -28,7 +28,7 @@ declare module '@react-three/fiber' {
 }
 
 // ✅ absolute public paths (Next.js safe)
-const cardGLB = '/images/lanyard/card4.glb';
+const cardGLB = '/images/lanyard/card.glb';
 const lanyard = '/images/lanyard/lanyardcs1.png';
 
 // ✅ preload assets early (prevents reload issues)

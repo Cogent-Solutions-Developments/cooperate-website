@@ -1,4 +1,4 @@
-import NavBar from "@/components/layout/NavBarDark";
+import NavBar from "@/components/layout/NavBar";
 import CareersHero from "@/components/careers/CareersHero";
 
 export default function CareersPage() {

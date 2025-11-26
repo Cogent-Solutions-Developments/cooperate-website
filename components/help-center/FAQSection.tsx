@@ -71,7 +71,7 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section className="w-full py-24 bg-white">
+    <section className="w-full py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* LEFT COLUMN — full-height, support box aligned to bottom */}
         <div className="flex flex-col">

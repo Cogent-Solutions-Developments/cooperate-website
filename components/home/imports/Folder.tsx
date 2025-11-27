@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface FolderProps {
   color?: string;
@@ -8,22 +8,21 @@ interface FolderProps {
 }
 
 const darkenColor = (hex: string, percent: number): string => {
-  let color = hex.startsWith("#") ? hex.slice(1) : hex;
-  if (color.length === 3) {
-    color = color
-      .split("")
-      .map((c) => c + c)
-      .join("");
-  }
-  const num = parseInt(color, 16);
-  let r = (num >> 16) & 0xff;
-  let g = (num >> 8) & 0xff;
-  let b = num & 0xff;
-  r = Math.max(0, Math.min(255, Math.floor(r * (1 - percent))));
-  g = Math.max(0, Math.min(255, Math.floor(g * (1 - percent))));
-  b = Math.max(0, Math.min(255, Math.floor(b * (1 - percent))));
+  let c = hex.startsWith("#") ? hex.slice(1) : hex;
+  if (c.length === 3) c = c.split("").map((x) => x + x).join("");
+  const num = parseInt(c, 16);
+  let r = (num >> 16) & 255;
+  let g = (num >> 8) & 255;
+  let b = num & 255;
+  r = Math.floor(r * (1 - percent));
+  g = Math.floor(g * (1 - percent));
+  b = Math.floor(b * (1 - percent));
   return (
-    "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()
+    "#" +
+    ((1 << 24) + (r << 16) + (g << 8) + b)
+      .toString(16)
+      .slice(1)
+      .toUpperCase()
   );
 };
 
@@ -35,11 +34,13 @@ const Folder: React.FC<FolderProps> = ({
 }) => {
   const maxItems = 3;
   const papers = items.slice(0, maxItems);
-  while (papers.length < maxItems) {
-    papers.push(null);
-  }
+  while (papers.length < maxItems) papers.push(null);
 
-  const [open, setOpen] = useState(false);
+  const [inView, setInView] = useState(false);   // folder open (flaps)
+  const [paperOpen, setPaperOpen] = useState(false); // delayed paper explosion
+
+  const folderRef = useRef<HTMLDivElement | null>(null);
+
   const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
     Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
   );
@@ -49,88 +50,95 @@ const Folder: React.FC<FolderProps> = ({
   const paper2 = darkenColor("#ffffff", 0.05);
   const paper3 = "#ffffff";
 
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-    if (open) {
-      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
-    }
-  };
+  // Auto open/close based on scroll visibility
+useEffect(() => {
+  const obs = new IntersectionObserver(
+    ([entry]) => {
+      const ratio = entry.intersectionRatio;
+
+      if (ratio >= 1) {
+        // Fully visible → open + delayed paper pop
+        setInView(true);
+        setTimeout(() => setPaperOpen(true), 250);
+      } else {
+        // Not fully visible → close + reset
+        setInView(false);
+        setPaperOpen(false);
+
+        setPaperOffsets(
+          Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
+        );
+      }
+    },
+    { threshold: [0, 0.5, 0.9, 0.98, 1] }
+  );
+
+  if (folderRef.current) obs.observe(folderRef.current);
+
+  return () => obs.disconnect();
+}, []);
+
+
+  const open = inView; // flaps open instantly
 
   const handlePaperMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number
   ) => {
-    if (!open) return;
+    if (!paperOpen) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const offsetX = (e.clientX - centerX) * 0.15;
-    const offsetY = (e.clientY - centerY) * 0.15;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const offsetX = (e.clientX - cx) * 0.15;
+    const offsetY = (e.clientY - cy) * 0.15;
+
     setPaperOffsets((prev) => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: offsetX, y: offsetY };
-      return newOffsets;
+      const clone = [...prev];
+      clone[index] = { x: offsetX, y: offsetY };
+      return clone;
     });
   };
 
-  const handlePaperMouseLeave = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
-  ) => {
+  const handlePaperMouseLeave = (index: number) => {
     setPaperOffsets((prev) => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: 0, y: 0 };
-      return newOffsets;
+      const clone = [...prev];
+      clone[index] = { x: 0, y: 0 };
+      return clone;
     });
   };
 
-  const folderStyle: React.CSSProperties = {
-    "--folder-color": color,
-    "--folder-back-color": folderBackColor,
-    "--paper-1": paper1,
-    "--paper-2": paper2,
-    "--paper-3": paper3,
-  } as React.CSSProperties;
-
-  const scaleStyle = { transform: `scale(${size})` };
-
-  const getOpenTransform = (index: number) => {
-    if (index === 0) return "translate(-120%, -70%) rotate(-15deg)";
-    if (index === 1) return "translate(10%, -70%) rotate(15deg)";
-    if (index === 2) return "translate(-50%, -100%) rotate(5deg)";
+  const getOpenTransform = (i: number) => {
+    if (i === 0) return "translate(-120%, -70%) rotate(-15deg)";
+    if (i === 1) return "translate(10%, -70%) rotate(15deg)";
+    if (i === 2) return "translate(-50%, -100%) rotate(5deg)";
     return "";
   };
 
   return (
-    <div style={scaleStyle} className={className}>
-      <div
-        className={`group relative transition-all duration-200 ease-in cursor-pointer ${
-          !open ? "hover:-translate-y-2" : ""
-        }`}
-        style={{
-          ...folderStyle,
-          transform: open ? "translateY(-8px)" : undefined,
-        }}
-        onClick={handleClick}
-      >
-        {/* Folder back */}
+    <div style={{ transform: `scale(${size})` }} className={className}>
+      <div ref={folderRef} className="group relative transition-all duration-200 ease-in">
+
+        {/* Folder Back */}
         <div
-          className="relative w-[100px] h-[80px] rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]"
+          className="relative w-[100px] h-[80px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]"
           style={{ backgroundColor: folderBackColor }}
         >
+          {/* Top Tab */}
           <span
             className="absolute z-0 bottom-[98%] left-0 w-[30px] h-[10px] rounded-tl-[5px] rounded-tr-[5px]"
             style={{ backgroundColor: folderBackColor }}
           ></span>
 
-          {/* Papers (Now Images) */}
+          {/* Papers */}
           {papers.map((item, i) => {
-            let sizeClasses = "";
-            if (i === 0) sizeClasses = open ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";
-            if (i === 1) sizeClasses = open ? "w-[80%] h-[80%]" : "w-[80%] h-[70%]";
-            if (i === 2) sizeClasses = open ? "w-[90%] h-[80%]" : "w-[90%] h-[60%]";
+            let sizeClasses =
+              i === 0
+                ? "w-[70%] h-[80%]"
+                : i === 1
+                ? "w-[80%] h-[80%]"
+                : "w-[90%] h-[80%]";
 
-            const transformStyle = open
+            const transformStyle = paperOpen
               ? `${getOpenTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`
               : undefined;
 
@@ -138,14 +146,17 @@ const Folder: React.FC<FolderProps> = ({
               <div
                 key={i}
                 onMouseMove={(e) => handlePaperMouseMove(e, i)}
-                onMouseLeave={(e) => handlePaperMouseLeave(e, i)}
-                className={`absolute z-20 bottom-[10%] left-1/2 transition-all duration-300 ease-in-out ${
-                  !open
-                    ? "transform -translate-x-1/2 translate-y-[10%] group-hover:translate-y-0"
-                    : "hover:scale-110"
-                } ${sizeClasses}`}
+                onMouseLeave={() => handlePaperMouseLeave(i)}
+                className={`absolute z-20 bottom-[10%] left-1/2 transition-all duration-300 ease-in-out 
+                  ${
+                    paperOpen
+                      ? "hover:scale-110"
+                      : "transform -translate-x-1/2 translate-y-[10%]"
+                  }
+                  ${sizeClasses}
+                `}
                 style={{
-                  ...(!open ? {} : { transform: transformStyle }),
+                  ...(paperOpen ? { transform: transformStyle } : {}),
                   ...(typeof item === "string"
                     ? {
                         backgroundImage: `url(${item})`,
@@ -166,25 +177,22 @@ const Folder: React.FC<FolderProps> = ({
             );
           })}
 
-          {/* Folder front layers */}
+          {/* Folder Front - Flaps */}
           <div
-            className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? "group-hover:[transform:skew(15deg)_scaleY(0.6)]" : ""
-            }`}
+            className="absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out"
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open && { transform: "skew(15deg) scaleY(0.6)" }),
+              transform: open ? "skew(15deg) scaleY(0.6)" : "none",
             }}
           ></div>
+
           <div
-            className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? "group-hover:[transform:skew(-15deg)_scaleY(0.6)]" : ""
-            }`}
+            className="absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out"
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open && { transform: "skew(-15deg) scaleY(0.6)" }),
+              transform: open ? "skew(-15deg) scaleY(0.6)" : "none",
             }}
           ></div>
         </div>

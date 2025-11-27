@@ -166,7 +166,7 @@ export default function NavBar() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
 
                   {/* Text Content */}
-                  <div className="relative z-10 p-6 md:p-8 text-white text-right space-y-4 md:space-y-5">
+                  <div className="relative z-0 p-6 md:p-8 text-white text-right space-y-4 md:space-y-5">
                     <p className="text-sm leading-relaxed font-medium">
                       Through our conferences we transform your business challenges
                       into opportunities. Our clients and customers are leading

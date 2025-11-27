@@ -61,126 +61,139 @@ const testimonials = {
 };
 
 export default function WallOfTrust() {
+  // Merge all testimonials for mobile view
+  const mergedMobile = [
+    ...testimonials.col1,
+    ...testimonials.col2,
+    ...testimonials.col3,
+  ];
+
   return (
-    <section className="relative py-14 bg-white overflow-hidden">
+    <section className="relative py-14 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Title + Subtitle (same as Upcoming Events section) */}
+
+        {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-semibold text-gray-900 mb-3">
+          <h2 className="text-5xl font-semibold text-white mb-3">
             Wall of Trust
           </h2>
-          <p className="text-gray-600 text-[15px] font-medium max-w-xl mx-auto">
+          <p className="text-gray-300 text-[15px] font-medium max-w-xl mx-auto">
             Hear what our clients and partners have to say about their
             experience with Cogent Solutions delivering impact that goes
             beyond the conference hall.
           </p>
         </div>
 
-        {/* === Cards wrapper === */}
+        {/* Cards Wrapper */}
         <div className="relative max-h-[750px] overflow-hidden">
-          {/* Fade masks */}
-          <div className="pointer-events-none absolute top-0 inset-x-0 h-25 bg-gradient-to-b from-white via-white/95 to-transparent z-20" />
-          <div className="pointer-events-none absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white via-white/95 to-transparent z-20" />
 
-          {/* === Columns === */}
-          <div className="relative z-0 flex flex-col sm:flex-row justify-center gap-6 sm:gap-8 pb-24">
-            {/* Column 1 – Upward */}
+          {/* Fade masks (dark mode) */}
+          <div className="pointer-events-none absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black via-black/95 to-transparent z-20" />
+          <div className="pointer-events-none absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black via-black/95 to-transparent z-20" />
+
+          {/* Desktop = 3 Columns | Mobile = Hidden */}
+          <div className="hidden sm:flex relative z-0 flex-row justify-center gap-6 sm:gap-8 pb-24">
+            
+            {/* Column 1 */}
             <motion.div
               className="flex-1 space-y-8 mt-20"
               animate={{ y: ["0%", "-50%"] }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             >
               {[...testimonials.col1, ...testimonials.col1].map((t, i) => (
                 <Card key={`col1-${i}`} t={t} />
               ))}
             </motion.div>
 
-            {/* Column 2 – Downward */}
+            {/* Column 2 */}
             <motion.div
-              className="flex-1 space-y-8 mt-0"
+              className="flex-1 space-y-8"
               animate={{ y: ["-50%", "0%"] }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
               {[...testimonials.col2, ...testimonials.col2].map((t, i) => (
                 <Card key={`col2-${i}`} t={t} />
               ))}
             </motion.div>
 
-            {/* Column 3 – Upward */}
+            {/* Column 3 */}
             <motion.div
               className="flex-1 space-y-8 mt-20"
               animate={{ y: ["0%", "-50%"] }}
-              transition={{
-                duration: 28,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
             >
               {[...testimonials.col3, ...testimonials.col3].map((t, i) => (
                 <Card key={`col3-${i}`} t={t} />
               ))}
             </motion.div>
+
           </div>
+
+          {/* Mobile = ONE Column Infinite Scroll */}
+          <div className="sm:hidden relative z-0 pb-24">
+            <motion.div
+              className="space-y-6"
+              animate={{ y: ["0%", "-50%"] }}
+              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+            >
+              {[...mergedMobile, ...mergedMobile].map((t, i) => (
+                <Card key={`m-${i}`} t={t} />
+              ))}
+            </motion.div>
+          </div>
+
         </div>
 
-        {/* === CTA Button (same design as Upcoming Events) === */}
+        {/* CTA */}
         <div className="flex justify-center mt-10">
           <a
             href="/testimonials"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-900 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all duration-300"
           >
             View More Testimonials
           </a>
         </div>
+
       </div>
     </section>
   );
 }
 
-/* === Card Component === */
-function Card({ t }: { t: { logo: string; quote: string; name: string; title: string } }) {
+function Card({ t }: { t: any }) {
   return (
     <div
       className="
         relative
-        bg-white
         rounded-2xl
-        border
-        border-[#e8e8e8]
+        border border-white/10
         p-8
         text-left
         transition-all
         duration-300
         overflow-hidden
-        shadow-[0_2px_4px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.8)]
-        hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)]
+        backdrop-blur-md
+        bg-gradient-to-br from-white/[0.06] to-white/[0.02]
+        shadow-[0_0_20px_rgba(255,255,255,0.04)]
+        hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]
         hover:-translate-y-[2px]
       "
-      style={{
-        background:
-          "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(245,245,245,0.95))",
-      }}
     >
-      {/* subtle light overlay for a clean tech feel */}
-      <div className="absolute inset-0 rounded-2xl pointer-events-none [mask-image:linear-gradient(to_bottom,white_70%,transparent)] bg-white/20" />
+      <div className="absolute inset-0 bg-gradient-radial from-white/10 to-transparent opacity-30"></div>
 
       <div className="relative z-10">
         <div className="mb-5 w-28 h-12 relative">
-          <Image src={t.logo} alt={`${t.name} logo`} fill className="object-contain" />
+          <Image
+            src={t.logo}
+            alt={`${t.name} logo`}
+            fill
+            className="object-contain"
+          />
         </div>
 
-        <p className="text-gray-800 text-[15px] leading-relaxed mb-6">“{t.quote}”</p>
+        <p className="text-gray-200 text-[15px] leading-relaxed mb-6">“{t.quote}”</p>
 
-        <p className="font-semibold text-gray-900 text-sm tracking-wide">{t.name}</p>
-        <p className="text-gray-500 text-xs">{t.title}</p>
+        <p className="font-semibold text-white text-sm tracking-wide">{t.name}</p>
+        <p className="text-gray-400 text-xs">{t.title}</p>
       </div>
     </div>
   );

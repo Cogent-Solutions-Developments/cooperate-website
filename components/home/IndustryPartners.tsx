@@ -4,18 +4,35 @@ import LogoLoop from "./imports/LogoLoop";
 import { motion } from "framer-motion";
 
 export default function IndustryPartners() {
-  const logos = [
+  // First row logos
+  const logosRow1 = [
     { src: "/images/services/logos/Amazon.png", alt: "Amazon", href: "#" },
     { src: "/images/services/logos/Intel.png", alt: "Intel", href: "#" },
     { src: "/images/services/logos/HSBC.png", alt: "HSBC", href: "#" },
-    { src: "/images/services/logos/Coca Cola.png", alt: "Coca-Cola", href: "#" },
+    {
+      src: "/images/services/logos/Coca Cola.png",
+      alt: "Coca-Cola",
+      href: "#",
+    },
     { src: "/images/services/logos/Fifa.png", alt: "FIFA", href: "#" },
-    { src: "/images/services/logos/Microsoft.png", alt: "Microsoft", href: "#" },
+    {
+      src: "/images/services/logos/Microsoft.png",
+      alt: "Microsoft",
+      href: "#",
+    },
     { src: "/images/services/logos/IFS.png", alt: "IFS", href: "#" },
     { src: "/images/services/logos/Aramco.png", alt: "Aramco", href: "#" },
     { src: "/images/services/logos/Oracle.png", alt: "Oracle", href: "#" },
     { src: "/images/services/logos/Infosys.png", alt: "Infosys", href: "#" },
-    { src: "/images/services/logos/BlackBerry.png", alt: "BlackBerry", href: "#" },
+    {
+      src: "/images/services/logos/BlackBerry.png",
+      alt: "BlackBerry",
+      href: "#",
+    },
+  ];
+
+  // Second row logos (different set)
+  const logosRow2 = [
     { src: "/images/services/logos/Daikin.png", alt: "Daikin", href: "#" },
     { src: "/images/services/logos/Saudia.png", alt: "Saudia", href: "#" },
     { src: "/images/services/logos/Temenos.png", alt: "Temenos", href: "#" },
@@ -23,9 +40,17 @@ export default function IndustryPartners() {
     { src: "/images/services/logos/Logitech.png", alt: "Logitech", href: "#" },
     { src: "/images/services/logos/KPMG.png", alt: "KPMG", href: "#" },
     { src: "/images/services/logos/LSEG.png", alt: "LSEG", href: "#" },
-    { src: "/images/services/logos/MasterCard.png", alt: "MasterCard", href: "#" },
-    { src: "/images/services/logos/Moody.png", alt: "Moody’s", href: "#" },
-    { src: "/images/services/logos/Dow Jones.png", alt: "Dow Jones", href: "#" },
+    {
+      src: "/images/services/logos/MasterCard.png",
+      alt: "MasterCard",
+      href: "#",
+    },
+    { src: "/images/services/logos/Moody.png", alt: "Moody's", href: "#" },
+    {
+      src: "/images/services/logos/Dow Jones.png",
+      alt: "Dow Jones",
+      href: "#",
+    },
     { src: "/images/services/logos/Finsatra.png", alt: "Finastra", href: "#" },
   ];
 
@@ -36,13 +61,14 @@ export default function IndustryPartners() {
           Our Trusted Industry Leaders & Partners
         </h2>
         <p className="text-gray-600 text-sm sm:text-base">
-          Over <strong>500+</strong> global brands and industry leaders have worked with us.
+          Over <strong>500+</strong> global brands and industry leaders have
+          worked with us.
         </p>
 
         {/* === LOOP 1 (Left Scroll) === */}
-        <div className="mt-14">
+        <div className="mt-6 sm:mt-10 lg:mt-14 scale-[0.75] sm:scale-[0.85] md:scale-100 origin-center">
           <LogoLoop
-            logos={logos}
+            logos={logosRow1}
             speed={60}
             direction="left"
             logoHeight={48}
@@ -51,14 +77,14 @@ export default function IndustryPartners() {
             fadeOut
             scaleOnHover
             fadeOutColor="transparent"
-            ariaLabel="Trusted industry partners"
+            ariaLabel="Trusted industry partners row 1"
           />
         </div>
 
-        {/* === LOOP 2 (Right Scroll, slower for parallax effect) === */}
-        <div className="mt-10 opacity-90">
+        {/* === LOOP 2 (Right Scroll, different logos) === */}
+        <div className="mt-4 sm:mt-6 lg:mt-10 opacity-90 opacity-90 scale-[0.75] sm:scale-[0.85] md:scale-100 origin-center">
           <LogoLoop
-            logos={[...logos].reverse()}
+            logos={logosRow2}
             speed={35}
             direction="right"
             logoHeight={48}
@@ -67,9 +93,10 @@ export default function IndustryPartners() {
             fadeOut
             scaleOnHover
             fadeOutColor="transparent"
-            ariaLabel="Trusted industry partners secondary row"
+            ariaLabel="Trusted industry partners row 2"
           />
         </div>
+
         {/* === EXPLORE BUTTON === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

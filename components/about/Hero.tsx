@@ -43,7 +43,8 @@ export default function AboutHero() {
     >
       <div className="h-[var(--nav-h)]" />
       <div className="mx-auto max-w-6xl px-6">
-        <div className="min-h-[calc(100vh-var(--nav-h))] flex flex-col items-center justify-center gap-0 md:gap-0">
+        {/* Mobile: pt-8 with justify-start, Desktop: centered full height */}
+        <div className="min-h-[calc(100vh-var(--nav-h))] flex flex-col items-center justify-start pt-12 md:pt-0 md:justify-center gap-0">
           {/* === TEXT === */}
           <div className="text-center">
             <h1 className="text-4xl sm:text-6xl font-semibold text-neutral-900 leading-tight">
@@ -123,7 +124,7 @@ export default function AboutHero() {
           </div>
 
           {/* === CARDS === */}
-          <div className="relative mt-[-60px] flex justify-center">
+          <div className="relative mt-0 md:mt-[-60px] flex justify-center">
             <BounceCards
               images={images}
               transformStyles={transforms}

@@ -2,147 +2,171 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, Target, Users2, Award } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const tabs = [
+const slides = [
   {
     id: "story",
     title: "Our Story",
-    icon: <Briefcase size={18} />,
-    heading: "Delivering the Right Information at the Right Time",
     content: (
       <>
         <p className="text-neutral-300 leading-relaxed">
           At our core, we are a{" "}
-          <b className="text-white">"customer-centric events agency"</b> founded
-          on the principle of delivering the right information to the right
-          individuals at the opportune moment.
+          <b className="text-white">"customer-centric events agency"</b>{" "}
+          founded on the fundamental principle of delivering the right
+          information to the right individuals at the opportune moment.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
           We empower our clients with high-quality business intelligence and
-          event services that exceed expectations by understanding their
-          challenges and providing value-based solutions.
+          events services that meet their needs and exceed their expectations.
+          This means taking the time to understand our customers’ challenges
+          and providing value-based solutions that address their needs.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
-          Our events have the power to spark new business relationships, deepen
-          existing connections, and drive success for all involved.
+          Our events have the power to spark new business relationships,
+          deepen existing connections, and ultimately drive success for all
+          involved.
         </p>
       </>
     ),
   },
+
   {
     id: "whatwedo",
     title: "What We Do",
-    icon: <Target size={18} />,
-    heading: "Creating Tailored Business Intelligence Platforms",
     content: (
       <>
         <p className="text-neutral-300 leading-relaxed">
-          Our team of experts meticulously creates customized virtual, hybrid,
-          and physical events that enable businesses to communicate their value
-          proposition to a carefully vetted audience.
+          Our team of experts meticulously create customized virtual, hybrid,
+          and physical events that enable businesses to effectively communicate
+          their value proposition to a carefully vetted, prequalified, and
+          targeted audience.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
           Our research-backed, tailor-made platforms offer businesses
-          unparalleled access to industries and senior decision-makers worldwide
-          without limitations.
+          unparalleled access to markets, industries, and senior
+          decision-makers worldwide — without any limitations.
         </p>
       </>
     ),
   },
+
   {
     id: "whoweare",
     title: "Who We Are",
-    icon: <Users2 size={18} />,
-    heading: "Your Business Intelligence Partner",
     content: (
       <>
         <p className="text-neutral-300 leading-relaxed">
-          <b className="text-white">YOUR BUSINESS INTELLIGENCE PARTNER.</b>{" "}
-          Cogent Solutions is a highly respected Business Intelligence company.
-          Our clients depend on us to create events that are not only successful
-          but deliver unforgettable value.
+          <b className="text-white">YOUR BUSINESS INTELLIGENCE PARTNER.</b>
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
-          From conferences to trade shows, our team has the experience and
-          passion to make every event a success.
+          Today, Cogent Solutions is a highly respected and sought-after
+          Business Intelligence Company in the region. Our clients depend on us
+          as their own internal team to create events that are not only
+          successful but deliver unforgettable value.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
-          With a focus on innovation, collaboration, and customer experience,
-          Cogent Solutions is the partner you can trust to elevate your
-          business.
+          From conferences to trade shows, and product launches to corporate
+          roundtables, our team at Cogent Solutions has the experience,
+          expertise, and passion to make every event a success.
+        </p>
+
+        <p className="mt-4 text-neutral-300 leading-relaxed">
+          With a focus on innovation, collaboration, and unparalleled customer
+          experience, Cogent Solutions is the partner you can trust to take
+          your business to the next level.
         </p>
       </>
     ),
   },
+
   {
     id: "values",
-    title: "Our Business Values",
-    icon: <Award size={18} />,
-    heading: "Value for Our People",
+    title: "Our Core Business Values",
     content: (
       <>
         <p className="text-neutral-300 leading-relaxed">
+          <b className="text-white">VALUE FOR OUR PEOPLE.</b>
+        </p>
+
+        <p className="mt-4 text-neutral-300 leading-relaxed">
           We are officially certified as a “GREAT PLACE TO WORK™” company and
-          have won the “Best Workplaces in UAE™ 2023”.
+          have won the prestigious “Best Workplaces in UAE™ 2023”.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
-          We provide a safe and healthy environment, equal opportunities for
-          growth, and foster a culture of respect, collaboration, and continuous
-          learning.
+          We provide our team a safe and healthy work environment, equal
+          opportunities for growth and development, and foster a culture of
+          continuous learning, respect, and collaboration.
         </p>
+
         <p className="mt-4 text-neutral-300 leading-relaxed">
-          Our organization prioritizes employee and client satisfaction to build
-          strong experiences and achieve continuous success.
+          Our organization prioritizes employee and client satisfaction to
+          attract and retain top talent, build strong customer experiences, and
+          achieve continuous success.
         </p>
       </>
     ),
   },
 ];
 
-export default function ModernTabsSection() {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+export default function StoryCarousel() {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((p) => (p === slides.length - 1 ? 0 : p + 1));
+  const prev = () => setIndex((p) => (p === 0 ? slides.length - 1 : p - 1));
 
   return (
-    <section className="w-full py-10 h-[600px] bg-black flex items-stretch">
-      <div className="w-full flex flex-row rounded-3xl bg-[#0d0f16] border border-white/10 shadow-xl overflow-hidden">
-        {/* LEFT SIDE TABS */}
-        <div className="w-[280px] min-w-[260px] bg-[#0d0f16] p-6 flex flex-col gap-4 border-r border-white/5">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab)}
-              className={`flex items-center justify-start gap-3 px-5 py-4 rounded-4xl text-base font-medium text-left transition-all duration-300 
-    ${
-      activeTab.id === tab.id
-        ? "bg-[#0e1a36] text-[#95b8ff] shadow-[0_0_18px_#7aa2ff44] border border-[#7aa2ff44]"
-        : "text-neutral-400 hover:bg-white/5"
-    }`}
-            >
-              <span className="flex-shrink-0">{tab.icon}</span>
-              <span className="whitespace-normal">{tab.title}</span>
-            </button>
-          ))}
-        </div>
+    <div
+      className="
+        w-full bg-[#000000]
+        p-0 md:p-0 relative overflow-hidden flex flex-col
+        h-[520px] md:h-[540px] lg:h-[380px]
+      "
+    >
+      {/* CONTENT AREA */}
+      <div className="flex-1 pr-1">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slides[index].id}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="space-y-5"
+          >
+            <h3 className="text-2xl md:text-3xl font-semibold text-white">
+              {slides[index].title}
+            </h3>
 
-        {/* RIGHT CONTENT */}
-        <div className="flex-1 p-10 overflow-y-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.35 }}
-            >
-              <h3 className="text-2xl font-semibold text-white mb-6">
-                {activeTab.heading}
-              </h3>
-              <div className="text-md">{activeTab.content}</div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+            <div className="text-neutral-300 text-[15px] leading-relaxed">
+              {slides[index].content}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
-    </section>
+
+      {/* BOTTOM RIGHT ARROWS */}
+      <div className="absolute bottom-4 right-4 flex items-center gap-3 z-20">
+        <button
+          onClick={prev}
+          className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
+        >
+          <ChevronLeft size={20} className="text-white" />
+        </button>
+
+        <button
+          onClick={next}
+          className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
+        >
+          <ChevronRight size={20} className="text-white" />
+        </button>
+      </div>
+    </div>
   );
 }

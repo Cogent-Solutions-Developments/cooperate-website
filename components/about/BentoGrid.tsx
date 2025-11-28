@@ -9,9 +9,9 @@ import CompactModernTabsSection from "./StoryTabs";
 export function FeaturesSectionDemo() {
   const features = [
     {
-      title: "Explore Our Identity",
+      title: "",
       description:
-        "Learn who we are, what we do, and the values that shape our organization all in one place",
+        "",
       skeleton: <CompactModernTabsSection />,
       className:
         "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
@@ -196,7 +196,7 @@ export const SkeletonTwo = () => {
           </motion.div>
         ))}
       </div>
-      <div className="flex flex-row">
+      {/* <div className="flex flex-row">
         {images.map((image, idx) => (
           <motion.div
             key={"images-second" + idx}
@@ -217,7 +217,7 @@ export const SkeletonTwo = () => {
             />
           </motion.div>
         ))}
-      </div>
+      </div> */}
 
       <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
       <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />

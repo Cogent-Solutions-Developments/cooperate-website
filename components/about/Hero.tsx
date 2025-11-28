@@ -30,7 +30,7 @@ export default function AboutHero() {
   // 👇 Fade appears after small scroll
   useEffect(() => {
     const handleScroll = () => {
-      setShowFade(window.scrollY > 10); // show after 40px scroll
+      setShowFade(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -41,11 +41,24 @@ export default function AboutHero() {
       className="relative w-full bg-white overflow-hidden"
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
+      {/* top spacer = nav height */}
       <div className="h-[var(--nav-h)]" />
+
       <div className="mx-auto max-w-6xl px-6">
-        {/* Mobile: pt-8 with justify-start, Desktop: centered full height */}
-        <div className="min-h-[calc(100vh-var(--nav-h))] flex flex-col items-center justify-start pt-12 md:pt-0 md:justify-center gap-0">
-          {/* === TEXT === */}
+
+        {/* === FIXED FULL SCREEN HERO (mobile + desktop) === */}
+        <div
+          className="
+            min-h-[calc(100dvh-var(--nav-h))] 
+            md:min-h-[calc(100vh-var(--nav-h))]
+            flex flex-col 
+            items-center 
+            justify-start md:justify-center 
+            pt-12 md:pt-0 
+            gap-0
+          "
+        >
+          {/* === TITLE + SUBTITLE === */}
           <div className="text-center">
             <h1 className="text-4xl sm:text-6xl font-semibold text-neutral-900 leading-tight">
               The{" "}
@@ -104,7 +117,6 @@ export default function AboutHero() {
                       fill="currentColor"
                     ></path>
                   </svg>
-
                   <svg
                     viewBox="0 0 14 15"
                     fill="none"
@@ -123,8 +135,9 @@ export default function AboutHero() {
             </div>
           </div>
 
-          {/* === CARDS === */}
-          <div className="relative mt-0 md:mt-[-60px] flex justify-center">
+          {/* === BOUNCE CARDS === */}
+          <div className="relative mt-6 md:mt-[-60px] flex justify-center">
+            {/* Desktop cards */}
             <BounceCards
               images={images}
               transformStyles={transforms}
@@ -136,6 +149,8 @@ export default function AboutHero() {
               enableHover={false}
               className="hidden md:flex"
             />
+
+            {/* Mobile cards */}
             <BounceCards
               images={images.slice(1, 4)}
               transformStyles={[
@@ -154,20 +169,6 @@ export default function AboutHero() {
           </div>
         </div>
       </div>
-
-      {/* === Bottom Fade (only after scroll) === */}
-      {/* {showFade && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 w-full h-30 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%)",
-          }}
-        />
-      )} */}
     </section>
   );
 }

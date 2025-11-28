@@ -9,31 +9,31 @@ export default function Footer() {
     <section className="relative mt-5 bg-transparent">
       <footer
         className="
-          mx-6 sm:mx-10 lg:mx-4 mb-4
+          mx-4 sm:mx-6 md:mx-10 lg:mx-4 mb-4
           bg-[#172573] text-white rounded-2xl
           shadow-[0_12px_45px_rgba(0,0,0,0.25)]
           border border-white/10
-          px-8 sm:px-10 lg:px-16 py-14
+          px-5 sm:px-8 md:px-10 lg:px-16 py-10 sm:py-14
           relative overflow-hidden
         "
       >
         {/* Map watermark */}
-        <div className="absolute inset-0 z-0 opacity-35">
+        <div className="absolute inset-[-50%] sm:inset-[-25%] md:inset-0 z-0 opacity-35">
           <WorldMapDemo />
         </div>
 
         {/* === Layout: left (brand + links + join-card) | right (locations) === */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-20">
           {/* LEFT: two columns + join card */}
-          <div className="md:col-span-2 space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-16">
+          <div className="md:col-span-2 space-y-8 sm:space-y-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
               {/* === COLUMN 1: Brand + Awards === */}
-              <div className="space-y-6">
+              <div className="space-y-0">
                 <div>
-                  <h2 className="text-xl font-semibold tracking-wide">
+                  <h2 className="text-lg sm:text-xl font-semibold tracking-wide">
                     Cogent Solutions<sup>™</sup>
                   </h2>
-                  <p className="text-sm font-semibold text-white/80 leading-relaxed mt-4 max-w-sm">
+                  <p className="text-sm font-semibold text-white/80 leading-relaxed mt-2 max-w-sm">
                     Through our conferences we transform your business challenges
                     into opportunities. Our clients and customers are leading
                     government entities and the Fortune 500 companies.
@@ -41,32 +41,33 @@ export default function Footer() {
                 </div>
 
                 {/* Awards under description */}
-                <div className="flex flex-wrap items-start gap-1 pt-1">
+                <div className="flex flex-wrap items-start gap-1 pt-3">
                   {[
                     "/images/1fi.png",
                     "/images/2fi.png",
                     "/images/3fi.png",
                     "/images/4fi.png",
                   ].map((src, i) => (
-                    <Image
-                      key={i}
-                      src={src}
-                      alt={`Award ${i + 1}`}
-                      width={70}
-                      height={70}
-                      className="opacity-85 hover:opacity-100 transition-opacity object-contain"
-                    />
+                    <div key={i} className="w-[60px] h-[60px] sm:w-[70px] sm:h-[80px]">
+                      <Image
+                        src={src}
+                        alt={`Award ${i + 1}`}
+                        width={70}
+                        height={80}
+                        className="opacity-85 hover:opacity-100 transition-opacity object-contain object-top w-full h-full"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
 
               {/* === COLUMN 2: Links === */}
-              <div className="space-y-6">
-                <h4 className="text-md font-semibold uppercase tracking-wide text-white/90">
+              <div className="space-y-4 sm:space-y-6">
+                <h4 className="text-sm sm:text-md font-semibold uppercase tracking-wide text-white/90">
                   Links
                 </h4>
 
-                <ul className="grid grid-cols-2 font-semibold gap-y-3 gap-x-8 text-sm text-white/80">
+                <ul className="grid grid-cols-2 font-semibold gap-y-2.5 sm:gap-y-3 gap-x-4 sm:gap-x-8 text-sm text-white/80">
                   {[
                     "About Us",
                     "Conferences",
@@ -95,50 +96,34 @@ export default function Footer() {
             {/* === JOIN OUR COMMUNITY CARD === */}
             <div
               className="
-                bg-white/10 border border-white/20 rounded-2xl
-                px-6 sm:px-8 py-7 backdrop-blur-md
-                flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6
+                bg-white/10 border border-white/20 rounded-xl sm:rounded-2xl
+                px-4 sm:px-6 md:px-8 py-4 sm:py-5 backdrop-blur-md
+                flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6
               "
             >
-              <div>
-                <h4 className="text-lg font-semibold tracking-wide">
+              <div className="flex-1">
+                <h4 className="text-base sm:text-lg font-semibold tracking-wide">
                   Join Our Community
                 </h4>
-                <p className="text-sm text-white/70 mt-1.5">
+                <p className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-1.5">
                   Connect with us for collaborations, updates, and partnership opportunities.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7">
-                {/* Email + phone */}
-                <div className="text-sm text-white/85">
-                  <a
-                    href="mailto:info@cogentsolutions.ae"
-                    className="block hover:text-white transition"
-                  >
-                    info@cogentsolutions.ae
-                  </a>
-                  <a
-                    href="tel:+97145560580"
-                    className="block hover:text-white transition"
-                  >
-                    +971 4 556 0580
-                  </a>
-                </div>
-
-                {/* divider */}
+              <div className="flex items-center gap-4 sm:gap-5">
+                {/* divider - hidden on mobile */}
                 <div className="hidden sm:block h-7 w-px bg-white/20" />
 
                 {/* Socials */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   {/* LinkedIn */}
                   <Link
                     href="https://linkedin.com/company/cogentsolutionsae"
                     aria-label="LinkedIn"
-                    className="w-10 h-10 rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition group"
                   >
                     <svg
-                      className="w-5 h-5 text-[#0A1E75] hover:text-white"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A1E75] group-hover:text-white transition-colors"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
@@ -150,10 +135,10 @@ export default function Footer() {
                   <Link
                     href="https://facebook.com/cogentsolutionsae"
                     aria-label="Facebook"
-                    className="w-10 h-10 rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition group"
                   >
                     <svg
-                      className="w-5 h-5 text-[#0A1E75] hover:text-white"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A1E75] group-hover:text-white transition-colors"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
@@ -165,10 +150,10 @@ export default function Footer() {
                   <Link
                     href="#"
                     aria-label="X"
-                    className="w-10 h-10 rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition group"
                   >
                     <svg
-                      className="w-5 h-5 text-[#0A1E75] hover:text-white"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A1E75] group-hover:text-white transition-colors"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
@@ -180,10 +165,10 @@ export default function Footer() {
                   <Link
                     href="#"
                     aria-label="Instagram"
-                    className="w-10 h-10 rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white hover:bg-[#1D309D] flex items-center justify-center transition group"
                   >
                     <svg
-                      className="w-5 h-5 text-[#0A1E75] hover:text-white"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A1E75] group-hover:text-white transition-colors"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
@@ -195,21 +180,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* === RIGHT: Our Locations === */}
-          <div className="md:col-span-1">
+          {/* === RIGHT: Our Locations (hidden on mobile) === */}
+          <div className="hidden md:block md:col-span-1">
             <h4 className="text-sm font-semibold uppercase tracking-wide text-white/90 mb-3">
               Our Locations
             </h4>
 
-            <div className="space-y-5 text-sm text-white/80 leading-relaxed">
-              <div>
-                <p className="font-bold text-white">Head Office</p>
-                <p className="font-semibold">
-                  Office 802, Al Moosa Tower 1,<br />
-                  Sheikh Zayed Road, Dubai, UAE
-                </p>
-              </div>
-
+            <div className="space-y-4 sm:space-y-5 text-sm text-white/80 leading-relaxed">
               <div>
                 <p className="font-bold text-white/95">Middle East & Africa HQ</p>
                 <p className="font-semibold">
@@ -232,15 +209,21 @@ export default function Footer() {
               </div>
 
               <div className="pt-2 space-y-1 text-white/85">
-                <a href="tel:+97145761039" className="hover:text-white block">
-                  +971 4 576 1039
-                </a>
-                <a href="tel:+971506435244" className="hover:text-white block">
-                  +971 50 643 5244
-                </a>
+                <div>
+                  <p className="font-bold text-white/95">Reach Us On</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-x-3">
+                  <a href="tel:+97145761039" className="hover:text-white">
+                    +971 4 576 1039
+                  </a>
+                  <span className="text-white/30">|</span>
+                  <a href="tel:+971506435244" className="hover:text-white">
+                    +971 50 643 5244
+                  </a>
+                </div>
                 <a
                   href="mailto:partnerships@cogentsolutions.ae"
-                  className="hover:text-white block"
+                  className="hover:text-white block break-all sm:break-normal"
                 >
                   partnerships@cogentsolutions.ae
                 </a>
@@ -250,20 +233,20 @@ export default function Footer() {
         </div>
 
         {/* === Bottom Bar === */}
-        <div className="relative z-10 mt-10 border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center text-sm text-white/70">
-          <p>
+        <div className="relative z-10 mt-8 sm:mt-10 border-t border-white/10 pt-5 sm:pt-6 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-white/70 gap-3 sm:gap-0">
+          <p className="text-center sm:text-left">
             © {new Date().getFullYear()} Cogent Solutions Event Management LLC. All Rights Reserved.
           </p>
-          <div className="flex gap-6 mt-4 sm:mt-0">
-            <Link href="#" className="hover:text-white">Terms & Conditions</Link>
-            <Link href="#" className="hover:text-white">Privacy</Link>
-            <Link href="#" className="hover:text-white">Payment Policy</Link>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <Link href="#" className="hover:text-white transition">Terms & Conditions</Link>
+            <Link href="#" className="hover:text-white transition">Privacy</Link>
+            <Link href="#" className="hover:text-white transition">Payment Policy</Link>
           </div>
         </div>
       </footer>
 
       {/* Bottom glow */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 w-[82%] h-[100px] bg-[#0A1E75]/40 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 w-[90%] sm:w-[82%] h-[60px] sm:h-[100px] bg-[#0A1E75]/40 blur-3xl rounded-full pointer-events-none" />
     </section>
   );
 }

@@ -95,10 +95,11 @@ We design exclusive, closed–door platforms where governments, regulators, and 
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[auto_1px_1fr] items-start gap-y-10 lg:gap-x-6">
             {/* Left Title */}
-            <div>
+            <div className="text-left lg:text-left mx-0">
               <h2 className="text-2xl font-bold text-black">Our Stats</h2>
-              <p className="text-gray-700 font-semibold text-md mt-3 leading-relaxed max-w-xs">
-                We help you to unleash the power <br />within your business.
+              <p className="text-gray-700 font-semibold text-md mt-3 leading-relaxed max-w-xs mx-0">
+                We help you to unleash the power <br />
+                within your business.
               </p>
             </div>
 
@@ -106,7 +107,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
             <div className="hidden lg:block h-24 bg-gray-200"></div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-center lg:text-left">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-left lg:text-left">
               <div>
                 <p className="text-3xl font-semibold text-[#1D309D]">
                   {fmt(values[0])}+

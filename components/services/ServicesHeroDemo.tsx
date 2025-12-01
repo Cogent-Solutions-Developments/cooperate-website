@@ -50,50 +50,6 @@ export default function ServicesHeroDemo() {
     },
   ];
 
-  // Card component for reuse
-  const CardContent = () => (
-    <CardSwap
-      width={460}
-      height={340}
-      cardDistance={55}
-      verticalDistance={65}
-      delay={5000}
-      pauseOnHover={false}
-    >
-      <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-        <img
-          src="/images/explore/hero/h4.jpeg"
-          alt="Boardrooms"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
-      </Card>
-
-      <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-        <img
-          src="/images/explore/hero/h3.jpeg"
-          alt="Podcasts"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
-      </Card>
-
-      <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-        <img
-          src="/images/explore/hero/h6.png"
-          alt="Conference Series"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
-      </Card>
-
-      <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-        <img
-          src="/images/explore/hero/h5.webp"
-          alt="Exhibitions"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
-      </Card>
-    </CardSwap>
-  );
-
   return (
     <section
       className="
@@ -101,12 +57,11 @@ export default function ServicesHeroDemo() {
         bg-white
         before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_left,rgba(29,48,157,0.12)_0%,transparent_70%)]
         before:w-full before:h-full before:opacity-90 before:pointer-events-none
-        pt-32 pb-12 md:py-0
       "
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-8 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
         {/* === LEFT SIDE === */}
-        <div className="flex flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
+        <div className="flex  flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
           {/* TITLE WITH MOTION */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -116,21 +71,6 @@ export default function ServicesHeroDemo() {
           >
             What We Deliver
           </motion.h1>
-
-          {/* === MOBILE CARD SWAP - Shows only on mobile, right after title === */}
-          <div className="md:hidden flex justify-center mt-[-15%] mb-30">
-            <div
-              className="relative flex mr-[5%] items-center justify-center"
-              style={{
-                height: "280px",
-                maxWidth: "100%",
-                transform: "scale(1)",
-                transformOrigin: "center top",
-              }}
-            >
-              <CardContent />
-            </div>
-          </div>
 
           {/* SUBTITLE WITH MOTION */}
           <motion.p
@@ -145,34 +85,35 @@ export default function ServicesHeroDemo() {
           </motion.p>
 
           {/* === Stats Counters === */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="
-              mt-12
-              flex
-              flex-row
-              items-center
-              justify-center md:justify-start
-              gap-x-10
-              gap-y-0
-              whitespace-nowrap
-              overflow-x-auto
-              no-scrollbar
-            "
-          >
-            {stats.map((s, i) => (
-              <StatCounter
-                key={i}
-                value={s.number}
-                suffix={s.suffix}
-                label={s.label}
-                delay={i * 0.3}
-              />
-            ))}
-          </motion.div>
+ <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true }}
+  className="
+    mt-12
+    flex
+    flex-row
+    items-center
+    justify-center md:justify-start
+    gap-x-10
+    gap-y-0
+    whitespace-nowrap
+    overflow-x-auto
+    no-scrollbar
+  "
+>
+  {stats.map((s, i) => (
+    <StatCounter
+      key={i}
+      value={s.number}
+      suffix={s.suffix}
+      label={s.label}
+      delay={i * 0.3}
+    />
+  ))}
+</motion.div>
+
 
           {/* === NEW Trusted By Row === */}
           <motion.div
@@ -197,19 +138,122 @@ export default function ServicesHeroDemo() {
               <AnimatedTooltip items={people} />
             </div>
           </motion.div>
+
+          {/* === Button === */}
+          {/* <div className="mt-10">
+            <button
+              className="button relative z-[10000]"
+              style={{ ["--clr" as any]: "#2f53bd" }}
+            >
+              <span className="button__icon-wrapper">
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg"
+                  width="11"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  width="11"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg button__icon-svg--copy"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </span>
+              Explore Our Events
+            </button>
+          </div> */}
         </div>
 
-        {/* === RIGHT SIDE (Cards) - Desktop Only === */}
-        <div className="hidden md:flex justify-end items-center relative z-10">
+        {/* === RIGHT SIDE (Cards) === */}
+        <div className="flex justify-end items-center relative z-10">
           <div className="relative w-full flex items-center justify-center md:justify-end">
             <div
-              className="relative lg:mr-[20%] mr-[2%] lg:mt-0 sm:mr-0 flex items-center justify-center"
+              className="relative lg:mr-[20%] mr-[2%] lg:scale-100 scale-175  lg:mt-0 mt-[-80%] sm:mr-0 flex items-center justify-center"
               style={{
                 height: "400px",
                 maxWidth: "520px",
               }}
             >
-              <CardContent />
+              <CardSwap
+                width={460}
+                height={340}
+                cardDistance={55}
+                verticalDistance={65}
+                delay={5000}
+                pauseOnHover={false}
+              >
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h4.jpeg"
+                    alt="Boardrooms"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
+                    <h3 className="text-2xl mb-2">Boardrooms</h3>
+                    <p className="text-sm">
+                      Exclusive leadership meetings for high-level
+                      decision-makers.
+                    </p>
+                  </div> */}
+                </Card>
+
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h3.jpeg"
+                    alt="Podcasts"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
+                    <h3 className="text-2xl mb-2">Podcasts</h3>
+                    <p className="text-sm">
+                      We bring your brand stories to life through engaging
+                      conversations and interviews.
+                    </p>
+                  </div> */}
+                </Card>
+
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h6.png"
+                    alt="Conference Series"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
+                    <h3 className="text-2xl mb-2">Conference Series</h3>
+                    <p className="text-sm">
+                      Global industries converge for collaboration and
+                      innovation.
+                    </p>
+                  </div> */}
+                </Card>
+
+                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
+                  <img
+                    src="/images/explore/hero/h5.webp"
+                    alt="Exhibitions"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                  {/* <div className="relative z-10 p-8 text-center">
+                    <h3 className="text-2xl mb-2">Exhibitions</h3>
+                    <p className="text-sm">
+                      Immersive showcases connecting innovators with investors
+                      and leaders.
+                    </p>
+                  </div> */}
+                </Card>
+              </CardSwap>
             </div>
           </div>
         </div>
@@ -252,11 +296,11 @@ function StatCounter({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <span className="text-2xl sm:text-3xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+<span className="text-2xl sm:text-3xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
+<span className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
         {label}
       </span>
     </motion.div>

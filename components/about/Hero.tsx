@@ -9,7 +9,7 @@ export default function AboutHero() {
   const [hovered, setHovered] = useState(false);
   const [showFade, setShowFade] = useState(false);
 
-  const NAV_HEIGHT = 88; // px
+  const NAV_HEIGHT = 88;
 
   const images = [
     "/images/explore/hero/h5.webp",
@@ -27,7 +27,6 @@ export default function AboutHero() {
     "rotate(6deg) translate(230px, -5px)",
   ];
 
-  // 👇 Fade appears after small scroll
   useEffect(() => {
     const handleScroll = () => {
       setShowFade(window.scrollY > 10);
@@ -41,12 +40,13 @@ export default function AboutHero() {
       className="relative w-full bg-white overflow-hidden"
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
-      {/* top spacer = nav height */}
+      {/* Spacer = Nav Height */}
       <div className="h-[var(--nav-h)]" />
 
-      <div className="mx-auto max-w-6xl px-6">
+      {/* ====== MAIN CONTAINER ====== */}
+      <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-6 lg:px-12 2xl:px-20">
 
-        {/* === FIXED FULL SCREEN HERO (mobile + desktop) === */}
+        {/* ====== FULL HERO HEIGHT ====== */}
         <div
           className="
             min-h-[calc(100dvh-var(--nav-h))] 
@@ -58,7 +58,7 @@ export default function AboutHero() {
             gap-0
           "
         >
-          {/* === TITLE + SUBTITLE === */}
+          {/* ====== TITLE ====== */}
           <div className="text-center">
             <h1 className="text-4xl sm:text-6xl font-semibold text-neutral-900 leading-tight">
               The{" "}
@@ -117,6 +117,7 @@ export default function AboutHero() {
                       fill="currentColor"
                     ></path>
                   </svg>
+
                   <svg
                     viewBox="0 0 14 15"
                     fill="none"
@@ -135,38 +136,56 @@ export default function AboutHero() {
             </div>
           </div>
 
-          {/* === BOUNCE CARDS === */}
-          <div className="relative mt-6 md:mt-[-60px] flex justify-center">
-            {/* Desktop cards */}
-            <BounceCards
-              images={images}
-              transformStyles={transforms}
-              containerWidth={720}
-              containerHeight={320}
-              animationDelay={0.6}
-              animationStagger={0.09}
-              easeType="elastic.out(1, 0.6)"
-              enableHover={false}
-              className="hidden md:flex"
-            />
+         {/* === BOUNCE CARDS === */}
+<div
+  className="
+    relative 
+    mt-[-40px] 
+    md:mt-[-60px]
+    lg:mt-[-20px]
+    xl:mt-[0px]
+    2xl:mt-[0px]
+    flex justify-center
+  "
+>
+  {/* Desktop Version — with scaling */}
+  <BounceCards
+    images={images}
+    transformStyles={transforms}
+    containerWidth={720}
+    containerHeight={320}
+    animationDelay={0.6}
+    animationStagger={0.09}
+    easeType="elastic.out(1, 0.6)"
+    enableHover={false}
+    className="
+      hidden md:flex 
+      scale-100 
+      lg:scale-[1.15] 
+      xl:scale-[1.25] 
+      2xl:scale-[1.35] 
+      origin-center
+    "
+  />
 
-            {/* Mobile cards */}
-            <BounceCards
-              images={images.slice(1, 4)}
-              transformStyles={[
-                "rotate(5deg) translate(-70px)",
-                "rotate(-3deg)",
-                "rotate(4deg) translate(70px)",
-              ]}
-              containerWidth={340}
-              containerHeight={220}
-              animationDelay={0.6}
-              animationStagger={0.06}
-              easeType="elastic.out(1, 0.6)"
-              enableHover={false}
-              className="md:hidden"
-            />
-          </div>
+  {/* Mobile Version */}
+  <BounceCards
+    images={images.slice(1, 4)}
+    transformStyles={[
+      "rotate(5deg) translate(-70px)",
+      "rotate(-3deg)",
+      "rotate(4deg) translate(70px)",
+    ]}
+    containerWidth={340}
+    containerHeight={220}
+    animationDelay={0.6}
+    animationStagger={0.06}
+    easeType="elastic.out(1, 0.6)"
+    enableHover={false}
+    className="md:hidden"
+  />
+</div>
+
         </div>
       </div>
     </section>

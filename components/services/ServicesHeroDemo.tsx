@@ -233,13 +233,13 @@ export default function ServicesHeroDemo() {
                     alt="Exhibitions"
                     className="absolute inset-0 w-full h-full object-cover opacity-80"
                   />
-                  <div className="relative z-10 p-8 text-center">
+                  {/* <div className="relative z-10 p-8 text-center">
                     <h3 className="text-2xl mb-2">Exhibitions</h3>
                     <p className="text-sm">
                       Immersive showcases connecting innovators with investors
                       and leaders.
                     </p>
-                  </div>
+                  </div> */}
                 </Card>
               </CardSwap>
             </div>

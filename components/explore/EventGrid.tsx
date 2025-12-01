@@ -108,7 +108,7 @@ export default function EventGrid({ events }: { events: EventItem[] }) {
 
   return (
     <section className="py-10 bg-white">
-      <div className="mx-auto max-w-6xl px-0 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="mx-auto max-w-7xl px-0 grid grid-cols-1 md:grid-cols-3 gap-10">
         {events.map((event, index) => (
           <a
             key={`${event.id}-${event.title}-${event.date}-${index}`}

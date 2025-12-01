@@ -42,7 +42,7 @@ export function FeaturesSectionDemo() {
   return (
     <div className="relative bg-[#000000] z-20 py-12 lg:py-20 max-w-full mx-auto">
       <div className="px-8 ">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-semibold text-black dark:text-white">
+        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-semibold text-white">
           About Us
         </h4>
 
@@ -219,8 +219,8 @@ export const SkeletonTwo = () => {
         ))}
       </div> */}
 
-      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
-      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black dark:from-black to-transparent  h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black dark:from-black  to-transparent h-full pointer-events-none" />
     </div>
   );
 };

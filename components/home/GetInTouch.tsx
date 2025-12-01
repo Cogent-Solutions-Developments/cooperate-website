@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function GetInTouch() {
   return (
     <section className="relative w-full bg-white py-16 border-gray-100 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Desktop Layout */}
         <div className="hidden lg:flex items-center justify-between gap-16">
           {/* LEFT TEXT CONTENT */}

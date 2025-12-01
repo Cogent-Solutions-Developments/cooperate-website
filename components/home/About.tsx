@@ -92,7 +92,7 @@ We design exclusive, closed–door platforms where governments, regulators, and 
 
       {/* --- STATS SECTION --- */}
       <div className="relative bg-white py-0">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[auto_1px_1fr] items-start gap-y-10 lg:gap-x-6">
             {/* Left Title */}
             <div className="text-left lg:text-left mx-0">

@@ -6,17 +6,18 @@ import Folder from "./imports/Folder";
 export default function ExploreConferences() {
   return (
     <section className="py-10 sm:py-14 bg-transparent text-white relative z-[0]">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-[9999]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-[9999]">
         {/* Outer Card */}
         <div className="relative flex flex-col-reverse lg:flex-row items-center justify-between gap-14 sm:gap-10 lg:gap-12 bg-[#172573] rounded-2xl sm:rounded-3xl border border-[#0A1E75]/30 shadow-[0_8px_30px_rgba(0,0,0,0.25)] px-6 sm:px-10 lg:px-14 py-10 sm:py-14 overflow-visible z-[9999]">
           
           {/* === LEFT SIDE (Text Content) === */}
-          <div className="flex-1 space-y-4 sm:space-y-6 relative z-[10000] text-center lg:text-left">
+          <div className="flex-1 lg:flex-[1.2] space-y-4 sm:space-y-6 relative z-[10000] text-center lg:text-left">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-normal leading-tight">
               Explore Our Conferences
             </h2>
 
-            <p className="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base font-medium text-white/90 leading-relaxed">
+            {/* widened paragraph – no max-width */}
+            <p className="text-sm sm:text-base font-medium text-white/90 leading-relaxed">
               Through our conferences we transform your business challenges into opportunities. Our clients and customers are leading government entities and the fortune 500 companies.
             </p>
 
@@ -58,8 +59,8 @@ export default function ExploreConferences() {
           </div>
 
           {/* === RIGHT SIDE (Folder Animation) === */}
-          <div className="flex-1 flex justify-center lg:justify-end relative overflow-visible z-[10001]">
-            <div className="relative lg:top-4 lg:right-20 max-w-[220px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[380px] z-[10002]">
+          <div className="flex-1 lg:flex-[0.8] flex justify-center lg:justify-end relative overflow-visible z-[10001]">
+            <div className="relative lg:top-4 lg:right-22 max-w-[220px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[380px] z-[10002]">
               <Folder
                 size={2}
                 color="#2f53bd"

@@ -25,7 +25,7 @@ export default function Hero({ className = "" }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-[#0C123B]/90 via-[#0C123B]/50 to-transparent"></div>
 
       {/* === Content === */}
-      <div className="relative z-10 flex flex-col h-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-12 pb-12 pt-24 sm:pt-32 lg:pt-0 justify-end">
+      <div className="relative z-10 flex flex-col h-full max-w-7xl 2xl:max-w-none mx-auto 2xl:mx-0 px-5 sm:px-6 lg:px-12 2xl:px-20 3xl:px-32 pb-12 pt-24 sm:pt-32 lg:pt-0 justify-end">
         {/* === LEFT TEXT === */}
         <div className="flex flex-col items-start max-w-3xl text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">

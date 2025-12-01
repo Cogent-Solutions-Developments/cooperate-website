@@ -85,23 +85,35 @@ export default function ServicesHeroDemo() {
           </motion.p>
 
           {/* === Stats Counters === */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="mt-12 flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-x-10 gap-y-2"
-          >
-            {stats.map((s, i) => (
-              <StatCounter
-                key={i}
-                value={s.number}
-                suffix={s.suffix}
-                label={s.label}
-                delay={i * 0.3}
-              />
-            ))}
-          </motion.div>
+ <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true }}
+  className="
+    mt-12
+    flex
+    flex-row
+    items-center
+    justify-center md:justify-start
+    gap-x-10
+    gap-y-0
+    whitespace-nowrap
+    overflow-x-auto
+    no-scrollbar
+  "
+>
+  {stats.map((s, i) => (
+    <StatCounter
+      key={i}
+      value={s.number}
+      suffix={s.suffix}
+      label={s.label}
+      delay={i * 0.3}
+    />
+  ))}
+</motion.div>
+
 
           {/* === NEW Trusted By Row === */}
           <motion.div
@@ -168,7 +180,7 @@ export default function ServicesHeroDemo() {
         <div className="flex justify-end items-center relative z-10">
           <div className="relative w-full flex items-center justify-center md:justify-end">
             <div
-              className="relative md:mr-[15%] sm:mr-0 flex items-center justify-center"
+              className="relative lg:mr-[20%] mr-[2%] lg:scale-100 scale-175  lg:mt-0 mt-[-80%] sm:mr-0 flex items-center justify-center"
               style={{
                 height: "400px",
                 maxWidth: "520px",
@@ -233,13 +245,13 @@ export default function ServicesHeroDemo() {
                     alt="Exhibitions"
                     className="absolute inset-0 w-full h-full object-cover opacity-80"
                   />
-                  <div className="relative z-10 p-8 text-center">
+                  {/* <div className="relative z-10 p-8 text-center">
                     <h3 className="text-2xl mb-2">Exhibitions</h3>
                     <p className="text-sm">
                       Immersive showcases connecting innovators with investors
                       and leaders.
                     </p>
-                  </div>
+                  </div> */}
                 </Card>
               </CardSwap>
             </div>
@@ -284,11 +296,11 @@ function StatCounter({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <span className="text-4xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+<span className="text-2xl sm:text-3xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-[15px] md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
+<span className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
         {label}
       </span>
     </motion.div>

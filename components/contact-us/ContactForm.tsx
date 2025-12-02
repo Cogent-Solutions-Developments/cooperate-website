@@ -13,20 +13,20 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-8 text-center lg:text-left"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.15]">
             <span className="text-[#1D309D]">Let's Start</span> the <br />
             <span className="text-black">Conversation</span>
           </h2>
 
-          <p className="text-neutral-700 max-w-md text-[15.5px] leading-relaxed">
+          <p className="text-neutral-700 max-w-md text-[15.5px] leading-relaxed mx-auto lg:mx-0">
             Whether You're Planning An Event, Exploring Sponsorships, Or Looking For A 
             Strategic Partnership Our Team Is Here To Support Your Goals With Clarity 
             And Expertise.
           </p>
 
-          {/* CONTACT INFO */}
+         {/* CONTACT INFO */}
           <div className="space-y-6 pt-3">
             {/* Email */}
             <div className="flex items-center gap-4 group">
@@ -49,13 +49,15 @@ export default function ContactForm() {
                 <span>+971 50 643 5244</span>
               </div>
             </div>
-
-            {/* Locations */}
+          </div>
+          
+          {/* Locations - Always left aligned */}
+          <div className="space-y-6 pt-3">
             <div className="flex items-start gap-4 group">
               <div className="p-3 rounded-xl bg-[#2f53bd]/10 group-hover:bg-[#2f53bd]/20 transition-all">
                 <MapPin className="w-5 h-5 text-[#2f53bd]" />
               </div>
-              <div className="text-neutral-800 text-[15.5px] tracking-tight space-y-4">
+              <div className="text-neutral-800 text-[15.5px] tracking-tight space-y-4 text-left">
                 {/* Middle East & Africa HQ */}
                 <div>
                   <p className="font-semibold text-neutral-900">Middle East & Africa HQ</p>
@@ -143,7 +145,7 @@ export default function ContactForm() {
           </div>
 
           {/* Submit Button */}
-          <div className="mt-4">
+          <div className="mt-4 flex justify-center lg:justify-start">
             <button
               className="button relative z-[10000]"
               style={{ ["--clr" as any]: "#2f53bd" }}

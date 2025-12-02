@@ -44,7 +44,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 );
 Card.displayName = "Card";
 
-// ✅ Correct typing for refs
 type CardRef = RefObject<HTMLDivElement | null>;
 
 interface Slot {
@@ -125,8 +124,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
 
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-
-  // ✅ Universal type-safe ref for setInterval
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const container = useRef<HTMLDivElement>(null);
 
@@ -253,11 +250,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
   return (
     <div
       ref={container}
-      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right 
-      perspective-[900px] overflow-visible 
-      max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] 
-      max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
-      style={{ width, height }}
+      className="relative overflow-visible"
+      style={{ 
+        width, 
+        height,
+        perspective: "900px",
+      }}
     >
       {rendered}
     </div>

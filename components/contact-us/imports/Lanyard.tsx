@@ -223,8 +223,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
 
   return (
     <>
-      <group position={[-1.8, 4.2, 0]}>
-        <RigidBody ref={fixed} {...segmentProps} type="fixed" />
+<group position={isSmall ? [0, 4.2, 0] : [-1.8, 4.2, 0]}>        
+  <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
@@ -279,7 +279,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
           useMap
           map={texture}
           repeat={[-3, 1]}
-          lineWidth={0.8}
+          lineWidth={isSmall ? 1.2 : 0.8}
         />
       </mesh>
     </>

@@ -19,7 +19,7 @@ export default function HelpCenterHero() {
       name: "Marketing",
       designation: "marketing@cogentsolutions.com",
       image:
-        "https://plus.unsplash.com/premium_photo-1681487872232-fa622a6dd59e?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://plus.unsplash.com/premium_photo-1681487872232-fa622a6dd59e?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D",
     },
     {
       id: 3,
@@ -35,19 +35,28 @@ export default function HelpCenterHero() {
       image:
         "https://plus.unsplash.com/premium_photo-1726797756953-30e3edeea563?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
-
   ];
 
   return (
     <section className="relative w-full h-screen bg-black overflow-hidden">
 
-      {/* === ORBS === */}
+      {/* === TOP ORB === */}
       <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
+        {/* Mobile version */}
         <div
+          className="block lg:hidden w-full h-full relative"
           style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
+            transform: "scale(3)",
+            top: "-60%",
+            transformOrigin: "center",
+          }}
+        >
+          <Orb hoverIntensity={0.5} rotateOnHover={true} hue={0} forceHoverState={false} />
+        </div>
+        {/* Desktop version */}
+        <div
+          className="hidden lg:block w-full h-full relative"
+          style={{
             transform: "scale(3)",
             top: "-100%",
             transformOrigin: "center",
@@ -57,12 +66,23 @@ export default function HelpCenterHero() {
         </div>
       </div>
 
+      {/* === BOTTOM ORB === */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        {/* Mobile version */}
         <div
+          className="block lg:hidden w-full h-full relative"
           style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
+            transform: "scale(2)",
+            top: "50%",
+            transformOrigin: "center",
+          }}
+        >
+          <Orb hoverIntensity={0.5} rotateOnHover={true} hue={0} forceHoverState={false} />
+        </div>
+        {/* Desktop version */}
+        <div
+          className="hidden lg:block w-full h-full relative"
+          style={{
             transform: "scale(1.8)",
             top: "70%",
             transformOrigin: "center",

@@ -26,7 +26,8 @@ export default function ServicesHeroDemo() {
       } else if (w >= 640) {
         setCardConfig({ width: 280, height: 210, cardDistance: 32, verticalDistance: 42 });
       } else {
-        setCardConfig({ width: 240, height: 180, cardDistance: 26, verticalDistance: 36 });
+        // Mobile - smaller cards
+        setCardConfig({ width: 220, height: 165, cardDistance: 22, verticalDistance: 28 });
       }
     };
 
@@ -81,17 +82,10 @@ export default function ServicesHeroDemo() {
     { src: "/images/explore/hero/h5.webp", alt: "Exhibitions" },
   ];
 
-  /*
-    Container sizing:
-    - Width needs to be cardWidth + (cardDistance * 2) to align last card with right edge
-    - This accounts for the visual centering of the card stack
-  */
   const halfWidth = cardConfig.width / 2;
   const halfHeight = cardConfig.height / 2;
-  const stackOffsetX = cardConfig.cardDistance * 3;
   const stackOffsetY = cardConfig.verticalDistance * 3;
 
-  // Container width = cardWidth + cardDistance * 1.6 (empirically determined to align correctly)
   const totalWidth = cardConfig.width + Math.round(cardConfig.cardDistance * 1.6);
   const totalHeight = cardConfig.height + stackOffsetY;
 
@@ -110,18 +104,22 @@ export default function ServicesHeroDemo() {
 
       {/* Main Wrapper */}
       <div className="relative z-10 w-full min-h-screen flex items-center">
-        {/* Container with equal padding */}
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12 py-16 md:py-0">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 md:py-0">
           
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-8">
+          {/* 
+            Layout:
+            - Mobile: Column layout, content first, cards below
+            - Desktop (lg+): Row layout, content left, cards right
+          */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-8">
             
-            {/* ===== LEFT: Content ===== */}
-            <div className="order-2 lg:order-1 text-center lg:text-left lg:max-w-xl">
+            {/* ===== LEFT/TOP: Content ===== */}
+            <div className="text-center lg:text-left lg:max-w-xl">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
               >
                 What We Deliver
               </motion.h1>
@@ -130,20 +128,20 @@ export default function ServicesHeroDemo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-5 lg:mt-6 text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
+                className="mt-4 lg:mt-6 text-sm sm:text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
               >
                 We Craft High Impact Experiences That Connect Decision Makers,
                 Ideas, and Industries Empowering Organizations to Collaborate,
                 Innovate, and Grow.
               </motion.p>
 
-              {/* Stats */}
+              {/* Stats - Always single row, responsive sizing */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="mt-10 lg:mt-12 flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-10"
+                className="mt-8 lg:mt-12 flex flex-row justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 lg:gap-10"
               >
                 {stats.map((s, i) => (
                   <StatCounter
@@ -175,14 +173,13 @@ export default function ServicesHeroDemo() {
               </motion.div>
             </div>
 
-            {/* ===== RIGHT: Cards ===== */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end flex-shrink-0">
+            {/* ===== RIGHT/BOTTOM: Cards ===== */}
+            <div className="flex justify-center lg:justify-end flex-shrink-0 mt-4 lg:mt-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                {/* Container sized for proper alignment */}
                 <div
                   className="relative"
                   style={{
@@ -258,11 +255,12 @@ function StatCounter({
 
   return (
     <div className="flex flex-col items-center lg:items-start">
-      <span className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+      {/* Responsive text sizes for single row on mobile */}
+      <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-sm lg:text-base text-neutral-600 font-medium mt-1.5">
+      <span className="text-[10px] sm:text-xs md:text-sm lg:text-base text-neutral-600 font-medium mt-1 whitespace-nowrap">
         {label}
       </span>
     </div>

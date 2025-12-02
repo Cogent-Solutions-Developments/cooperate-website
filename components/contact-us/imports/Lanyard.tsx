@@ -27,11 +27,9 @@ declare module '@react-three/fiber' {
   }
 }
 
-// ✅ absolute public paths (Next.js safe)
 const cardGLB = '/images/lanyard/card.glb';
 const lanyard = '/images/lanyard/lanyardcs1.png';
 
-// ✅ preload assets early (prevents reload issues)
 useGLTF.preload(cardGLB);
 useTexture.preload(lanyard);
 
@@ -50,20 +48,19 @@ export default function Lanyard({
   transparent = true,
 }: LanyardProps) {
   return (
-    <div className="absolute w-full h-full">
+    <div className="absolute w-full h-full touch-none">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
+        style={{ touchAction: 'none' }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0xffffff), transparent ? 0 : 1);
           gl.outputColorSpace = THREE.SRGBColorSpace;
-          
         }}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.7} />
 
-          {/* Add a stable floor to prevent infinite fall */}
           <Physics gravity={gravity} timeStep={1 / 60}>
             <RigidBody type="fixed" colliders="cuboid">
               <mesh position={[0, -8, 0]}>
@@ -75,7 +72,6 @@ export default function Lanyard({
             <Band />
           </Physics>
 
-          {/* Environment Lights */}
           <Environment blur={0.75}>
             <Lightformer
               intensity={2}
@@ -223,8 +219,9 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
 
   return (
     <>
-<group position={isSmall ? [0, 4.2, 0] : [-1.8, 4.2, 0]}>        
-  <RigidBody ref={fixed} {...segmentProps} type="fixed" />
+      {/* Centered on mobile, offset on desktop */}
+      <group position={isSmall ? [0, 4.2, 0] : [-1.8, 4.2, 0]}>
+        <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
@@ -251,6 +248,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
               drag(false);
             }}
             onPointerDown={(e: any) => {
+              e.stopPropagation();
               e.target.setPointerCapture(e.pointerId);
               drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
             }}

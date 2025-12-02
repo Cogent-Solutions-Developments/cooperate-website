@@ -2,22 +2,23 @@
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
-// ✅ keep your dynamic import exactly as-is
 const Lanyard = dynamic(() => import("./imports/Lanyard"), { ssr: false });
 
 export default function ContactHero() {
   return (
-    <section className="relative w-full h-screen bg-white text-black overflow-hidden">
+    <section className="relative w-full min-h-screen lg:h-screen bg-white text-black overflow-hidden">
       {/* 2-column layout, stacks on mobile */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-full max-w-7xl mx-auto px-6 lg:px-12 gap-8">
-        {/* === Left: 3D card === */}
-        <div className="relative  order-2 lg:order-1 h-full w-full z-40 sm:h-full lg:h-full"></div>
-        <div className="absolute  z-500 inset-0 pointer-events-none">
+      <div className="grid grid-cols-1 lg:grid-cols-2 h-full max-w-7xl mx-auto px-6 lg:px-12 gap-0 lg:gap-8">
+        {/* === Left: 3D card placeholder === */}
+        <div className="relative order-1 lg:order-1 h-[90vh] lg:h-full w-full z-40"></div>
+        
+        {/* Lanyard - absolute positioned */}
+        <div className="absolute z-500 inset-0 pointer-events-none h-screen lg:h-full">
           <Lanyard position={[0, 0, 11]} gravity={[0, -40, 0]} />
         </div>
 
-        {/* === Right: Text content === */}
-        <div className="relative order-1 lg:order-2 flex flex-col items-center lg:items-start justify-center text-center lg:text-left px-0 lg:px-0">
+        {/* === Text content === */}
+        <div className="relative order-2 lg:order-2 flex flex-col items-center lg:items-start justify-start lg:justify-center text-center lg:text-left px-0 pb-0 lg:pb-0">
           <div className="pointer-events-auto">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}

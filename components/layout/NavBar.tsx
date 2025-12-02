@@ -23,7 +23,7 @@ export default function NavBar() {
   return (
     <>
       <header
-        className={`fixed w-full z-50 transition-all duration-700
+        className={`fixed w-full z-1000 transition-all duration-700
           ${scrolled ? "top-6" : "top-0"}
           ${menuOpen ? "opacity-0 -translate-y-full" : "opacity-100"}
         `}

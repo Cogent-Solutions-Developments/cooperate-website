@@ -7,15 +7,15 @@ import { CometCard } from "./imports/comet-card";
 export default function Hero() {
   return (
     <section className="w-full bg-white min-h-[calc(100vh-80px)] flex items-center">
-      <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-6 gap-10">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between px-6 gap-10">
         {/* LEFT SIDE */}
-        <div className="leading-tight max-w-3xl pt-16 md:pt-24">
+        <div className="leading-tight max-w-3xl pt-36 md:pt-32 lg:pt-24 text-center lg:text-left">
           {/* LINE 1 — What The World + Image */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-[12vw] md:text-[5.9vw] font-semibold tracking-tight flex items-center gap-4 whitespace-nowrap leading-[1.1]"
+            className="text-[9vw] sm:text-[10vw] md:text-[5.9vw] font-semibold tracking-tight flex items-center justify-center lg:justify-start gap-2 sm:gap-4 whitespace-nowrap leading-[1.1]"
           >
             <span className="text-black">What </span>
             <span className="text-neutral-900">The</span>
@@ -27,22 +27,54 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="text-[12vw] md:text-[5.9vw] font-semibold tracking-tight whitespace-nowrap leading-[1.1]"
+            className="text-[9vw] sm:text-[10vw] md:text-[5.9vw] font-semibold tracking-tight whitespace-nowrap leading-[1.1]"
           >
             <span className="text-black">Says About </span>
             <span className="text-neutral-900">Us</span>
           </motion.h1>
+
+          {/* COMET CARD — MOBILE ONLY (appears after title) */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2 }}
+            className="flex lg:hidden justify-center mt-8"
+          >
+            <CometCard>
+              <button
+                type="button"
+                className="flex w-72 md:w-80 flex-col items-stretch rounded-[16px] bg-black p-3"
+              >
+                <div className="mx-2 flex-1">
+                  <div className="relative mt-2 aspect-[3/4] w-full rounded-[16px] overflow-hidden">
+                    <video
+                      src="/videos/Testimonial.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between p-4 font-mono text-white">
+                  <div className="text-xs">Sponsor Insight</div>
+                </div>
+              </button>
+            </CometCard>
+          </motion.div>
 
           {/* MINI PARAGRAPH */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
-            className="mt-6 text-[4vw] md:text-[1.15vw] text-[#444] font-medium leading-relaxed max-w-3xl"
+            className="mt-6 text-[3.5vw] sm:text-[3vw] md:text-[1.15vw] text-[#444] font-medium leading-relaxed max-w-3xl mx-auto lg:mx-0"
           >
             Leaders Across Government, Industry, And Our Global Event Ecosystem
             Including Speakers, Sponsors, And Strategic Partners Share Their
-            Professional Experiences With Cogent Solutions. Here’s What They Say
+            Professional Experiences With Cogent Solutions. Here's What They Say
             About Working With Us.
           </motion.p>
 
@@ -51,7 +83,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.3 }}
-            className="mt-6"
+            className="mt-6 pb-8 lg:pb-0 flex justify-center lg:justify-start"
           >
             <button
               className="button relative z-[10000]"
@@ -89,12 +121,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE — COMET CARD with VIDEO */}
+        {/* RIGHT SIDE — COMET CARD with VIDEO (DESKTOP ONLY) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
-          className="flex-shrink-0 pt-16 md:pt-24"
+          className="hidden lg:flex flex-shrink-0 pt-16 md:pt-24"
         >
           <CometCard>
             <button
@@ -103,9 +135,8 @@ export default function Hero() {
             >
               <div className="mx-2 flex-1">
                 <div className="relative mt-2 aspect-[3/4] w-full rounded-[16px] overflow-hidden">
-                  {/* ⭐ VIDEO HERE */}
                   <video
-                    src="/videos/sponsor-clip.mp4"
+                    src="/videos/Testimonial.mp4"
                     autoPlay
                     loop
                     muted
@@ -117,7 +148,6 @@ export default function Hero() {
 
               <div className="mt-3 flex items-center justify-between p-4 font-mono text-white">
                 <div className="text-xs">Sponsor Insight</div>
-                <div className="text-xs opacity-50">AIM Qatar</div>
               </div>
             </button>
           </CometCard>

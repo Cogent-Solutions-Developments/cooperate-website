@@ -57,33 +57,10 @@ export default function ServicesBreaker() {
 
             {/* Mini stacked cards */}
             <div className="flex flex-col gap-3 mt-35 relative z-10">
-              {/* {serviceCards.map((s, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="flex items-center justify-between w-full bg-white/80 backdrop-blur-md border border-[#E5E8F0] rounded-xl px-5 py-4 shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(29,48,157,0.08)] transition-all duration-300"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="text-[#1D309D]">{s.icon}</div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-neutral-900">
-                        {s.title}
-                      </h3>
-                      <p className="text-xs text-neutral-500">
-                        {s.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-[#1D309D]/80"></div>
-                </motion.div>
-              ))} */}
             </div>
 
             {/* Box Image at bottom-left */}
-            <div className="absolute bottom-[-110px] left-[110px] opacity-90 pointer-events-none select-none">
+            <div className="absolute lg:bottom-[-110px] lg:left-[110px] bottom-[-50px] left-25 lg:scale-100 scale-125 opacity-90 pointer-events-none select-none">
               <Image
                 src="/images/services/box.png" // replace with your actual box path
                 alt="Cogent Box"
@@ -95,7 +72,7 @@ export default function ServicesBreaker() {
           </div>
 
           {/* === RIGHT SIDE (Unchanged) === */}
-          <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 border-t lg:border-t-0 lg:border-l border-[#E6E9F2]">
+          <div className="w-full lg:w-1/2 z-40 grid bg-white grid-cols-1 sm:grid-cols-2 border-t lg:border-t-0 lg:border-l border-[#E6E9F2]">
             {serviceCards.map((s, i) => (
               <motion.div
                 key={i}

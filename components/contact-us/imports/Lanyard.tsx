@@ -27,11 +27,9 @@ declare module '@react-three/fiber' {
   }
 }
 
-// ✅ absolute public paths (Next.js safe)
 const cardGLB = '/images/lanyard/card.glb';
 const lanyard = '/images/lanyard/lanyardcs1.png';
 
-// ✅ preload assets early (prevents reload issues)
 useGLTF.preload(cardGLB);
 useTexture.preload(lanyard);
 
@@ -50,20 +48,19 @@ export default function Lanyard({
   transparent = true,
 }: LanyardProps) {
   return (
-    <div className="absolute w-full h-full">
+    <div className="absolute w-full h-full pointer-events-none">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
+        style={{ pointerEvents: 'none' }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0xffffff), transparent ? 0 : 1);
           gl.outputColorSpace = THREE.SRGBColorSpace;
-          
         }}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.7} />
 
-          {/* Add a stable floor to prevent infinite fall */}
           <Physics gravity={gravity} timeStep={1 / 60}>
             <RigidBody type="fixed" colliders="cuboid">
               <mesh position={[0, -8, 0]}>
@@ -75,7 +72,6 @@ export default function Lanyard({
             <Band />
           </Physics>
 
-          {/* Environment Lights */}
           <Environment blur={0.75}>
             <Lightformer
               intensity={2}
@@ -223,7 +219,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
 
   return (
     <>
-      <group position={[-1.8, 4.2, 0]}>
+      {/* Centered on mobile, offset on desktop */}
+      <group position={isSmall ? [0, 4.2, 0] : [-1.8, 4.2, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
@@ -244,13 +241,30 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
           <group
             scale={2.25}
             position={[0, -1.2, -0.05]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
+            onPointerOver={(e: any) => {
+              e.stopPropagation();
+              // Enable pointer events on canvas when hovering card
+              const canvas = e.target.ownerDocument.querySelector('canvas');
+              if (canvas) canvas.style.pointerEvents = 'auto';
+              hover(true);
+            }}
+            onPointerOut={(e: any) => {
+              e.stopPropagation();
+              // Disable pointer events on canvas when leaving card
+              const canvas = e.target.ownerDocument.querySelector('canvas');
+              if (canvas && !dragged) canvas.style.pointerEvents = 'none';
+              hover(false);
+            }}
             onPointerUp={(e: any) => {
+              e.stopPropagation();
               e.target.releasePointerCapture(e.pointerId);
               drag(false);
+              // Re-disable pointer events after drag
+              const canvas = e.target.ownerDocument.querySelector('canvas');
+              if (canvas) canvas.style.pointerEvents = 'none';
             }}
             onPointerDown={(e: any) => {
+              e.stopPropagation();
               e.target.setPointerCapture(e.pointerId);
               drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
             }}
@@ -279,7 +293,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
           useMap
           map={texture}
           repeat={[-3, 1]}
-          lineWidth={0.8}
+          lineWidth={isSmall ? 1.2 : 0.8}
         />
       </mesh>
     </>

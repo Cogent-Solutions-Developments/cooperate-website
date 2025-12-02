@@ -2,10 +2,51 @@
 
 import React, { useState, useEffect } from "react";
 import CardSwap, { Card } from "./imports/CardSwap";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
 export default function ServicesHeroDemo() {
+  const [cardConfig, setCardConfig] = useState({
+    width: 420,
+    height: 310,
+    cardDistance: 50,
+    verticalDistance: 60,
+  });
+
+   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mql = window.matchMedia("(max-width: 640px)");
+
+    const updateConfig = () => {
+      if (mql.matches) {
+        // 👇 MOBILE – MAKE THEM BIGGER HERE
+        setCardConfig({
+          width: 400,       // bigger than before
+          height: 325,      // bigger than before
+          cardDistance: 28,
+          verticalDistance: 36,
+        });
+      } else {
+        // 👇 NON-MOBILE – you can tune these, but they're already fine
+        setCardConfig({
+          width: 360,
+          height: 270,
+          cardDistance: 44,
+          verticalDistance: 54,
+        });
+      }
+    };
+
+    updateConfig();
+    mql.addEventListener("change", updateConfig);
+
+    return () => {
+      mql.removeEventListener("change", updateConfig);
+    };
+  }, []);
+
+
   const stats = [
     { number: 500, suffix: "+", label: "Events Delivered" },
     { number: 200, suffix: "+", label: "Industry Partners" },
@@ -17,244 +58,180 @@ export default function ServicesHeroDemo() {
       id: 1,
       name: "John Doe",
       designation: "Software Engineer",
-      image:
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=3387&q=80",
+      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=3387&q=80",
     },
     {
       id: 2,
       name: "Robert Johnson",
       designation: "Product Manager",
-      image:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 3,
       name: "Jane Smith",
       designation: "Data Scientist",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 4,
       name: "Emily Davis",
       designation: "UX Designer",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 5,
       name: "Tyler Durden",
       designation: "Soap Developer",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
     },
   ];
 
+  const cardImages = [
+    { src: "/images/explore/hero/h4.jpeg", alt: "Boardrooms" },
+    { src: "/images/explore/hero/h3.jpeg", alt: "Podcasts" },
+    { src: "/images/explore/hero/h6.png", alt: "Conference Series" },
+    { src: "/images/explore/hero/h5.webp", alt: "Exhibitions" },
+  ];
+
+  const halfWidth = cardConfig.width / 2;
+  const halfHeight = cardConfig.height / 2;
+  const stackOffsetY = cardConfig.verticalDistance * 3;
+
+  const totalWidth = cardConfig.width + Math.round(cardConfig.cardDistance * 1.6);
+  const totalHeight = cardConfig.height + stackOffsetY;
+
+  const centerOffsetX = halfWidth;
+  const centerOffsetY = halfHeight + stackOffsetY;
+
   return (
-    <section
-      className="
-        relative w-full min-h-screen flex items-center overflow-hidden
-        bg-white
-        before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_left,rgba(29,48,157,0.12)_0%,transparent_70%)]
-        before:w-full before:h-full before:opacity-90 before:pointer-events-none
-      "
-    >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-8 grid md:grid-cols-2 items-center justify-between gap-16 md:gap-20 h-full">
-        {/* === LEFT SIDE === */}
-        <div className="flex  flex-col justify-center md:pr-10 text-center md:text-left relative z-10">
-          {/* TITLE WITH MOTION */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-5xl md:text-7xl font-semibold text-neutral-900 leading-tight whitespace-nowrap"
-          >
-            What We Deliver
-          </motion.h1>
+    <section className="relative w-full min-h-screen overflow-hidden bg-white">
+      {/* Background Gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at left, rgba(29,48,157,0.12) 0%, transparent 70%)",
+        }}
+      />
 
-          {/* SUBTITLE WITH MOTION */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="mt-5 text-base md:text-md text-neutral-600 max-w-xl mx-auto md:mx-0"
-          >
-            We Craft High Impact Experiences That Connect Decision Makers,
-            Ideas, and Industries Empowering Organizations to Collaborate,
-            Innovate, and Grow.
-          </motion.p>
-
-          {/* === Stats Counters === */}
- <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
-  viewport={{ once: true }}
-  className="
-    mt-12
-    flex
-    flex-row
-    items-center
-    justify-center md:justify-start
-    gap-x-10
-    gap-y-0
-    whitespace-nowrap
-    overflow-x-auto
-    no-scrollbar
-  "
->
-  {stats.map((s, i) => (
-    <StatCounter
-      key={i}
-      value={s.number}
-      suffix={s.suffix}
-      label={s.label}
-      delay={i * 0.3}
-    />
-  ))}
-</motion.div>
-
-
-          {/* === NEW Trusted By Row === */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true }}
-            className="
-              mt-8 flex flex-col md:flex-row
-              items-center justify-center md:justify-start
-              gap-4 md:gap-4
-            "
-          >
-            <p className="text-sm md:text- text-neutral-700 font-semibold leading-snug text-center md:text-left">
-              We are Trusted by <br />
-              <span className="text-[#1D309D]">Industry Leaders</span>
-            </p>
-
-            <div className="hidden md:block h-5 w-px bg-gray-300/60" />
-
-            <div className="flex -space-x-4">
-              <AnimatedTooltip items={people} />
-            </div>
-          </motion.div>
-
-          {/* === Button === */}
-          {/* <div className="mt-10">
-            <button
-              className="button relative z-[10000]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
-            >
-              <span className="button__icon-wrapper">
-                <svg
-                  viewBox="0 0 14 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="button__icon-svg"
-                  width="11"
-                >
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <svg
-                  viewBox="0 0 14 15"
-                  fill="none"
-                  width="11"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="button__icon-svg button__icon-svg--copy"
-                >
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </span>
-              Explore Our Events
-            </button>
-          </div> */}
-        </div>
-
-        {/* === RIGHT SIDE (Cards) === */}
-        <div className="flex justify-end items-center relative z-10">
-          <div className="relative w-full flex items-center justify-center md:justify-end">
-            <div
-              className="relative lg:mr-[20%] mr-[2%] lg:scale-100 scale-175  lg:mt-0 mt-[-80%] sm:mr-0 flex items-center justify-center"
-              style={{
-                height: "400px",
-                maxWidth: "520px",
-              }}
-            >
-              <CardSwap
-                width={460}
-                height={340}
-                cardDistance={55}
-                verticalDistance={65}
-                delay={5000}
-                pauseOnHover={false}
+      {/* Main Wrapper */}
+      <div className="relative pt-24 md:pt-0 z-10 w-full min-h-screen flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 md:py-0">
+          
+          {/* 
+            Layout:
+            - Mobile: Column layout, content first, cards below
+            - Desktop (lg+): Row layout, content left, cards right
+          */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-8">
+            
+            {/* ===== LEFT/TOP: Content ===== */}
+            <div className="text-center lg:text-left lg:max-w-xl">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
               >
-                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-                  <img
-                    src="/images/explore/hero/h4.jpeg"
-                    alt="Boardrooms"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
-                  />
-                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
-                    <h3 className="text-2xl mb-2">Boardrooms</h3>
-                    <p className="text-sm">
-                      Exclusive leadership meetings for high-level
-                      decision-makers.
-                    </p>
-                  </div> */}
-                </Card>
+                What We Deliver
+              </motion.h1>
 
-                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-                  <img
-                    src="/images/explore/hero/h3.jpeg"
-                    alt="Podcasts"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
-                  />
-                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
-                    <h3 className="text-2xl mb-2">Podcasts</h3>
-                    <p className="text-sm">
-                      We bring your brand stories to life through engaging
-                      conversations and interviews.
-                    </p>
-                  </div> */}
-                </Card>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="mt-4 lg:mt-6 text-sm sm:text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
+              >
+                We Craft High Impact Experiences That Connect Decision Makers,
+                Ideas, and Industries Empowering Organizations to Collaborate,
+                Innovate, and Grow.
+              </motion.p>
 
-                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-                  <img
-                    src="/images/explore/hero/h6.png"
-                    alt="Conference Series"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+              {/* Stats - Always single row, responsive sizing */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="mt-8 lg:mt-12 flex flex-row justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 lg:gap-10"
+              >
+                {stats.map((s, i) => (
+                  <StatCounter
+                    key={i}
+                    value={s.number}
+                    suffix={s.suffix}
+                    label={s.label}
+                    delay={0.3 + i * 0.15}
                   />
-                  {/* <div className="relative z-10 p-8 text-center bg-black/40 backdrop-blur-sm">
-                    <h3 className="text-2xl mb-2">Conference Series</h3>
-                    <p className="text-sm">
-                      Global industries converge for collaboration and
-                      innovation.
-                    </p>
-                  </div> */}
-                </Card>
+                ))}
+              </motion.div>
 
-                <Card className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden">
-                  <img
-                    src="/images/explore/hero/h5.webp"
-                    alt="Exhibitions"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
-                  />
-                  {/* <div className="relative z-10 p-8 text-center">
-                    <h3 className="text-2xl mb-2">Exhibitions</h3>
-                    <p className="text-sm">
-                      Immersive showcases connecting innovators with investors
-                      and leaders.
-                    </p>
-                  </div> */}
-                </Card>
-              </CardSwap>
+              {/* Trusted By - Desktop Only */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="hidden lg:flex mt-10 items-center gap-5"
+              >
+                <p className="text-sm text-neutral-700 font-semibold leading-snug">
+                  We are Trusted by <br />
+                  <span className="text-[#1D309D]">Industry Leaders</span>
+                </p>
+                <div className="h-8 w-px bg-neutral-300" />
+                <div className="flex -space-x-3">
+                  <AnimatedTooltip items={people} />
+                </div>
+              </motion.div>
             </div>
+
+            {/* ===== RIGHT/BOTTOM: Cards ===== */}
+            <div className="flex justify-center lg:justify-end flex-shrink-0 mt-4 lg:mt-0">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div
+                  className="relative"
+                  style={{
+                    width: totalWidth,
+                    height: totalHeight,
+                  }}
+                >
+                  <div
+                    className="absolute"
+                    style={{
+                      left: centerOffsetX,
+                      top: centerOffsetY,
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                  >
+                    <CardSwap
+                      width={cardConfig.width}
+                      height={cardConfig.height}
+                      cardDistance={cardConfig.cardDistance}
+                      verticalDistance={cardConfig.verticalDistance}
+                      delay={5000}
+                      pauseOnHover={false}
+                    >
+                      {cardImages.map((img, i) => (
+                        <Card
+                          key={i}
+                          className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden"
+                        >
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="absolute inset-0 w-full h-full object-cover opacity-80"
+                          />
+                        </Card>
+                      ))}
+                    </CardSwap>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -262,12 +239,12 @@ export default function ServicesHeroDemo() {
   );
 }
 
-/* === Counter Component (one-time animation) === */
+/* ============ STAT COUNTER ============ */
 function StatCounter({
   value,
   suffix,
   label,
-  delay,
+  delay = 0,
 }: {
   value: number;
   suffix: string;
@@ -275,13 +252,12 @@ function StatCounter({
   delay?: number;
 }) {
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.floor(latest));
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     const controls = animate(count, value, {
       duration: 2,
-      delay: delay ?? 0,
+      delay,
       ease: "easeOut",
       onUpdate: (v) => setDisplay(Math.floor(v)),
     });
@@ -289,20 +265,15 @@ function StatCounter({
   }, [count, value, delay]);
 
   return (
-    <motion.div
-      className="flex flex-col items-center md:items-start"
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-    >
-<span className="text-2xl sm:text-3xl md:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+    <div className="flex flex-col items-center lg:items-start">
+      {/* Responsive text sizes for single row on mobile */}
+      <span className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-<span className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium mt-1 whitespace-nowrap">
+      <span className="text-[10px] sm:text-xs md:text-sm lg:text-base text-neutral-600 font-medium mt-1 whitespace-nowrap">
         {label}
       </span>
-    </motion.div>
+    </div>
   );
 }

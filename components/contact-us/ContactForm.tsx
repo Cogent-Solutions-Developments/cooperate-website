@@ -1,11 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactForm() {
   return (
     <section className="relative w-full bg-white py-28 lg:py-12 text-black overflow-hidden">
-<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 px-6 lg:px-12 items-start relative z-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 px-6 lg:px-12 items-start relative z-10">
 
         {/* === LEFT SIDE === */}
         <motion.div
@@ -16,7 +16,7 @@ export default function ContactForm() {
           className="space-y-8"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.15]">
-            <span className="text-[#1D309D]">Let’s Start</span> the <br />
+            <span className="text-[#1D309D]">Let's Start</span> the <br />
             <span className="text-black">Conversation</span>
           </h2>
 
@@ -27,23 +27,49 @@ export default function ContactForm() {
           </p>
 
           {/* CONTACT INFO */}
-          <div className="space-y-5 pt-3">
+          <div className="space-y-6 pt-3">
+            {/* Email */}
             <div className="flex items-center gap-4 group">
-              <div className="p-3 rounded-xl bg-[#1D309D]/10 group-hover:bg-[#1D309D]/20 transition-all">
-                <Mail className="w-5 h-5 text-[#1D309D]" />
+              <div className="p-3 rounded-xl bg-[#2f53bd]/10 group-hover:bg-[#2f53bd]/20 transition-all">
+                <Mail className="w-5 h-5 text-[#2f53bd]" />
               </div>
               <span className="text-neutral-800 text-[15.5px] tracking-tight">
-                solutions@cogentsolutions.com
+                partnerships@cogentsolutions.ae
               </span>
             </div>
 
+            {/* Phone Numbers */}
             <div className="flex items-center gap-4 group">
-              <div className="p-3 rounded-xl bg-[#1D309D]/10 group-hover:bg-[#1D309D]/20 transition-all">
-                <Phone className="w-5 h-5 text-[#1D309D]" />
+              <div className="p-3 rounded-xl bg-[#2f53bd]/10 group-hover:bg-[#2f53bd]/20 transition-all">
+                <Phone className="w-5 h-5 text-[#2f53bd]" />
               </div>
-              <span className="text-neutral-800 text-[15.5px] tracking-tight">
-                +971 4 123 4567
-              </span>
+              <div className="text-neutral-800 text-[15.5px] tracking-tight">
+                <span>+971 4 576 1039</span>
+                <span className="mx-2 text-neutral-400">|</span>
+                <span>+971 50 643 5244</span>
+              </div>
+            </div>
+
+            {/* Locations */}
+            <div className="flex items-start gap-4 group">
+              <div className="p-3 rounded-xl bg-[#2f53bd]/10 group-hover:bg-[#2f53bd]/20 transition-all">
+                <MapPin className="w-5 h-5 text-[#2f53bd]" />
+              </div>
+              <div className="text-neutral-800 text-[15.5px] tracking-tight space-y-4">
+                {/* Middle East & Africa HQ */}
+                <div>
+                  <p className="font-semibold text-neutral-900">Middle East & Africa HQ</p>
+                  <p className="text-neutral-600">Office No: 209, The Metropolis Tower,</p>
+                  <p className="text-neutral-600">Business Bay, Dubai, United Arab Emirates</p>
+                </div>
+
+                {/* Asia Pacific HQ */}
+                <div>
+                  <p className="font-semibold text-neutral-900">Asia Pacific HQ</p>
+                  <p className="text-neutral-600">2nd Floor, Green Lanka Tower,</p>
+                  <p className="text-neutral-600">Colombo, Sri Lanka</p>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -66,7 +92,7 @@ export default function ContactForm() {
               type="text"
               placeholder="Jane Smith"
               className="w-full border border-neutral-300 rounded-xl px-4 py-3 text-sm
-                focus:ring-2 focus:ring-[#1D309D] focus:outline-none transition-all"
+                focus:ring-2 focus:ring-[#2f53bd] focus:outline-none transition-all"
             />
           </div>
 
@@ -79,7 +105,7 @@ export default function ContactForm() {
               type="email"
               placeholder="email@company.com"
               className="w-full border border-neutral-300 rounded-xl px-4 py-3 text-sm
-                focus:ring-2 focus:ring-[#1D309D] focus:outline-none transition-all"
+                focus:ring-2 focus:ring-[#2f53bd] focus:outline-none transition-all"
             />
           </div>
 
@@ -90,7 +116,7 @@ export default function ContactForm() {
             </label>
             <select
               className="w-full border border-neutral-300 rounded-xl px-4 py-3 text-sm bg-white 
-                focus:ring-2 focus:ring-[#1D309D] focus:outline-none transition-all"
+                focus:ring-2 focus:ring-[#2f53bd] focus:outline-none transition-all"
               defaultValue=""
             >
               <option value="" disabled>
@@ -112,7 +138,7 @@ export default function ContactForm() {
               rows={4}
               placeholder="Type your message..."
               className="w-full border border-neutral-300 rounded-xl px-4 py-3 text-sm resize-none
-                focus:ring-2 focus:ring-[#1D309D] focus:outline-none transition-all"
+                focus:ring-2 focus:ring-[#2f53bd] focus:outline-none transition-all"
             />
           </div>
 

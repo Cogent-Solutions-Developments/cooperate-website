@@ -13,28 +13,39 @@ export default function ServicesHeroDemo() {
     verticalDistance: 60,
   });
 
-  useEffect(() => {
-    const updateSize = () => {
-      const w = window.innerWidth;
+   useEffect(() => {
+    if (typeof window === "undefined") return;
 
-      if (w >= 1280) {
-        setCardConfig({ width: 420, height: 310, cardDistance: 50, verticalDistance: 60 });
-      } else if (w >= 1024) {
-        setCardConfig({ width: 360, height: 270, cardDistance: 44, verticalDistance: 54 });
-      } else if (w >= 768) {
-        setCardConfig({ width: 320, height: 240, cardDistance: 38, verticalDistance: 48 });
-      } else if (w >= 640) {
-        setCardConfig({ width: 280, height: 210, cardDistance: 32, verticalDistance: 42 });
+    const mql = window.matchMedia("(max-width: 640px)");
+
+    const updateConfig = () => {
+      if (mql.matches) {
+        // 👇 MOBILE – MAKE THEM BIGGER HERE
+        setCardConfig({
+          width: 400,       // bigger than before
+          height: 325,      // bigger than before
+          cardDistance: 28,
+          verticalDistance: 36,
+        });
       } else {
-        // Mobile - smaller cards
-        setCardConfig({ width: 220, height: 165, cardDistance: 22, verticalDistance: 28 });
+        // 👇 NON-MOBILE – you can tune these, but they're already fine
+        setCardConfig({
+          width: 360,
+          height: 270,
+          cardDistance: 44,
+          verticalDistance: 54,
+        });
       }
     };
 
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    updateConfig();
+    mql.addEventListener("change", updateConfig);
+
+    return () => {
+      mql.removeEventListener("change", updateConfig);
+    };
   }, []);
+
 
   const stats = [
     { number: 500, suffix: "+", label: "Events Delivered" },
@@ -103,7 +114,7 @@ export default function ServicesHeroDemo() {
       />
 
       {/* Main Wrapper */}
-      <div className="relative z-10 w-full min-h-screen flex items-center">
+      <div className="relative pt-24 md:pt-0 z-10 w-full min-h-screen flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 md:py-0">
           
           {/* 
@@ -119,7 +130,7 @@ export default function ServicesHeroDemo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
+                className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
               >
                 What We Deliver
               </motion.h1>
@@ -256,7 +267,7 @@ function StatCounter({
   return (
     <div className="flex flex-col items-center lg:items-start">
       {/* Responsive text sizes for single row on mobile */}
-      <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+      <span className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>

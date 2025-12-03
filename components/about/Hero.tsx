@@ -37,7 +37,7 @@ export default function AboutHero() {
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden"
+      className="relative w-full bg-white overflow-hidden hero"
       style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
     >
       {/* Spacer = Nav Height */}

@@ -179,7 +179,7 @@ export default function NavBar() {
                 {/* IMAGE SIDE */}
                 <div className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[400px] flex items-end">
                   <img
-                    src="/images/BI1.jpeg"
+                    src="/images/navbarmodelimagelight.webp"
                     className="absolute inset-0 w-full h-full object-cover"
                     alt=""
                   />
@@ -194,29 +194,38 @@ export default function NavBar() {
                     </p>
 
                     <div className="flex justify-end">
-                      <a
-                        href="#"
-                        className="
-                          inline-flex items-center gap-2 bg-white text-gray-900
-                          px-5 py-2.5 rounded-full font-semibold text-sm
-                          hover:bg-gray-100 transition-all duration-300 hover:gap-3 shadow-lg
-                        "
-                      >
-                        Explore Our Services
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </a>
+                      <button
+              className="button relative z-[6]"
+              style={{ ["--clr" as any]: "#2f53bd" }}
+            >
+              <span className="button__icon-wrapper">
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg"
+                  width="11"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  width="11"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg button__icon-svg--copy"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </span>
+              Explore Our Events
+            </button>
                     </div>
                   </div>
                 </div>

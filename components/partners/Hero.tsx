@@ -55,7 +55,7 @@ export default function ExploreHero3() {
       <div
         className="
           absolute left-1/2 transform -translate-x-1/2 z-20
-          flex max-md:flex-col max-md:h-auto max-md:p-4
+          flex max-md:flex-col max-md:h-auto max-md:p-4 
         "
         style={{
           top: isMobile ? "45%" : "55%",

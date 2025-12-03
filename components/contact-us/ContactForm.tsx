@@ -52,7 +52,7 @@ export default function ContactForm() {
           </div>
           
           {/* Locations - Always left aligned */}
-          <div className="space-y-6 pt-3">
+          <div className="space-y-6 pt-0">
             <div className="flex items-start gap-4 group">
               <div className="p-3 rounded-xl bg-[#2f53bd]/10 group-hover:bg-[#2f53bd]/20 transition-all">
                 <MapPin className="w-5 h-5 text-[#2f53bd]" />

@@ -175,12 +175,12 @@ export default function NavBarDark() {
                 {/* Image Section */}
                 <div className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[400px] flex items-end">
                   <img
-                    src="/images/BI1.jpeg"
+                    src="/images/navbarmodelimagedark.webp"
                     alt="Business Conference"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/60 to-black/10" />
 
                   <div className="relative z-0 p-6 md:p-8 text-white text-right space-y-4 md:space-y-5">
                     <p className="text-sm leading-relaxed font-medium">

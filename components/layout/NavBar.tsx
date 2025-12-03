@@ -179,7 +179,7 @@ export default function NavBar() {
                 {/* IMAGE SIDE */}
                 <div className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[400px] flex items-end">
                   <img
-                    src="/images/BI1.jpeg"
+                    src="/images/navbarmodelimagelight.webp"
                     className="absolute inset-0 w-full h-full object-cover"
                     alt=""
                   />

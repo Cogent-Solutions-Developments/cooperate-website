@@ -180,7 +180,7 @@ export default function NavBarDark() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/60 to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/60 to-black/0" />
 
                   <div className="relative z-0 p-6 md:p-8 text-white text-right space-y-4 md:space-y-5">
                     <p className="text-sm leading-relaxed font-medium">

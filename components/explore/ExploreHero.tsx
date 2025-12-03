@@ -176,7 +176,7 @@ export default function ExploreHero({
 
   return (
     <section
-      className="relative overflow-hidden text-neutral-900 h-screen"
+      className="relative overflow-hidden text-neutral-900 h-screen hero"
       style={{
         background:
           "radial-gradient(120% 110% at 50% 0%, #ffffff 0%, #e9edfb 70%, #ffffff 100%)",

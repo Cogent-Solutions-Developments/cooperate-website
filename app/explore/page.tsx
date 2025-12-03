@@ -9,6 +9,7 @@ import BoardroomSection from "@/components/explore/sections/BoardroomSection";
 // import VirtualEventsSection from "@/components/explore/sections/VirtualEventsSection";
 import { ExploreCategory } from "@/types/explore";
 import Footer from "@/components/layout/Footer";
+import SocialsTab from "@/components/layout/SocialsTab";
 
 export default function ExplorePage() {
   const [active, setActive] = useState<ExploreCategory>("conferences");
@@ -23,6 +24,7 @@ export default function ExplorePage() {
       {active === "boardrooms" && <BoardroomSection />}
       {/* {active === "virtual" && <VirtualEventsSection />} */}
       <Footer />
+      <SocialsTab />
     </>
   );
 }

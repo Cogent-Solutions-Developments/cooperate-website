@@ -139,7 +139,7 @@ export default function ServicesHeroDemo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-4 lg:mt-6 text-sm sm:text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
+                className="mt-4 lg:mt-6 text-md sm:text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
               >
                 We Craft High Impact Experiences That Connect Decision Makers,
                 Ideas, and Industries Empowering Organizations to Collaborate,
@@ -267,11 +267,11 @@ function StatCounter({
   return (
     <div className="flex flex-col items-center lg:items-start">
       {/* Responsive text sizes for single row on mobile */}
-      <span className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+      <span className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-[10px] sm:text-xs md:text-sm lg:text-base text-neutral-600 font-medium mt-1 whitespace-nowrap">
+      <span className="text-[12px] sm:text-xs md:text-sm lg:text-base text-neutral-600 font-medium mt-1 whitespace-nowrap">
         {label}
       </span>
     </div>

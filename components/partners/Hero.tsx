@@ -146,7 +146,7 @@ onMouseMove={(e) => {
       {!isMobile && (
         <img
           ref={revealImgRef}
-          src="/images/bg.png"
+          src="/images/parternsbg2.jpg"
           alt="Reveal effect"
           className="absolute w-full pointer-events-none select-none"
           style={
@@ -154,7 +154,7 @@ onMouseMove={(e) => {
               top: "-25%",
               zIndex: 0,
               mixBlendMode: "lighten",
-              opacity: 0.9,
+              opacity: 0.2,
               WebkitMaskImage:
                 "radial-gradient(circle at var(--mx) var(--my), white 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, transparent 240px)",
               maskImage:

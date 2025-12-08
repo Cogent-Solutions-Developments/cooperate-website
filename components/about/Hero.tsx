@@ -12,11 +12,11 @@ export default function AboutHero() {
   const NAV_HEIGHT = 88;
 
   const images = [
-    "/images/explore/hero/h5.webp",
-    "/images/explore/hero/h1.jpg",
-    "/images/explore/hero/h3.jpeg",
-    "/images/explore/hero/h2.jpg",
-    "/images/explore/hero/h4.jpeg",
+    "	https://cogentsolutions.ae/views/img/explore-logos/2nd-dnfbp-logo.webp",
+    "	https://cogentsolutions.ae/views/img/explore-logos/12th-regtech.webp",
+    "	https://cogentsolutions.ae/views/img/explore-logos/stadium_congress.png",
+    "		https://cogentsolutions.ae/views/img/explore-logos/2nd-water-management.png",
+    "https://cogentsolutions.ae/views/img/logos/asset-integrity-mgmt.png",
   ];
 
   const transforms = [
@@ -45,7 +45,6 @@ export default function AboutHero() {
 
       {/* ====== MAIN CONTAINER ====== */}
       <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-6 lg:px-12 2xl:px-20">
-
         {/* ====== FULL HERO HEIGHT ====== */}
         <div
           className="
@@ -72,10 +71,10 @@ export default function AboutHero() {
                     animate={
                       hovered
                         ? {
-                            scale: [1, 0.98, 0.96, 0.93, 0.91, 0.9],
-                            x: [0, -0.5, 0.5, -0.7, 0.7, 0],
-                            y: [0, -0.6, -0.5, -0.8, 0.8, 0],
-                          }
+                          scale: [1, 0.98, 0.96, 0.93, 0.91, 0.9],
+                          x: [0, -0.5, 0.5, -0.7, 0.7, 0],
+                          y: [0, -0.6, -0.5, -0.8, 0.8, 0],
+                        }
                         : { scale: 1, x: 0, y: 0 }
                     }
                     transition={{
@@ -136,56 +135,55 @@ export default function AboutHero() {
             </div>
           </div>
 
-         {/* === BOUNCE CARDS === */}
-<div
-  className="
+          {/* === BOUNCE CARDS === */}
+          <div
+            className="
     relative 
-    mt-[-40px] 
+    mt-[20px] 
     md:mt-[-60px]
     lg:mt-[-20px]
-    xl:mt-[0px]
+    xl:mt-[-40px]
     2xl:mt-[0px]
     flex justify-center
   "
->
-  {/* Desktop Version — with scaling */}
-  <BounceCards
-    images={images}
-    transformStyles={transforms}
-    containerWidth={720}
-    containerHeight={320}
-    animationDelay={0.6}
-    animationStagger={0.09}
-    easeType="elastic.out(1, 0.6)"
-    enableHover={false}
-    className="
+          >
+            {/* Desktop Version — with scaling */}
+            <BounceCards
+              images={images}
+              transformStyles={transforms}
+              containerWidth={720}
+              containerHeight={320}
+              animationDelay={0.6}
+              animationStagger={0.09}
+              easeType="elastic.out(1, 0.6)"
+              enableHover={false}
+              className="
       hidden md:flex 
       scale-100 
       lg:scale-[1.15] 
-      xl:scale-[1.25] 
-      2xl:scale-[1.35] 
+      xl:scale-[1.15] 
+      2xl:scale-[1.3] 
       origin-center
     "
-  />
+            />
 
-  {/* Mobile Version */}
-  <BounceCards
-    images={images.slice(1, 4)}
-    transformStyles={[
-      "rotate(5deg) translate(-70px)",
-      "rotate(-3deg)",
-      "rotate(4deg) translate(70px)",
-    ]}
-    containerWidth={340}
-    containerHeight={220}
-    animationDelay={0.6}
-    animationStagger={0.06}
-    easeType="elastic.out(1, 0.6)"
-    enableHover={false}
-    className="md:hidden"
-  />
-</div>
-
+            {/* Mobile Version */}
+            <BounceCards
+              images={images.slice(1, 4)}
+              transformStyles={[
+                "rotate(5deg) translate(-70px)",
+                "rotate(-3deg)",
+                "rotate(4deg) translate(70px)",
+              ]}
+              containerWidth={340}
+              containerHeight={220}
+              animationDelay={0.6}
+              animationStagger={0.06}
+              easeType="elastic.out(1, 0.6)"
+              enableHover={false}
+              className="md:hidden"
+            />
+          </div>
         </div>
       </div>
     </section>

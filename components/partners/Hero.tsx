@@ -16,25 +16,24 @@ export default function ExploreHero3() {
   return (
     <section
   className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
-  onMouseMove={(e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+onMouseMove={(e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    if (revealImgRef.current) {
-      revealImgRef.current.style.setProperty("--mx", `${x}px`);
-      revealImgRef.current.style.setProperty(
-        "--my",
-        `${y + rect.height * 0.5}px`
-      );
-    }
-  }}
+  if (revealImgRef.current) {
+    revealImgRef.current.style.setProperty("--mx", `${x}px`);
+    revealImgRef.current.style.setProperty("--my", `${y}px`);
+  }
+}}
+
   onMouseLeave={() => {
-    if (revealImgRef.current) {
-      revealImgRef.current.style.setProperty("--mx", "-9999px");
-      revealImgRef.current.style.setProperty("--my", "-9999px");
-    }
-  }}
+  if (revealImgRef.current) {
+    revealImgRef.current.style.setProperty("--mx", "-9999px");
+    revealImgRef.current.style.setProperty("--my", "-9999px");
+  }
+}}
+
 >
 
       {/* === Laser Shader Background === */}
@@ -147,7 +146,7 @@ export default function ExploreHero3() {
       {!isMobile && (
         <img
           ref={revealImgRef}
-          src="/images/hand.webp.jpg"
+          src="/images/bg.png"
           alt="Reveal effect"
           className="absolute w-full pointer-events-none select-none"
           style={

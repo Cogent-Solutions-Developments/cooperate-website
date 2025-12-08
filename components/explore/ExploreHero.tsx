@@ -18,7 +18,7 @@ export default function ExploreHero({
     { type: "image", src: "/images/csr1.webp" },
     { type: "image", src: "/images/csr2.webp" },
     { type: "video", src: "/videos/explore2.mp4" },
-    { type: "image", src: "/images/csr4.webp" },
+    { type: "video", src: "/videos/explore4.mp4" },
     { type: "image", src: "/images/csr5.webp" },
     { type: "video", src: "/videos/explore3.mp4" },
     { type: "image", src: "/images/csr6.webp" },

@@ -65,7 +65,6 @@ export default function ServiceCommandCenter() {
     <section className="relative w-full bg-gradient-to-b from-[#F8F9FB] to-white pb-20">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
-          
           {/* LEFT PANEL (Desktop only) */}
           <aside className="hidden lg:flex sticky top-[80px] h-[calc(100vh-80px)] w-[34%] flex-col justify-between py-12">
             <div>
@@ -178,7 +177,7 @@ function Scene({
         {service.description.map((para, i) => (
           <p
             key={i}
-            className="mt-3 text-sm sm:text-base text-neutral-200 leading-relaxed"
+            className="mt-2 text-sm sm:text-base text-neutral-200 leading-tight"
           >
             {para}
           </p>
@@ -186,23 +185,41 @@ function Scene({
 
         <Link
           href={service.link}
-          className="mt-5 inline-flex items-center gap-2 bg-white/90 hover:bg-white text-neutral-900 font-medium text-sm px-5 py-3 rounded-full transition-all"
+          className="mt-5 inline-block" // keeps spacing correct
         >
-          View More
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
+          <button
+            className="button relative z-[10000]"
+            style={{ ["--clr" as any]: "#2f53bd" }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.25 8.25 21 12l-3.75 3.75M21 12H3"
-            />
-          </svg>
+            <span className="button__icon-wrapper">
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="button__icon-svg"
+                width="11"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                />
+              </svg>
+
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="11"
+                xmlns="http://www.w3.org/2000/svg"
+                className="button__icon-svg button__icon-svg--copy"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            View More
+          </button>
         </Link>
       </motion.div>
     </div>

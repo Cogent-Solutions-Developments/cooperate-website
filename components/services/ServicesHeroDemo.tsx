@@ -58,31 +58,31 @@ export default function ServicesHeroDemo() {
       id: 1,
       name: "John Doe",
       designation: "Software Engineer",
-      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=3387&q=80",
+      image: "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png",
     },
     {
       id: 2,
       name: "Robert Johnson",
       designation: "Product Manager",
-      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.seeklogo.com/logo-png/10/1/oracle-logo-png_seeklogo-103836.png",
     },
     {
       id: 3,
       name: "Jane Smith",
       designation: "Data Scientist",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+      image: "https://toppng.com/uploads/preview/coca-cola-logo-transparent-png-11659434553ffz5jgamkh.png",
     },
     {
       id: 4,
       name: "Emily Davis",
       designation: "UX Designer",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80",
+      image: "https://i.tracxn.com/logo/company/byteplus.com_Logo_ee8544f1-f730-42da-bf47-a7b712bd39bb.jpg",
     },
     {
       id: 5,
       name: "Tyler Durden",
       designation: "Soap Developer",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5jqY91GEsxQe-NWpFY7EcSO4NyackqgPcw&s",
     },
   ];
 

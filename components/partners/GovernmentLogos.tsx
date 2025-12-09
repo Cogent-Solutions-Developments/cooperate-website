@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function IndustryLogos() {
+export default function GovernmentLogos() {
   const logos = [
   "/images/partners/Almarai.png",
   "/images/partners/Amazon.png",
@@ -30,8 +30,6 @@ export default function IndustryLogos() {
   "/images/partners/Saudia.png",
   "/images/partners/SC.png",
   "/images/partners/Temenos.png",
-  "/images/partners/Nvidia.png",
-  '/images/partners/Byteplus.png',
 ];
 
 
@@ -55,8 +53,12 @@ export default function IndustryLogos() {
 
       {/* ===== Scrollable Grid ===== */}
       <div
-        className="relative w-full max-w-7xl "
-       
+        className="relative w-full max-w-7xl h-[420px] sm:h-[480px] md:h-[520px] overflow-y-scroll"
+        style={{
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // IE
+          scrollBehavior: "smooth",
+        }}
       >
         {/* hide scrollbar for WebKit */}
         <style jsx>{`
@@ -69,19 +71,19 @@ export default function IndustryLogos() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 w-full border-t border-l border-gray-200"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full border-t border-l border-gray-200"
         >
           {logos.map((src, i) => (
             <div
               key={i}
-              className="group flex items-center justify-center border-b border-r border-gray-200 aspect-[4/3] bg-white hover:bg-[#f8f9ff] transition-all duration-300"
+              className="group flex items-center justify-center border-b border-r border-gray-200 aspect-[4/3] bg-white hover:bg-[#F5F7FF] transition-all duration-300"
             >
               <Image
                 src={src}
                 alt={`Government Partner Logo ${i + 1}`}
-                width={100}
-                height={60}
-                className="object-contain opacity-100 grayscale-30 hover:grayscale-0 group-hover:opacity-100 transition-all duration-100"
+                width={120}
+                height={80}
+                className="object-contain opacity-100 grayscale-30 hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}

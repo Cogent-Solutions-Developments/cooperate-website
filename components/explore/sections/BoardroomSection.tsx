@@ -79,7 +79,7 @@ export default function BoardroomSection() {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="text-center mb-24">
-          <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+          <h2 className="text-5xl font-semibold tracking-tight text-gray-900 mb-4">
             <span className="text-black">
               Boardrooms
             </span>

@@ -14,16 +14,16 @@ export default function ExploreHero({
   subtitle = "Our Conferences",
   description = "Exclusive, Closed-Door Platforms Where Ideas Meet Opportunity.",
   media = [
-    { type: "image", src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400" },
-    { type: "image", src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400" },
     { type: "video", src: "/videos/domev1.mp4" },
+    { type: "image", src: "/images/csr1.webp" },
+    { type: "image", src: "/images/csr2.webp" },
     { type: "video", src: "/videos/explore2.mp4" },
-    { type: "image", src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400" },
-    { type: "image", src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400" },
+    { type: "video", src: "/videos/explore4.mp4" },
+    { type: "image", src: "/images/csr5.webp" },
     { type: "video", src: "/videos/explore3.mp4" },
-    { type: "image", src: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400" },
+    { type: "image", src: "/images/csr6.webp" },
     { type: "video", src: "/videos/explore1.mp4" },
-    { type: "image", src: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=400" },
+    { type: "image", src: "/images/csr7.webp" },
   ] as MediaItem[],
   showArrow = true,
   scrollSpeed = 40,
@@ -39,7 +39,7 @@ export default function ExploreHero({
 
   // Desktop values (preserved exactly as original)
   const DESKTOP_WIDTH = 220;
-  const DESKTOP_HEIGHT = 320;
+  const DESKTOP_HEIGHT = 325;
   const DESKTOP_GAP = 24;
 
   // Responsive card dimensions - desktop (lg+) stays exactly the same

@@ -5,34 +5,79 @@ import { motion } from "framer-motion";
 
 export default function IndustryLogos() {
   const logos = [
-  "/images/partners/Almarai.png",
+  "/images/partners/Microsoft.png",
   "/images/partners/Amazon.png",
-  "/images/partners/Aramco.png",
-  "/images/partners/BlackBerry.png",
-  "/images/partners/Coca Cola.png",
-  "/images/partners/Daikin.png",
-  "/images/partners/Dow Jones.png",
-  "/images/partners/Fifa.png",
-  "/images/partners/Finsatra.png",
-  "/images/partners/HCLTech.png",
-  "/images/partners/HIKVISION.png",
-  "/images/partners/HSBC.png",
-  "/images/partners/IFS.png",
-  "/images/partners/Infosys.png",
   "/images/partners/Intel.png",
+  "/images/partners/Nvidia.png",
+  "/images/partners/MasterCard.png",
+  "/images/partners/HSBC.png",
+  "/images/partners/Oracle.png",
+  "/images/partners/Infosys.png",
   "/images/partners/KPMG.png",
+  "/images/partners/Aramco.png",
+  "/images/partners/Fifa.png",
+  "/images/partners/Coca Cola.png",
+  "/images/partners/BlackBerry.png",
   "/images/partners/Logitech.png",
   "/images/partners/LSEG.png",
-  "/images/partners/MasterCard.png",
-  "/images/partners/Microsoft.png",
   "/images/partners/Moody.png",
-  "/images/partners/Oracle.png",
-  "/images/partners/Saudia.png",
   "/images/partners/SC.png",
+  "/images/partners/IFS.png",
+  "/images/partners/HCLTech.png",
+  "/images/partners/HIKVISION.png",
+  "/images/partners/Daikin.png",
+  "/images/partners/Jhonson Controls.webp",
+  "/images/partners/Emerson.webp",
+  "/images/partners/Finsatra.png",
+  "/images/partners/Byteplus.png",
+  "/images/partners/Almarai.png",
+  "/images/partners/Saudia.png",
+  "/images/partners/Dow Jones.png",
   "/images/partners/Temenos.png",
-  "/images/partners/Nvidia.png",
-  '/images/partners/Byteplus.png',
-];
+  "/images/partners/Iriss.webp",
+  "/images/partners/Akselos.webp",
+  "/images/partners/Baker Hughes.webp",
+  "/images/partners/Polypipe.webp",
+  "/images/partners/Wizz.png",
+  "/images/partners/GulfAir.png",
+  "/images/partners/SalamAir.png",
+  "/images/partners/ZurichAirport.png",
+  "/images/partners/MunichAirport.png",
+  "/images/partners/RedSeaAirport.png",
+  "/images/partners/GeorgFischer.png",
+  "/images/partners/ADS.png",
+  "/images/partners/CubicM3.png",
+  "/images/partners/Rainsafe.png",
+  "/images/partners/UeSystems.png",
+  "/images/partners/3XEngineering.png",
+  "/images/partners/KanooEnergy.png",
+  "/images/partners/Pretect.png",
+  "/images/partners/CorrosionRadar.png",
+  "/images/partners/GulfScientificCoporation.png",
+  "/images/partners/Mace.png",
+  "/images/partners/MottMacDonald.png",
+  "/images/partners/Parsons.png",
+  "/images/partners/ElSeif.png",
+  "/images/partners/Sogec.png",
+  "/images/partners/IJAE.png",
+  "/images/partners/DamasJewellery.png",
+  "/images/partners/Finmet.png",
+  "/images/partners/gsmsella.png",
+  "/images/partners/AFL.png",
+  "/images/partners/Terrapay.png",
+  "/images/partners/Loctax.png",
+  "/images/partners/JSSPro.png",
+  "/images/partners/ELT.png",
+  "/images/partners/BitOasis.png",
+  "/images/partners/JinglePay.png",
+  "/images/partners/AKW.png",
+  "/images/partners/IMTF.png",
+  "/images/partners/Zigram.png",
+  "/images/partners/Label.png",
+  "/images/partners/Algonomia.png"
+]
+
+
 
 
   return (
@@ -45,11 +90,11 @@ export default function IndustryLogos() {
         className="text-center mb-16 max-w-2xl"
       >
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
-          Government &amp; Regulatory
-          <br /> Partners
+          Our Trusted Industry  
+          <br /> Leaders &amp; Partners
         </h1>
         <p className="text-lg sm:text-xl text-gray-600 mt-4">
-          Over 200+ Government and Regulatory Entities Trust Us.
+          Over 500+ Global Brands and Industry Leaders Have Worked With Us
         </p>
       </motion.div>
 
@@ -78,10 +123,10 @@ export default function IndustryLogos() {
             >
               <Image
                 src={src}
-                alt={`Government Partner Logo ${i + 1}`}
-                width={100}
-                height={60}
-                className="object-contain opacity-100 grayscale-30 hover:grayscale-0 group-hover:opacity-100 transition-all duration-100"
+                alt={`Industry Partner Logo ${i + 1}`}
+                width={110}
+                height={70}
+                className="object-contain opacity-100 grayscale-10 hover:grayscale-0 group-hover:opacity-100 transition-all duration-100"
               />
             </div>
           ))}

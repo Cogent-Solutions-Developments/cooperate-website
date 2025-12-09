@@ -6,26 +6,26 @@ import { motion } from "framer-motion";
 export default function IndustryPartners() {
   // First row logos
   const logosRow1 = [
-    { src: "/images/services/logos/Amazon.png", alt: "Amazon", href: "#" },
-    { src: "/images/services/logos/Intel.png", alt: "Intel", href: "#" },
-    { src: "/images/services/logos/HSBC.png", alt: "HSBC", href: "#" },
+    { src: "/images/partners/Amazon.png", alt: "Amazon", href: "#" },
+    { src: "/images/partners/Intel.png", alt: "Intel", href: "#" },
+    { src: "/images/partners/HSBC.png", alt: "HSBC", href: "#" },
     {
-      src: "/images/services/logos/Coca Cola.png",
+      src: "/images/partners/Coca Cola.png",
       alt: "Coca-Cola",
       href: "#",
     },
-    { src: "/images/services/logos/Fifa.png", alt: "FIFA", href: "#" },
+    { src: "/images/partners/Fifa.png", alt: "FIFA", href: "#" },
     {
-      src: "/images/services/logos/Microsoft.png",
+      src: "/images/partners/Microsoft.png",
       alt: "Microsoft",
       href: "#",
     },
-    { src: "/images/services/logos/IFS.png", alt: "IFS", href: "#" },
-    { src: "/images/services/logos/Aramco.png", alt: "Aramco", href: "#" },
-    { src: "/images/services/logos/Oracle.png", alt: "Oracle", href: "#" },
-    { src: "/images/services/logos/Infosys.png", alt: "Infosys", href: "#" },
+    { src: "/images/partners/IFS.png", alt: "IFS", href: "#" },
+    { src: "/images/partners/Aramco.png", alt: "Aramco", href: "#" },
+    { src: "/images/partners/Oracle.png", alt: "Oracle", href: "#" },
+    { src: "/images/partners/Infosys.png", alt: "Infosys", href: "#" },
     {
-      src: "/images/services/logos/BlackBerry.png",
+      src: "/images/partners/BlackBerry.png",
       alt: "BlackBerry",
       href: "#",
     },
@@ -33,25 +33,25 @@ export default function IndustryPartners() {
 
   // Second row logos (different set)
   const logosRow2 = [
-    { src: "/images/services/logos/Daikin.png", alt: "Daikin", href: "#" },
-    { src: "/images/services/logos/Saudia.png", alt: "Saudia", href: "#" },
-    { src: "/images/services/logos/Temenos.png", alt: "Temenos", href: "#" },
-    { src: "/images/services/logos/HCLTech.png", alt: "HCLTech", href: "#" },
-    { src: "/images/services/logos/Logitech.png", alt: "Logitech", href: "#" },
-    { src: "/images/services/logos/KPMG.png", alt: "KPMG", href: "#" },
-    { src: "/images/services/logos/LSEG.png", alt: "LSEG", href: "#" },
+    { src: "/images/partners/Daikin.png", alt: "Daikin", href: "#" },
+    { src: "/images/partners/Saudia.png", alt: "Saudia", href: "#" },
+    { src: "/images/partners/Temenos.png", alt: "Temenos", href: "#" },
+    { src: "/images/partners/HCLTech.png", alt: "HCLTech", href: "#" },
+    { src: "/images/partners/Logitech.png", alt: "Logitech", href: "#" },
+    { src: "/images/partners/KPMG.png", alt: "KPMG", href: "#" },
+    { src: "/images/partners/LSEG.png", alt: "LSEG", href: "#" },
     {
-      src: "/images/services/logos/MasterCard.png",
+      src: "/images/partners/MasterCard.png",
       alt: "MasterCard",
       href: "#",
     },
-    { src: "/images/services/logos/Moody.png", alt: "Moody's", href: "#" },
+    { src: "/images/partners/Moody.png", alt: "Moody's", href: "#" },
     {
-      src: "/images/services/logos/Dow Jones.png",
+      src: "/images/partners/Dow Jones.png",
       alt: "Dow Jones",
       href: "#",
     },
-    { src: "/images/services/logos/Finsatra.png", alt: "Finastra", href: "#" },
+    { src: "/images/partners/Finsatra.png", alt: "Finastra", href: "#" },
   ];
 
   return (

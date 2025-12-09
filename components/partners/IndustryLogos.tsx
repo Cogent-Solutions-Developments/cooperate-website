@@ -74,7 +74,9 @@ export default function IndustryLogos() {
     "/images/partners/IMTF.png",
     "/images/partners/Zigram.png",
     "/images/partners/Label.png",
-    "/images/partners/Algonomia.png"
+    "/images/partners/Algonomia.png",
+    "/images/partners/Azizi.png",
+    "/images/partners/TÜVSüd.png",
   ]
   const links = [
     "https://microsoft.com",
@@ -146,7 +148,10 @@ export default function IndustryLogos() {
     "https://imtf.com",
     "https://zigram.tech",
     "https://label-fcrs.com",
-    "https://algonomia.com"
+    "https://algonomia.com",
+    "https://www.azizidevelopments.com",
+    "https://www.tuvsud.com",
+
   ];
 
 
@@ -184,7 +189,7 @@ export default function IndustryLogos() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 w-full border-t border-l border-gray-200"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full border-t border-l border-gray-200"
         >
           {logos.map((src, i) => (
             <a

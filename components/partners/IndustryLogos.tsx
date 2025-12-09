@@ -76,8 +76,78 @@ export default function IndustryLogos() {
   "/images/partners/Label.png",
   "/images/partners/Algonomia.png"
 ]
-
-
+const links = [
+  "https://microsoft.com",
+  "https://amazon.com",
+  "https://intel.com",
+  "https://nvidia.com",
+  "https://mastercard.com",
+  "https://hsbc.com",
+  "https://oracle.com",
+  "https://infosys.com",
+  "https://kpmg.com",
+  "https://aramco.com",
+  "https://fifa.com",
+  "https://coca-cola.com",
+  "https://blackberry.com",
+  "https://logitech.com",
+  "https://lseg.com",
+  "https://moodys.com",
+  "https://sc.com",
+  "https://ifs.com",
+  "https://hcltech.com",
+  "https://hikvision.com",
+  "https://daikin.com",
+  "https://johnsoncontrols.com",
+  "https://emerson.com",
+  "https://finastra.com",
+  "https://byteplus.com",
+  "https://almarai.com",
+  "https://saudia.com",
+  "https://dowjones.com",
+  "https://temenos.com",
+  "https://iriss.com",
+  "https://akselos.com",
+  "https://bakerhughes.com",
+  "https://polypipe.com",
+  "https://wizzair.com",
+  "https://gulfair.com",
+  "https://salamair.com",
+  "https://zurich-airport.com",
+  "https://munich-airport.com",
+  "https://www.redseaglobal.com",
+  "https://www.georgfischer.com",
+  "https://ads-pipe.com",
+  "https://cubicm3.com",
+  "https://rainsafe.com",
+  "https://uesystems.com",
+  "https://www.3xeng.com",
+  "https://kanoo.com",
+  "https://pretect.com",
+  "https://corrosionradar.com",
+  "https://gulfscic.com",
+  "https://macegroup.com",
+  "https://mottmac.com",
+  "https://parsons.com",
+  "https://elseif.com.sa",
+  "https://sogec.com",
+  "https://ibrahimjaidah.com",
+  "https://damasjewellery.com",
+  "https://finmet.com",
+  "https://gsmsella.com",
+  "https://afl-global.com",
+  "https://terrpay.com",
+  "https://loctax.com",
+  "https://jsspro.com",
+  "https://eltgroup.net",
+  "https://bitoasis.net",
+  "https://jinglepay.com",
+  "https://akwconsultants.com",
+  "https://imtf.com",
+  "https://zigram.tech",
+  "https://label-fcrs.com",
+  "https://algonomia.com"
+];
 
 
   return (
@@ -110,27 +180,31 @@ export default function IndustryLogos() {
           }
         `}</style>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 w-full border-t border-l border-gray-200"
-        >
-          {logos.map((src, i) => (
-            <div
-              key={i}
-              className="group flex items-center justify-center border-b border-r border-gray-200 aspect-[4/3] bg-white hover:bg-[#f8f9ff] transition-all duration-300"
-            >
-              <Image
-                src={src}
-                alt={`Industry Partner Logo ${i + 1}`}
-                width={110}
-                height={70}
-                className="object-contain opacity-100 grayscale-10 hover:grayscale-0 group-hover:opacity-100 transition-all duration-100"
-              />
-            </div>
-          ))}
-        </motion.div>
+     <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1, delay: 0.2 }}
+  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 w-full border-t border-l border-gray-200"
+>
+  {logos.map((src, i) => (
+    <a
+      key={i}
+      href={links[i]}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center justify-center border-b border-r border-gray-200 aspect-[4/3] bg-white hover:bg-[#f8f9ff] transition-all duration-300"
+    >
+      <Image
+        src={src}
+        alt={`Industry Partner Logo ${i + 1}`}
+        width={110}
+        height={70}
+        className="object-contain opacity-100 grayscale-10 hover:grayscale-0 group-hover:opacity-100 transition-all duration-100"
+      />
+    </a>
+  ))}
+</motion.div>
+
 
         {/* ===== Bottom Fade Overlay ===== */}
         {/* <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/90 to-transparent" /> */}

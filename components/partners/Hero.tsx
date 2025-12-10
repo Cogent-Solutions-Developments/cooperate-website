@@ -15,27 +15,24 @@ export default function ExploreHero3() {
 
   return (
     <section
-  className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
-onMouseMove={(e) => {
-  const rect = e.currentTarget.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-  if (revealImgRef.current) {
-    revealImgRef.current.style.setProperty("--mx", `${x}px`);
-    revealImgRef.current.style.setProperty("--my", `${y}px`);
-  }
-}}
-
-  onMouseLeave={() => {
-  if (revealImgRef.current) {
-    revealImgRef.current.style.setProperty("--mx", "-9999px");
-    revealImgRef.current.style.setProperty("--my", "-9999px");
-  }
-}}
-
->
-
+        if (revealImgRef.current) {
+          revealImgRef.current.style.setProperty("--mx", `${x}px`);
+          revealImgRef.current.style.setProperty("--my", `${y}px`);
+        }
+      }}
+      onMouseLeave={() => {
+        if (revealImgRef.current) {
+          revealImgRef.current.style.setProperty("--mx", "-9999px");
+          revealImgRef.current.style.setProperty("--my", "-9999px");
+        }
+      }}
+    >
       {/* === Laser Shader Background === */}
       <LaserFlow
         className={isMobile ? "scale-x-[2] scale-y-[1.5] origin-center" : ""}
@@ -63,7 +60,7 @@ onMouseMove={(e) => {
           borderRadius: "20px",
           border: "2px solid transparent",
           background:
-            "linear-gradient(#060010, #060010) padding-box, linear-gradient(to bottom, rgba(230,245,255,1) 0%, rgba(174,211,255,0.95) 15%, rgba(15,20,40,0.25) 70%, rgba(6,0,16,1) 100%) border-box",
+            "linear-gradient(#000000, #060010) padding-box, linear-gradient(to bottom, rgba(230,245,255,1) 0%, rgba(174,211,255,0.95) 15%, rgba(15,20,40,0.25) 70%, rgba(6,0,16,1) 100%) border-box",
           padding: isMobile ? "1.4rem" : "4rem",
         }}
       >
@@ -146,15 +143,15 @@ onMouseMove={(e) => {
       {!isMobile && (
         <img
           ref={revealImgRef}
-          src="/images/parternsbg2.jpg"
+          src="/images/partners grid check.png"
           alt="Reveal effect"
           className="absolute w-full pointer-events-none select-none"
           style={
             {
-              top: "-25%",
+              top: "0%",
               zIndex: 0,
               mixBlendMode: "lighten",
-              opacity: 0.2,
+              opacity: 0.5,
               WebkitMaskImage:
                 "radial-gradient(circle at var(--mx) var(--my), white 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, transparent 240px)",
               maskImage:

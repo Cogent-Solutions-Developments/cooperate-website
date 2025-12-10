@@ -5,6 +5,16 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
 export default function ServicesHeroDemo() {
+  const [angleOffset, setAngleOffset] = useState(0);
+
+  // Animate the angle offset
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAngleOffset((prev) => prev + 0.15); // Slow rotation
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   const stats = [
     { number: 500, suffix: "+", label: "Events Delivered" },
     { number: 200, suffix: "+", label: "Industry Partners" },
@@ -67,7 +77,10 @@ export default function ServicesHeroDemo() {
 
   const getItemPosition = (angle: number, ringIndex: number) => {
     const ring = rings[ringIndex - 1] || rings[0];
-    const angleRad = (angle * Math.PI) / 180;
+    // Add angleOffset for subtle movement, alternate direction per ring
+    const direction = ringIndex % 2 === 0 ? 1 : -1;
+    const animatedAngle = angle + (angleOffset * direction);
+    const angleRad = (animatedAngle * Math.PI) / 180;
     const x = Math.cos(angleRad) * ring.radius;
     const y = Math.sin(angleRad) * ring.radius;
     return { x, y };
@@ -141,16 +154,26 @@ export default function ServicesHeroDemo() {
               const pos = getItemPosition(item.angle, item.ring);
 
               return (
-                <div
+                <motion.div
                   key={i}
-                  className="absolute"
+                  className="absolute cursor-pointer"
                   style={{
                     width: item.size,
                     height: item.size,
                     left: `calc(50% + ${pos.x}px)`,
                     top: `calc(50% + ${pos.y}px)`,
-                    transform: `translate(-50%, -50%)`,
+                    x: "-50%",
+                    y: "-50%",
                     zIndex: 20,
+                  }}
+                  whileHover={{ 
+                    scale: 1.3,
+                    zIndex: 50,
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20 
                   }}
                 >
                   <div
@@ -164,7 +187,7 @@ export default function ServicesHeroDemo() {
                       backgroundPosition: "center",
                     }}
                   />
-                </div>
+                </motion.div>
               );
             })}
           </div>

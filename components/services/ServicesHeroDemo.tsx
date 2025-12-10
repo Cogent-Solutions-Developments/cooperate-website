@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, useMotionValue, animate } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
-import Antigravity from "./imports/Antigravity";
-import Box from "./imports/Orbits";
 
 export default function ServicesHeroDemo() {
   const stats = [
@@ -46,191 +44,257 @@ export default function ServicesHeroDemo() {
     },
   ];
 
-  // Orbital items - mix of images and emojis
+  // Orbital items positioned on the outer rings
   const orbitalItems = [
-    "/images/regtech_logo.png",
-    "🎯",
-    "/images/2nd-water-management.png",
-    "🚀",
-    "/images/asset-integrity-mgmt.png",
-    "✨",
+    { src: "/images/regtech_logo.png", angle: 5, ring: 1, size: 70 },
+    { src: "/images/2nd-water-management.png", angle: 35, ring: 2, size: 60 },
+    { src: "/images/asset-integrity-mgmt.png", angle: 190, ring: 3, size: 45 },
+    { src: "/images/regtech_logo.png", angle: 135, ring: 1, size: 55 },
+    { src: "/images/2nd-water-management.png", angle: 160, ring: 2, size: 72 },
+    { src: "/images/asset-integrity-mgmt.png", angle: 225, ring: 3, size: 58 },
+    { src: "/images/regtech_logo.png", angle: 270, ring: 1, size: 62 },
+    { src: "/images/2nd-water-management.png", angle: 335, ring: 2, size: 50 },
   ];
+
+  // 3 rings at outer edges - pushed further out
+  const rings = [
+    { radius: 420 },  // Ring 1
+    { radius: 500 },  // Ring 2
+    { radius: 580 },  // Ring 3
+  ];
+
+  const color = "#1D309D";
+
+  const getItemPosition = (angle: number, ringIndex: number) => {
+    const ring = rings[ringIndex - 1] || rings[0];
+    const angleRad = (angle * Math.PI) / 180;
+    const x = Math.cos(angleRad) * ring.radius;
+    const y = Math.sin(angleRad) * ring.radius;
+    return { x, y };
+  };
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-white">
       {/* Subtle background pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #1D309D 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
+          backgroundImage: `radial-gradient(circle at 1px 1px, ${color} 1px, transparent 0)`,
+          backgroundSize: "50px 50px",
         }}
       />
 
-      {/* Main Wrapper */}
-      <div className="relative z-10 w-full min-h-screen flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-0">
+      {/* Main Container - Full screen centered */}
+      <div className="relative w-full min-h-screen flex items-center justify-center">
 
-          {/* Two Column Layout */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        {/* ========= ORBITAL RINGS SYSTEM ========= */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
 
-            {/* === LEFT SIDE: Text Content === */}
-            <div className="flex-1 lg:max-w-xl text-center lg:text-left">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl font-semibold text-neutral-900 leading-[1.1]"
-              >
-                What We Deliver
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-6 text-base sm:text-md text-neutral-600 max-w-lg mx-auto lg:mx-0"
-              >
-                We Craft High Impact Experiences That Connect Decision Makers,
-                Ideas, and Industries Empowering Organizations to Collaborate,
-                Innovate, and Grow.
-              </motion.p>
-
-              {/* Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="mt-10 flex flex-row justify-center lg:justify-start gap-8 sm:gap-10 md:gap-12"
-              >
-                {stats.map((s, i) => (
-                  <StatCounter
-                    key={i}
-                    value={s.number}
-                    suffix={s.suffix}
-                    label={s.label}
-                    delay={0.3 + i * 0.15}
-                  />
-                ))}
-              </motion.div>
-
-              {/* Trusted By */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="mt-10 flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-5"
-              >
-                <p className="text-sm text-neutral-700 font-semibold leading-snug text-center sm:text-left">
-                  We are Trusted by <br />
-                  <span className="text-[#1D309D]">Industry Leaders</span>
-                </p>
-                <div className="hidden sm:block h-8 w-px bg-neutral-300" />
-                <div className="flex -space-x-3">
-                  <AnimatedTooltip items={people} />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* === RIGHT SIDE: Card with Antigravity + Orbital === */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="flex-1 flex justify-center lg:justify-end"
-            >
+          {/* Rings Container with fade mask */}
+          <div
+            className="relative"
+            style={{
+              width: "100%",
+              height: "100%",
+              maxWidth: 1200,
+              maxHeight: 1200,
+            }}
+          >
+            {/* Render all rings */}
+            {rings.map((ring, i) => (
               <div
-                className="
-      relative
-      w-full max-w-[500px]
-      h-[520px] sm:h-[560px] lg:h-[500px]
-      rounded-[32px]
-      overflow-hidden
-      bg-white
-    "
+                key={i}
+                className="absolute rounded-full"
                 style={{
-                  background:
-                    "linear-gradient(180deg, #ffffff 0%, #fafafa 60%, #f5f5f5 100%)",
-                  border: "1px solid rgba(0,0,0,0.05)",
-
+                  width: ring.radius * 2,
+                  height: ring.radius * 2,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  border: `1px solid ${color}`,
+                  opacity: 0.15,
                 }}
-              >
+              />
+            ))}
 
-                {/* Clerk-style top glow arc */}
-                <div
-                  className="absolute top-0 left-0 w-full h-[160px]"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 50% -40px, rgba(255,255,255,0.9), rgba(255,255,255,0.2), transparent 70%)",
-                  }}
-                />
-
-                {/* Hairline inner border for the subtle depth */}
-                <div className="absolute inset-0 rounded-[32px] border border-white/70 " />
-
-                {/* === Antigravity Background (unchanged) === */}
-                {/* <div className="absolute inset-0 opacity-[0.2]">
-      <Antigravity
-        count={600}
-        magnetRadius={4}
-        ringRadius={8}
-        waveSpeed={0.3}
-        waveAmplitude={0.8}
-        particleSize={0.5}
-        lerpSpeed={0.04}
-        color={"#1D309D"}
-        autoAnimate={true}
-        particleVariance={2}
-        particleShape={"capsule"}
-      />
-    </div> */}
-
-                {/* === Orbital Rings Content (unchanged) === */}
-                <div className="absolute inset-0 flex items-start justify-center z-10">
-                  <Box
-                    size={1.5}
-                    color="#1D309D"
-                    items={orbitalItems}
-                  />
-                </div>
-                {/* CTA BELOW ORBIT */}
-                <div className="absolute bottom-8 left-0 right-0 z-20 flex flex-col items-center px-6 text-center">
-                  <p className="text-[13px] text-neutral-600 font-medium mb-3">
-                    Powering Global Conferences & Industry Impact
-                  </p>
-
-                  <button
-                    className="
-      px-6 py-2.5 rounded-full 
-      bg-[#1D309D] text-white font-medium text-sm
-      shadow-md shadow-[#1D309D]/20
-      transition-all duration-300
-      hover:bg-[#16226e]
-      hover:shadow-lg hover:shadow-[#1D309D]/30
-      active:scale-95
-    "
-                  >
-                    Learn More
-                  </button>
-                </div>
-
-
-                {/* Bottom fade like Clerk UI */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-32 "
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0))",
-                  }}
-                />
-              </div>
-            </motion.div>
-
-
+            {/* Animated glow sweep */}
+            <div
+              className="absolute rounded-full animate-spin"
+              style={{
+                width: rings[1].radius * 2,
+                height: rings[1].radius * 2,
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                background: `conic-gradient(from 0deg, transparent 0deg, rgba(29,48,157,0.1) 60deg, transparent 120deg)`,
+                filter: "blur(40px)",
+                animationDuration: "25s",
+              }}
+            />
           </div>
         </div>
+
+        {/* ========= FLOATING ORBITAL ITEMS ========= */}
+        <div className="absolute inset-0">
+          <div className="relative w-full h-full">
+            {orbitalItems.map((item, i) => {
+              const pos = getItemPosition(item.angle, item.ring);
+
+              return (
+                <div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    width: item.size,
+                    height: item.size,
+                    left: `calc(50% + ${pos.x}px)`,
+                    top: `calc(50% + ${pos.y}px)`,
+                    transform: `translate(-50%, -50%)`,
+                    zIndex: 20,
+                  }}
+                >
+                  <div
+                    className="w-full h-full rounded-full overflow-hidden"
+                    style={{
+                      border: "3px solid white",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+                      backgroundColor: "#fff",
+                      backgroundImage: `url(${item.src})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ========= CENTER CONTENT ========= */}
+        <div className="relative z-30 flex flex-col items-center text-center px-4 max-w-2xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-semibold text-neutral-900 leading-[1.1]"
+          >
+            What We Deliver
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-5 text-base sm:text-md text-neutral-600 max-w-xl"
+          >
+            We Craft High Impact Experiences That Connect Decision Makers,
+            Ideas, and Industries Empowering Organizations to Collaborate,
+            Innovate, and Grow.
+          </motion.p>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-10 flex flex-row justify-center gap-8 sm:gap-12 md:gap-16"
+          >
+            {stats.map((s, i) => (
+              <StatCounter
+                key={i}
+                value={s.number}
+                suffix={s.suffix}
+                label={s.label}
+                delay={0.3 + i * 0.15}
+              />
+            ))}
+          </motion.div>
+
+          {/* Trusted By */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-5"
+          >
+            <p className="text-xs text-neutral-700 font-semibold leading-snug text-center sm:text-left">
+              We are Trusted by <br />
+              <span className="text-[#1D309D]">Industry Leaders</span>
+            </p>
+            <div className="hidden sm:block h-8 w-px bg-neutral-300" />
+            <div className="flex -space-x-3">
+              <AnimatedTooltip items={people} />
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="mt-10"
+          >
+            <button
+              className="button relative z-[10000]"
+              style={{ ["--clr" as any]: "#2f53bd" }}
+            >
+              <span className="button__icon-wrapper">
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg"
+                  width="11"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  width="11"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon-svg button__icon-svg--copy"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </span>
+              Explore Our Events
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Edge fades */}
+        <div
+          className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
+          style={{
+            background: "linear-gradient(to bottom, white 0%, transparent 100%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+          style={{
+            background: "linear-gradient(to top, white 0%, transparent 100%)",
+          }}
+        />
+        <div
+          className="absolute top-0 bottom-0 left-0 w-32 pointer-events-none"
+          style={{
+            background: "linear-gradient(to right, white 0%, transparent 100%)",
+          }}
+        />
+        <div
+          className="absolute top-0 bottom-0 right-0 w-32 pointer-events-none"
+          style={{
+            background: "linear-gradient(to left, white 0%, transparent 100%)",
+          }}
+        />
       </div>
     </section>
   );
@@ -262,12 +326,12 @@ function StatCounter({
   }, [count, value, delay]);
 
   return (
-    <div className="flex flex-col items-center lg:items-start">
-      <span className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-semibold text-[#1D309D] tracking-tight leading-none">
+    <div className="flex flex-col items-center">
+      <span className="text-3xl sm:text-4xl md:text-4xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-xs sm:text-sm text-neutral-600 font-medium mt-1.5 whitespace-nowrap">
+      <span className="text-xs sm:text-xs text-neutral-600 font-medium mt-1.5 whitespace-nowrap">
         {label}
       </span>
     </div>

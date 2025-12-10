@@ -1,52 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import CardSwap, { Card } from "./imports/CardSwap";
 import { motion, useMotionValue, animate } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
+import Antigravity from "./imports/Antigravity";
+import Box from "./imports/Orbits";
 
 export default function ServicesHeroDemo() {
-  const [cardConfig, setCardConfig] = useState({
-    width: 420,
-    height: 310,
-    cardDistance: 50,
-    verticalDistance: 60,
-  });
-
-   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mql = window.matchMedia("(max-width: 640px)");
-
-    const updateConfig = () => {
-      if (mql.matches) {
-        // 👇 MOBILE – MAKE THEM BIGGER HERE
-        setCardConfig({
-          width: 400,       // bigger than before
-          height: 325,      // bigger than before
-          cardDistance: 28,
-          verticalDistance: 36,
-        });
-      } else {
-        // 👇 NON-MOBILE – you can tune these, but they're already fine
-        setCardConfig({
-          width: 360,
-          height: 270,
-          cardDistance: 44,
-          verticalDistance: 54,
-        });
-      }
-    };
-
-    updateConfig();
-    mql.addEventListener("change", updateConfig);
-
-    return () => {
-      mql.removeEventListener("change", updateConfig);
-    };
-  }, []);
-
-
   const stats = [
     { number: 500, suffix: "+", label: "Events Delivered" },
     { number: 200, suffix: "+", label: "Industry Partners" },
@@ -86,51 +46,41 @@ export default function ServicesHeroDemo() {
     },
   ];
 
-  const cardImages = [
-    { src: "/images/explore/hero/h4.jpeg", alt: "Boardrooms" },
-    { src: "/images/explore/hero/h3.jpeg", alt: "Podcasts" },
-    { src: "/images/explore/hero/h6.png", alt: "Conference Series" },
-    { src: "/images/explore/hero/h5.webp", alt: "Exhibitions" },
+  // Orbital items - mix of images and emojis
+  const orbitalItems = [
+    "/images/regtech_logo.png",
+    "🎯",
+    "/images/2nd-water-management.png",
+    "🚀",
+    "/images/asset-integrity-mgmt.png",
+    "✨",
   ];
-
-  const halfWidth = cardConfig.width / 2;
-  const halfHeight = cardConfig.height / 2;
-  const stackOffsetY = cardConfig.verticalDistance * 3;
-
-  const totalWidth = cardConfig.width + Math.round(cardConfig.cardDistance * 1.6);
-  const totalHeight = cardConfig.height + stackOffsetY;
-
-  const centerOffsetX = halfWidth;
-  const centerOffsetY = halfHeight + stackOffsetY;
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-white">
-      {/* Background Gradient */}
+      {/* Subtle background pattern */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          background: "radial-gradient(ellipse at left, rgba(29,48,157,0.12) 0%, transparent 70%)",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #1D309D 1px, transparent 0)`,
+          backgroundSize: '40px 40px',
         }}
       />
 
       {/* Main Wrapper */}
-      <div className="relative pt-24 md:pt-0 z-10 w-full min-h-screen flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 md:py-0">
-          
-          {/* 
-            Layout:
-            - Mobile: Column layout, content first, cards below
-            - Desktop (lg+): Row layout, content left, cards right
-          */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-8">
-            
-            {/* ===== LEFT/TOP: Content ===== */}
-            <div className="text-center lg:text-left lg:max-w-xl">
+      <div className="relative z-10 w-full min-h-screen flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-0">
+
+          {/* Two Column Layout */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+
+            {/* === LEFT SIDE: Text Content === */}
+            <div className="flex-1 lg:max-w-xl text-center lg:text-left">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-neutral-900 leading-[1.1]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl font-semibold text-neutral-900 leading-[1.1]"
               >
                 What We Deliver
               </motion.h1>
@@ -139,20 +89,20 @@ export default function ServicesHeroDemo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-4 lg:mt-6 text-md sm:text-base lg:text-lg text-neutral-600 max-w-lg mx-auto lg:mx-0"
+                className="mt-6 text-base sm:text-md text-neutral-600 max-w-lg mx-auto lg:mx-0"
               >
                 We Craft High Impact Experiences That Connect Decision Makers,
                 Ideas, and Industries Empowering Organizations to Collaborate,
                 Innovate, and Grow.
               </motion.p>
 
-              {/* Stats - Always single row, responsive sizing */}
+              {/* Stats */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="mt-8 lg:mt-12 flex flex-row justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 lg:gap-10"
+                className="mt-10 flex flex-row justify-center lg:justify-start gap-8 sm:gap-10 md:gap-12"
               >
                 {stats.map((s, i) => (
                   <StatCounter
@@ -165,72 +115,119 @@ export default function ServicesHeroDemo() {
                 ))}
               </motion.div>
 
-              {/* Trusted By - Desktop Only */}
+              {/* Trusted By */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="hidden lg:flex mt-10 items-center gap-5"
+                className="mt-10 flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-5"
               >
-                <p className="text-sm text-neutral-700 font-semibold leading-snug">
+                <p className="text-sm text-neutral-700 font-semibold leading-snug text-center sm:text-left">
                   We are Trusted by <br />
                   <span className="text-[#1D309D]">Industry Leaders</span>
                 </p>
-                <div className="h-8 w-px bg-neutral-300" />
+                <div className="hidden sm:block h-8 w-px bg-neutral-300" />
                 <div className="flex -space-x-3">
                   <AnimatedTooltip items={people} />
                 </div>
               </motion.div>
             </div>
 
-            {/* ===== RIGHT/BOTTOM: Cards ===== */}
-            <div className="flex justify-center lg:justify-end flex-shrink-0 mt-4 lg:mt-0">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+            {/* === RIGHT SIDE: Card with Antigravity + Orbital === */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex-1 flex justify-center lg:justify-end"
+            >
+              <div
+                className="
+      relative
+      w-full max-w-[500px]
+      h-[520px] sm:h-[560px] lg:h-[500px]
+      rounded-[32px]
+      overflow-hidden
+      bg-white
+    "
+                style={{
+                  background:
+                    "linear-gradient(180deg, #ffffff 0%, #fafafa 60%, #f5f5f5 100%)",
+                  border: "1px solid rgba(0,0,0,0.05)",
+
+                }}
               >
+
+                {/* Clerk-style top glow arc */}
                 <div
-                  className="relative"
+                  className="absolute top-0 left-0 w-full h-[160px]"
                   style={{
-                    width: totalWidth,
-                    height: totalHeight,
+                    background:
+                      "radial-gradient(circle at 50% -40px, rgba(255,255,255,0.9), rgba(255,255,255,0.2), transparent 70%)",
                   }}
-                >
-                  <div
-                    className="absolute"
-                    style={{
-                      left: centerOffsetX,
-                      top: centerOffsetY,
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <CardSwap
-                      width={cardConfig.width}
-                      height={cardConfig.height}
-                      cardDistance={cardConfig.cardDistance}
-                      verticalDistance={cardConfig.verticalDistance}
-                      delay={5000}
-                      pauseOnHover={false}
-                    >
-                      {cardImages.map((img, i) => (
-                        <Card
-                          key={i}
-                          className="flex flex-col items-center justify-end text-white text-xl font-semibold overflow-hidden"
-                        >
-                          <img
-                            src={img.src}
-                            alt={img.alt}
-                            className="absolute inset-0 w-full h-full object-cover opacity-80"
-                          />
-                        </Card>
-                      ))}
-                    </CardSwap>
-                  </div>
+                />
+
+                {/* Hairline inner border for the subtle depth */}
+                <div className="absolute inset-0 rounded-[32px] border border-white/70 " />
+
+                {/* === Antigravity Background (unchanged) === */}
+                {/* <div className="absolute inset-0 opacity-[0.2]">
+      <Antigravity
+        count={600}
+        magnetRadius={4}
+        ringRadius={8}
+        waveSpeed={0.3}
+        waveAmplitude={0.8}
+        particleSize={0.5}
+        lerpSpeed={0.04}
+        color={"#1D309D"}
+        autoAnimate={true}
+        particleVariance={2}
+        particleShape={"capsule"}
+      />
+    </div> */}
+
+                {/* === Orbital Rings Content (unchanged) === */}
+                <div className="absolute inset-0 flex items-start justify-center z-10">
+                  <Box
+                    size={1.5}
+                    color="#1D309D"
+                    items={orbitalItems}
+                  />
                 </div>
-              </motion.div>
-            </div>
+                {/* CTA BELOW ORBIT */}
+                <div className="absolute bottom-8 left-0 right-0 z-20 flex flex-col items-center px-6 text-center">
+                  <p className="text-[13px] text-neutral-600 font-medium mb-3">
+                    Powering Global Conferences & Industry Impact
+                  </p>
+
+                  <button
+                    className="
+      px-6 py-2.5 rounded-full 
+      bg-[#1D309D] text-white font-medium text-sm
+      shadow-md shadow-[#1D309D]/20
+      transition-all duration-300
+      hover:bg-[#16226e]
+      hover:shadow-lg hover:shadow-[#1D309D]/30
+      active:scale-95
+    "
+                  >
+                    Learn More
+                  </button>
+                </div>
+
+
+                {/* Bottom fade like Clerk UI */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-32 "
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0))",
+                  }}
+                />
+              </div>
+            </motion.div>
+
 
           </div>
         </div>
@@ -266,12 +263,11 @@ function StatCounter({
 
   return (
     <div className="flex flex-col items-center lg:items-start">
-      {/* Responsive text sizes for single row on mobile */}
-      <span className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1D309D] tracking-tight leading-none">
+      <span className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-semibold text-[#1D309D] tracking-tight leading-none">
         {display}
         {suffix}
       </span>
-      <span className="text-[12px] sm:text-xs md:text-sm lg:text-base text-neutral-600 font-medium mt-1 whitespace-nowrap">
+      <span className="text-xs sm:text-sm text-neutral-600 font-medium mt-1.5 whitespace-nowrap">
         {label}
       </span>
     </div>

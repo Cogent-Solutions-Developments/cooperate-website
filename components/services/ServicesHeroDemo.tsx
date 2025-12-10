@@ -1,120 +1,65 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion, useMotionValue, animate, useTime, useTransform } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
+// --- CONSTANTS ---
+const RINGS = [
+  { radius: 420 }, // Ring 1
+  { radius: 500 }, // Ring 2
+  { radius: 580 }, // Ring 3
+];
+
+const ORBITAL_ITEMS = [
+  { src: "/images/regtech_logo.png", angle: 0, ring: 1, size: 70 },
+  { src: "/images/2nd-water-management.png", angle: 45, ring: 2, size: 65 },
+  { src: "/images/asset-integrity-mgmt.png", angle: 120, ring: 3, size: 45 },
+  { src: "/images/regtech_logo.png", angle: 135, ring: 1, size: 55 },
+  { src: "/images/2nd-water-management.png", angle: 200, ring: 2, size: 75 },
+  { src: "/images/asset-integrity-mgmt.png", angle: 260, ring: 3, size: 58 },
+  { src: "/images/regtech_logo.png", angle: 270, ring: 1, size: 65 },
+  { src: "/images/2nd-water-management.png", angle: 320, ring: 2, size: 50 },
+  { src: "/images/asset-integrity-mgmt.png", angle: 350, ring: 3, size: 80 },
+
+];
+
+const PEOPLE = [
+  { id: 1, name: "Nvidia", designation: "Tech Partner", image: "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png" },
+  { id: 2, name: "Oracle", designation: "Cloud Partner", image: "https://images.seeklogo.com/logo-png/10/1/oracle-logo-png_seeklogo-103836.png" },
+  { id: 3, name: "Coca Cola", designation: "Brand Partner", image: "https://toppng.com/uploads/preview/coca-cola-logo-transparent-png-11659434553ffz5jgamkh.png" },
+  { id: 4, name: "BytePlus", designation: "AI Partner", image: "https://i.tracxn.com/logo/company/byteplus.com_Logo_ee8544f1-f730-42da-bf47-a7b712bd39bb.jpg" },
+  { id: 5, name: "Google", designation: "Search Partner", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5jqY91GEsxQe-NWpFY7EcSO4NyackqgPcw&s" },
+];
+
+const STATS = [
+  { number: 500, suffix: "+", label: "Events Delivered" },
+  { number: 200, suffix: "+", label: "Industry Partners" },
+  { number: 15, suffix: "+", label: "Countries Reached" },
+];
+
+const COLOR = "#1D309D";
+
 export default function ServicesHeroDemo() {
-  const [angleOffset, setAngleOffset] = useState(0);
-
-  // Animate the angle offset
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAngleOffset((prev) => prev + 0.15); // Slow rotation
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
-
-  const stats = [
-    { number: 500, suffix: "+", label: "Events Delivered" },
-    { number: 200, suffix: "+", label: "Industry Partners" },
-    { number: 15, suffix: "+", label: "Countries Reached" },
-  ];
-
-  const people = [
-    {
-      id: 1,
-      name: "",
-      designation: "",
-      image: "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png",
-    },
-    {
-      id: 2,
-      name: "",
-      designation: "",
-      image: "https://images.seeklogo.com/logo-png/10/1/oracle-logo-png_seeklogo-103836.png",
-    },
-    {
-      id: 3,
-      name: "",
-      designation: "",
-      image: "https://toppng.com/uploads/preview/coca-cola-logo-transparent-png-11659434553ffz5jgamkh.png",
-    },
-    {
-      id: 4,
-      name: "",
-      designation: "",
-      image: "https://i.tracxn.com/logo/company/byteplus.com_Logo_ee8544f1-f730-42da-bf47-a7b712bd39bb.jpg",
-    },
-    {
-      id: 5,
-      name: "",
-      designation: "",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5jqY91GEsxQe-NWpFY7EcSO4NyackqgPcw&s",
-    },
-  ];
-
-  // Orbital items positioned on the outer rings
-  const orbitalItems = [
-    { src: "/images/regtech_logo.png", angle: 5, ring: 1, size: 70 },
-    { src: "/images/2nd-water-management.png", angle: 35, ring: 2, size: 60 },
-    { src: "/images/asset-integrity-mgmt.png", angle: 190, ring: 3, size: 45 },
-    { src: "/images/regtech_logo.png", angle: 135, ring: 1, size: 55 },
-    { src: "/images/2nd-water-management.png", angle: 160, ring: 2, size: 72 },
-    { src: "/images/asset-integrity-mgmt.png", angle: 225, ring: 3, size: 58 },
-    { src: "/images/regtech_logo.png", angle: 270, ring: 1, size: 62 },
-    { src: "/images/2nd-water-management.png", angle: 335, ring: 2, size: 50 },
-  ];
-
-  // 3 rings at outer edges - pushed further out
-  const rings = [
-    { radius: 420 },  // Ring 1
-    { radius: 500 },  // Ring 2
-    { radius: 580 },  // Ring 3
-  ];
-
-  const color = "#1D309D";
-
-  const getItemPosition = (angle: number, ringIndex: number) => {
-    const ring = rings[ringIndex - 1] || rings[0];
-    // Add angleOffset for subtle movement, alternate direction per ring
-    const direction = ringIndex % 2 === 0 ? 1 : -1;
-    const animatedAngle = angle + (angleOffset * direction);
-    const angleRad = (animatedAngle * Math.PI) / 180;
-    const x = Math.cos(angleRad) * ring.radius;
-    const y = Math.sin(angleRad) * ring.radius;
-    return { x, y };
-  };
-
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-white">
-      {/* Subtle background pattern */}
+      {/* Background Pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, ${color} 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, ${COLOR} 1px, transparent 0)`,
           backgroundSize: "50px 50px",
         }}
       />
 
-      {/* Main Container - Full screen centered */}
+      {/* Main Container */}
       <div className="relative w-full min-h-screen flex items-center justify-center">
 
         {/* ========= ORBITAL RINGS SYSTEM ========= */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-
-          {/* Rings Container with fade mask */}
-          <div
-            className="relative"
-            style={{
-              width: "100%",
-              height: "100%",
-              maxWidth: 1200,
-              maxHeight: 1200,
-            }}
-          >
-            {/* Render all rings */}
-            {rings.map((ring, i) => (
+          <div className="relative w-full h-full max-w-[1200px] max-h-[1200px]">
+            {/* Render Rings */}
+            {RINGS.map((ring, i) => (
               <div
                 key={i}
                 className="absolute rounded-full"
@@ -124,18 +69,18 @@ export default function ServicesHeroDemo() {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  border: `1px solid ${color}`,
+                  border: `1px solid ${COLOR}`,
                   opacity: 0.15,
                 }}
               />
             ))}
 
-            {/* Animated glow sweep */}
+            {/* Glowing Sweep Animation */}
             <div
               className="absolute rounded-full animate-spin"
               style={{
-                width: rings[1].radius * 2,
-                height: rings[1].radius * 2,
+                width: RINGS[1].radius * 2,
+                height: RINGS[1].radius * 2,
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
@@ -147,50 +92,15 @@ export default function ServicesHeroDemo() {
           </div>
         </div>
 
-        {/* ========= FLOATING ORBITAL ITEMS ========= */}
-        <div className="absolute inset-0">
-          <div className="relative w-full h-full">
-            {orbitalItems.map((item, i) => {
-              const pos = getItemPosition(item.angle, item.ring);
-
-              return (
-                <motion.div
-                  key={i}
-                  className="absolute cursor-pointer"
-                  style={{
-                    width: item.size,
-                    height: item.size,
-                    left: `calc(50% + ${pos.x}px)`,
-                    top: `calc(50% + ${pos.y}px)`,
-                    x: "-50%",
-                    y: "-50%",
-                    zIndex: 20,
-                  }}
-                  whileHover={{ 
-                    scale: 1.3,
-                    zIndex: 50,
-                  }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 300, 
-                    damping: 20 
-                  }}
-                >
-                  <div
-                    className="w-full h-full rounded-full overflow-hidden"
-                    style={{
-                      border: "3px solid white",
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                      backgroundColor: "#fff",
-                      backgroundImage: `url(${item.src})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* ========= FLOATING ORBITAL ITEMS (OPTIMIZED) ========= */}
+        <div className="absolute inset-0 pointer-events-none">
+          {ORBITAL_ITEMS.map((item, i) => (
+            <OrbitingIcon 
+              key={i} 
+              item={item} 
+              radius={RINGS[item.ring - 1]?.radius || 400} 
+            />
+          ))}
         </div>
 
         {/* ========= CENTER CONTENT ========= */}
@@ -215,14 +125,13 @@ export default function ServicesHeroDemo() {
             Innovate, and Grow.
           </motion.p>
 
-          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-10 flex flex-row justify-center gap-8 sm:gap-12 md:gap-16"
           >
-            {stats.map((s, i) => (
+            {STATS.map((s, i) => (
               <StatCounter
                 key={i}
                 value={s.number}
@@ -233,7 +142,6 @@ export default function ServicesHeroDemo() {
             ))}
           </motion.div>
 
-          {/* Trusted By */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -246,18 +154,17 @@ export default function ServicesHeroDemo() {
             </p>
             <div className="hidden sm:block h-8 w-px bg-neutral-300" />
             <div className="flex -space-x-3">
-              <AnimatedTooltip items={people} />
+              <AnimatedTooltip items={PEOPLE} />
             </div>
           </motion.div>
 
-          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-10"
           >
-            <button
+               <button
               className="button relative z-[10000]"
               style={{ ["--clr" as any]: "#2f53bd" }}
             >
@@ -293,37 +200,79 @@ export default function ServicesHeroDemo() {
           </motion.div>
         </div>
 
-        {/* Edge fades */}
-        <div
-          className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
-          style={{
-            background: "linear-gradient(to bottom, white 0%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{
-            background: "linear-gradient(to top, white 0%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute top-0 bottom-0 left-0 w-32 pointer-events-none"
-          style={{
-            background: "linear-gradient(to right, white 0%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute top-0 bottom-0 right-0 w-32 pointer-events-none"
-          style={{
-            background: "linear-gradient(to left, white 0%, transparent 100%)",
-          }}
-        />
+        {/* Edge Fades */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
     </section>
   );
 }
 
-/* ============ STAT COUNTER ============ */
+// ==============================================
+// 1. NEW OPTIMIZED ORBIT COMPONENT
+// ==============================================
+function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
+  // Use Framer Motion's time hook (returns ms)
+  const time = useTime();
+  
+  // Determine direction: Odd rings clockwise, Even rings counter-clockwise
+  const direction = item.ring % 2 === 0 ? 1 : -1;
+  const speed = 0.006; // Degrees per millisecond (Adjust for speed)
+
+  // Transform time into a continuous rotation angle (0 -> 360)
+  // We add the item.angle as the starting offset
+  const rotate = useTransform(time, (t) => {
+    const rawAngle = (t * speed * direction) + item.angle;
+    return rawAngle; 
+  });
+
+  // Calculate X and Y based on the rotation angle using trigonometry
+  // This runs on the animation frame, not the React render cycle
+  const x = useTransform(rotate, (angle) => {
+    return Math.cos((angle * Math.PI) / 180) * radius;
+  });
+  
+  const y = useTransform(rotate, (angle) => {
+    return Math.sin((angle * Math.PI) / 180) * radius;
+  });
+
+  return (
+    <motion.div
+      className="absolute cursor-pointer pointer-events-auto"
+      style={{
+        width: item.size,
+        height: item.size,
+        // Center the orbit origin
+        left: "50%", 
+        top: "50%",
+        // Apply the calculated X/Y
+        x,
+        y,
+      }}
+      // Use standard translate to center the element on its own anchor point
+      initial={{ translateX: "-50%", translateY: "-50%" }} 
+      whileHover={{ scale: 1.3, zIndex: 50 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      <div
+        className="w-full h-full rounded-full overflow-hidden bg-white"
+        style={{
+          border: "3px solid white",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+          backgroundImage: `url(${item.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+    </motion.div>
+  );
+}
+
+// ==============================================
+// 2. STAT COUNTER
+// ==============================================
 function StatCounter({
   value,
   suffix,

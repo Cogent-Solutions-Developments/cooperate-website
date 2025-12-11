@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Video = {
   id: string;
@@ -75,7 +76,8 @@ export default function TestimonialsVideo() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pb-24 z-0"
           >
-            {videos.map((video, i) => (
+            {/* Removed unused index 'i' */}
+            {videos.map((video) => (
               <div
                 key={video.id}
                 className="relative rounded-2xl group cursor-pointer"
@@ -87,15 +89,18 @@ export default function TestimonialsVideo() {
                   className=" overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative"
                 >
                   {/* Thumbnail (16:9 ratio) */}
-                  <div className="relative w-full aspect-video">
-                    <img
+                  <div className="relative w-full aspect-video bg-gray-100">
+                    {/* Replaced <img> with next/image */}
+                    <Image
                       src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                      alt={video.name}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      alt={video.name || "Testimonial video thumbnail"}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
                     {/* Always-visible YouTube play icon (small & subtle) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 68 48"
@@ -112,7 +117,7 @@ export default function TestimonialsVideo() {
                   </div>
 
                   {/* Name overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-left">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-left z-20">
                     <p className="text-white text-sm font-medium">
                       {video.name}
                     </p>

@@ -41,7 +41,7 @@ export default function Hero({ className = "" }: HeroProps) {
           <div className="mt-6 sm:mt-8">
             <button
               className="button relative z-[10000]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg

@@ -4,6 +4,14 @@ import React, { useState, useEffect } from "react";
 import { motion, useMotionValue, animate, useTime, useTransform } from "framer-motion";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
+// --- TYPES ---
+interface OrbitalItem {
+  src: string;
+  angle: number;
+  ring: number;
+  size: number;
+}
+
 // --- CONSTANTS ---
 const RINGS = [
   { radius: 420 }, // Ring 1
@@ -11,7 +19,7 @@ const RINGS = [
   { radius: 580 }, // Ring 3
 ];
 
-const ORBITAL_ITEMS = [
+const ORBITAL_ITEMS: OrbitalItem[] = [
   { src: "/images/regtech_logo.png", angle: 0, ring: 1, size: 70 },
   { src: "/images/2nd-water-management.png", angle: 45, ring: 2, size: 65 },
   { src: "/images/asset-integrity-mgmt.png", angle: 120, ring: 3, size: 45 },
@@ -103,8 +111,6 @@ export default function ServicesHeroDemo() {
                 }}
               />
             ))}
-
-            {/* Glowing Sweep Animation - removed */}
           </div>
         </div>
 
@@ -182,7 +188,8 @@ export default function ServicesHeroDemo() {
           >
             <button
               className="button relative z-[10000]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              // FIX 1: Cast style object to CSSProperties to handle custom properties
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg
@@ -229,7 +236,9 @@ export default function ServicesHeroDemo() {
 // ==============================================
 // 1. NEW OPTIMIZED ORBIT COMPONENT WITH RADAR PULSE
 // ==============================================
-function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
+
+// FIX 2: Replaced 'any' with OrbitalItem interface
+function OrbitingIcon({ item, radius }: { item: OrbitalItem; radius: number }) {
   // Use Framer Motion's time hook (returns ms)
   const time = useTime();
   

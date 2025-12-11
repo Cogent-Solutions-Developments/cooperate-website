@@ -1,5 +1,5 @@
 /* @refresh reset */
-/* eslint-disable react/no-unknown-property */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { Suspense, useEffect, useRef, useState } from 'react';
@@ -16,14 +16,15 @@ import {
 } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
+import type { ThreeEvent } from '@react-three/fiber';
 
 // === EXTENSIONS & ASSETS =====================================================
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 declare module '@react-three/fiber' {
   interface ThreeElements {
-    meshLineGeometry: any;
-    meshLineMaterial: any;
+    meshLineGeometry: object;
+    meshLineMaterial: object;
   }
 }
 
@@ -110,12 +111,12 @@ export default function Lanyard({
 
 // === BAND (ROPE + CARD) ======================================================
 function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: number }) {
-  const band = useRef<any>(null);
-  const fixed = useRef<any>(null);
-  const j1 = useRef<any>(null);
-  const j2 = useRef<any>(null);
-  const j3 = useRef<any>(null);
-  const card = useRef<any>(null);
+  const band = useRef<THREE.Mesh>(null);
+  const fixed = useRef(null);
+  const j1 = useRef(null);
+  const j2 = useRef(null);
+  const j3 = useRef(null);
+  const card = useRef(null);
 
   const vec = new THREE.Vector3();
   const ang = new THREE.Vector3();
@@ -158,10 +159,10 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
   }, []);
 
   // Rope joints
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
-  useSphericalJoint(j3, card, [
+  useRopeJoint(fixed as any, j1 as any, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j1 as any, j2 as any, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j2 as any, j3 as any, [[0, 0, 0], [0, 0, 0], 1]);
+  useSphericalJoint(j3 as any, card as any, [
     [0, 0, 0],
     [0, 1.45, 0],
   ]);
@@ -181,8 +182,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
       vec.add(dir.multiplyScalar(state.camera.position.length()));
-      [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
-      card.current?.setNextKinematicTranslation({
+      [card, j1, j2, j3, fixed].forEach((ref: any) => ref.current?.wakeUp());
+      (card.current as any)?.setNextKinematicTranslation({
         x: vec.x - dragged.x,
         y: vec.y - dragged.y,
         z: vec.z - dragged.z,
@@ -190,7 +191,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
     }
 
     if (fixed.current) {
-      [j1, j2].forEach((ref) => {
+      [j1, j2].forEach((ref: any) => {
         if (!ref.current.lerped)
           ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
         const clampedDistance = Math.max(
@@ -203,19 +204,47 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
         );
       });
 
-      curve.points[0].copy(j3.current.translation());
-      curve.points[1].copy(j2.current.lerped);
-      curve.points[2].copy(j1.current.lerped);
-      curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(32));
+      curve.points[0].copy((j3.current as any).translation());
+      curve.points[1].copy((j2.current as any).lerped);
+      curve.points[2].copy((j1.current as any).lerped);
+      curve.points[3].copy((fixed.current as any).translation());
+      (band.current as any).geometry.setPoints(curve.getPoints(32));
 
-      ang.copy(card.current.angvel());
-      rot.copy(card.current.rotation());
-      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
+      ang.copy((card.current as any).angvel());
+      rot.copy((card.current as any).rotation());
+      (card.current as any).setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
     }
   });
 
   curve.curveType = 'chordal';
+
+  const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    const canvas = (e.target as HTMLElement).ownerDocument.querySelector('canvas');
+    if (canvas) canvas.style.pointerEvents = 'auto';
+    hover(true);
+  };
+
+  const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    const canvas = (e.target as HTMLElement).ownerDocument.querySelector('canvas');
+    if (canvas && !dragged) canvas.style.pointerEvents = 'none';
+    hover(false);
+  };
+
+  const handlePointerUp = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    drag(false);
+    const canvas = (e.target as HTMLElement).ownerDocument.querySelector('canvas');
+    if (canvas) canvas.style.pointerEvents = 'none';
+  };
+
+  const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    drag(new THREE.Vector3().copy(e.point).sub(vec.copy((card.current as any).translation())));
+  };
 
   return (
     <>
@@ -241,33 +270,10 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
           <group
             scale={2.25}
             position={[0, -1.2, -0.05]}
-            onPointerOver={(e: any) => {
-              e.stopPropagation();
-              // Enable pointer events on canvas when hovering card
-              const canvas = e.target.ownerDocument.querySelector('canvas');
-              if (canvas) canvas.style.pointerEvents = 'auto';
-              hover(true);
-            }}
-            onPointerOut={(e: any) => {
-              e.stopPropagation();
-              // Disable pointer events on canvas when leaving card
-              const canvas = e.target.ownerDocument.querySelector('canvas');
-              if (canvas && !dragged) canvas.style.pointerEvents = 'none';
-              hover(false);
-            }}
-            onPointerUp={(e: any) => {
-              e.stopPropagation();
-              e.target.releasePointerCapture(e.pointerId);
-              drag(false);
-              // Re-disable pointer events after drag
-              const canvas = e.target.ownerDocument.querySelector('canvas');
-              if (canvas) canvas.style.pointerEvents = 'none';
-            }}
-            onPointerDown={(e: any) => {
-              e.stopPropagation();
-              e.target.setPointerCapture(e.pointerId);
-              drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
-            }}
+            onPointerOver={handlePointerOver}
+            onPointerOut={handlePointerOut}
+            onPointerUp={handlePointerUp}
+            onPointerDown={handlePointerDown}
           >
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial

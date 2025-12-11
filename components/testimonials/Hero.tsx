@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { CometCard } from "./imports/comet-card";
 
 export default function Hero() {
@@ -74,7 +73,7 @@ export default function Hero() {
           >
             Leaders Across Government, Industry, And Our Global Event Ecosystem
             Including Speakers, Sponsors, And Strategic Partners Share Their
-            Professional Experiences With Cogent Solutions. Here's What They Say
+            Professional Experiences With Cogent Solutions. Here&apos;s What They Say
             About Working With Us.
           </motion.p>
 
@@ -87,7 +86,7 @@ export default function Hero() {
           >
             <button
               className="button relative z-[10000]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg

@@ -51,33 +51,32 @@ const Folder: React.FC<FolderProps> = ({
   const paper3 = "#ffffff";
 
   // Auto open/close based on scroll visibility
-useEffect(() => {
-  const obs = new IntersectionObserver(
-    ([entry]) => {
-      const ratio = entry.intersectionRatio;
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        const ratio = entry.intersectionRatio;
 
-      if (ratio >= 1) {
-        // Fully visible → open + delayed paper pop
-        setInView(true);
-        setTimeout(() => setPaperOpen(true), 250);
-      } else {
-        // Not fully visible → close + reset
-        setInView(false);
-        setPaperOpen(false);
+        if (ratio >= 1) {
+          // Fully visible → open + delayed paper pop
+          setInView(true);
+          setTimeout(() => setPaperOpen(true), 250);
+        } else {
+          // Not fully visible → close + reset
+          setInView(false);
+          setPaperOpen(false);
 
-        setPaperOffsets(
-          Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
-        );
-      }
-    },
-    { threshold: [0, 0.5, 0.9, 0.98, 1] }
-  );
+          setPaperOffsets(
+            Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
+          );
+        }
+      },
+      { threshold: [0, 0.5, 0.9, 0.98, 1] }
+    );
 
-  if (folderRef.current) obs.observe(folderRef.current);
+    if (folderRef.current) obs.observe(folderRef.current);
 
-  return () => obs.disconnect();
-}, []);
-
+    return () => obs.disconnect();
+  }, [maxItems]); // Added maxItems to dependency array to be safe, though constant
 
   const open = inView; // flaps open instantly
 
@@ -131,7 +130,8 @@ useEffect(() => {
 
           {/* Papers */}
           {papers.map((item, i) => {
-            let sizeClasses =
+            // FIX: Changed 'let' to 'const'
+            const sizeClasses =
               i === 0
                 ? "w-[70%] h-[80%]"
                 : i === 1

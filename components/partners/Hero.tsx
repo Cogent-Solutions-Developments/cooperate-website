@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import LaserFlow from "./imports/LaserFlow";
+import Image from "next/image";
 
 export default function ExploreHero3() {
   const revealImgRef = useRef<HTMLImageElement | null>(null);
@@ -104,7 +105,7 @@ export default function ExploreHero3() {
           <div className="mt-0 max-md:flex max-md:justify-center">
             <button
               className="button relative z-[6]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg
@@ -141,11 +142,12 @@ export default function ExploreHero3() {
       {/* === Light Reveal Layer === */}
       {/* === Light Reveal Layer (DESKTOP ONLY) === */}
       {!isMobile && (
-        <img
+        <Image
           ref={revealImgRef}
           src="/images/partners grid check.png"
           alt="Reveal effect"
-          className="absolute w-full pointer-events-none select-none"
+          fill // FIX: Added fill prop to handle sizing automatically
+          className="absolute w-full pointer-events-none select-none object-cover"
           style={
             {
               top: "0%",
@@ -160,7 +162,7 @@ export default function ExploreHero3() {
               maskRepeat: "no-repeat",
               "--mx": "-9999px",
               "--my": "-9999px",
-            } as any
+            } as React.CSSProperties // FIX: Cast to CSSProperties instead of any
           }
         />
       )}

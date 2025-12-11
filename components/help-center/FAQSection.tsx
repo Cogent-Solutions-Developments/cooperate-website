@@ -52,7 +52,7 @@ export default function FAQSection() {
     if (heights.length) {
       setMaxHeaderHeight(Math.max(...heights));
     }
-  }, [faqs.length]);
+  }, []); // Removed faqs.length - it's a constant
 
   // Recalculate on resize (handle responsive changes)
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function FAQSection() {
               </h3>
 
               <p className="text-neutral-600 text-[15px] leading-relaxed mb-5">
-                Can’t find the answer you’re looking for? Send us an email and
+                Can&apos;t find the answer you&apos;re looking for? Send us an email and
                 our team will get back to you as soon as possible.
               </p>
 
@@ -106,7 +106,7 @@ export default function FAQSection() {
               >
                 <button
                   className="button relative z-[10000]"
-                  style={{ ["--clr" as any]: "#2f53bd" }}
+                  style={{ "--clr": "#2f53bd" } as React.CSSProperties}
                 >
                   <span className="button__icon-wrapper">
                     <svg

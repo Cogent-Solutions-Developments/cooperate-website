@@ -3,7 +3,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const testimonials = {
+// 1. Define the interface for the testimonial object
+interface Testimonial {
+  logo: string;
+  quote: string;
+  name: string;
+  title: string;
+}
+
+const testimonials: Record<string, Testimonial[]> = {
   col1: [
     {
       logo: "/images/testimonials/Emirates-Hospitals-Group.webp",
@@ -159,7 +167,8 @@ export default function WallOfTrust() {
   );
 }
 
-function Card({ t }: { t: any }) {
+// 2. Use the interface in the component props
+function Card({ t }: { t: Testimonial }) {
   return (
     <div
       className="

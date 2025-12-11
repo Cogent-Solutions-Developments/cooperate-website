@@ -82,7 +82,7 @@ export default function IndustryPartners() {
         </div>
 
         {/* === LOOP 2 (Right Scroll, different logos) === */}
-        <div className="mt-4 sm:mt-6 lg:mt-10 opacity-90 opacity-90 scale-[0.8] sm:scale-[0.85] md:scale-100 origin-center">
+        <div className="mt-4 sm:mt-6 lg:mt-10 opacity-90 scale-[0.8] sm:scale-[0.85] md:scale-100 origin-center">
           <LogoLoop
             logos={logosRow2}
             speed={35}

@@ -16,8 +16,6 @@ export default function AboutPage() {
       </section>
       <FeaturesSectionDemo />
       <HowWeOpe />
-      {/* <StoryTabs /> */}
-      {/* <HowWeOperate /> */}
       <Footer />
       <SocialsTab />
     </>

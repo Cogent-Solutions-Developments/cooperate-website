@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import Image from "next/image";
+import {
+  motion,
+  useTransform,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 
 export const AnimatedTooltip = ({
   items,
@@ -20,27 +27,30 @@ export const AnimatedTooltip = ({
 
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-45, 45]),
-    springConfig,
+    springConfig
   );
   const translateX = useSpring(
     useTransform(x, [-100, 100], [-50, 50]),
-    springConfig,
+    springConfig
   );
 
-  const handleMouseMove = (event: any) => {
+  // 1. Fixed explicit type for the event
+  const handleMouseMove = (event: React.MouseEvent<HTMLImageElement>) => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
 
+    const target = event.currentTarget; // Safer to use currentTarget in React
     animationFrameRef.current = requestAnimationFrame(() => {
-      const halfWidth = event.target.offsetWidth / 2;
+      const halfWidth = target.offsetWidth / 2;
       x.set(event.nativeEvent.offsetX - halfWidth);
     });
   };
 
   return (
     <>
-      {items.map((item, idx) => (
+      {/* 2. Removed unused 'idx' */}
+      {items.map((item) => (
         <div
           className="group relative -mr-4"
           key={item.name}
@@ -67,18 +77,14 @@ export const AnimatedTooltip = ({
                   rotate: rotate,
                   whiteSpace: "nowrap",
                 }}
-                // className="absolute -top-16 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center justify-center rounded-md bg-black px-4 py-2 text-xs shadow-xl"
               >
-                {/* <div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-gradient-to-r from-transparent via-emerald-500 to-transparent" /> */}
-                {/* <div className="absolute -bottom-px left-10 z-30 h-px w-[40%] bg-gradient-to-r from-transparent via-sky-500 to-transparent" /> */}
-                {/* <div className="relative z-30 text-base font-bold text-white">
-                  {item.name}
-                </div> */}
-                {/* <div className="text-xs text-white">{item.designation}</div> */}
+                {/* Tooltip content can be uncommented here if needed */}
               </motion.div>
             )}
           </AnimatePresence>
-          <img
+          
+          {/* 3. Replaced <img> with next/image */}
+          <Image
             onMouseMove={handleMouseMove}
             height={100}
             width={100}

@@ -24,11 +24,11 @@ const ORBITAL_ITEMS = [
 ];
 
 const PEOPLE = [
-  { id: 1, name: "Nvidia", designation: "Tech Partner", image: "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png" },
-  { id: 2, name: "Oracle", designation: "Cloud Partner", image: "https://images.seeklogo.com/logo-png/10/1/oracle-logo-png_seeklogo-103836.png" },
-  { id: 3, name: "Coca Cola", designation: "Brand Partner", image: "https://toppng.com/uploads/preview/coca-cola-logo-transparent-png-11659434553ffz5jgamkh.png" },
-  { id: 4, name: "BytePlus", designation: "AI Partner", image: "https://i.tracxn.com/logo/company/byteplus.com_Logo_ee8544f1-f730-42da-bf47-a7b712bd39bb.jpg" },
-  { id: 5, name: "Google", designation: "Search Partner", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5jqY91GEsxQe-NWpFY7EcSO4NyackqgPcw&s" },
+  { id: 1, name: "Nvidia", designation: "Tech Partner", image: "/images/nvidea.png" },
+  { id: 2, name: "Oracle", designation: "Cloud Partner", image: "/images/oracle.png" },
+  { id: 3, name: "Coca Cola", designation: "Brand Partner", image: "/images/cocacola.png" },
+  { id: 4, name: "BytePlus", designation: "AI Partner", image: "/images/byteplus.jpg" },
+  { id: 5, name: "Google", designation: "Search Partner", image: "/images/aramco.jpeg" },
 ];
 
 const STATS = [

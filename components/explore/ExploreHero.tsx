@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Mouse } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
 
@@ -239,10 +240,12 @@ export default function ExploreHero({
                   }}
                 >
                   {item.type === "image" ? (
-                    <img
+                    <Image
                       src={item.src}
                       alt={`Conference ${i}`}
-                      className="object-cover w-full h-full"
+                      className="object-cover"
+                      fill
+                      sizes={`${cardWidth}px`}
                       loading="lazy"
                     />
                   ) : (

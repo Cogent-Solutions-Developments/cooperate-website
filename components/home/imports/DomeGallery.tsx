@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
+import Image from 'next/image';
 
 type ImageItem = string | { src: string; alt?: string };
 
@@ -30,31 +31,36 @@ type ItemDef = {
 
 const DEFAULT_IMAGES: ImageItem[] = [
   {
-    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr1.webp',
     alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr2.webp',
     alt: 'Modern sculpture'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr3.webp',
     alt: 'Digital artwork'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr4.webp',
     alt: 'Contemporary art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr5.webp',
     alt: 'Geometric pattern'
   },
   {
-    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/images/csr6.webp',
     alt: 'Textured surface'
   },
   {
-    src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
+    src: '/images/csr7.webp',
+    alt: 'Social media image'
+  }
+  ,
+  {
+    src: '/images/csr8.webp',
     alt: 'Social media image'
   }
 ];
@@ -262,7 +268,8 @@ export default function DomeGallery({
         stopInertia();
 
         const evt = event as PointerEvent;
-        pointerTypeRef.current = (evt.pointerType as any) || 'mouse';
+        // Fix: Removed 'as any', cast to specific union type
+        pointerTypeRef.current = (evt.pointerType as 'mouse' | 'pen' | 'touch') || 'mouse';
         if (pointerTypeRef.current === 'touch') evt.preventDefault();
         draggingRef.current = true;
         movedRef.current = false;
@@ -310,7 +317,8 @@ export default function DomeGallery({
             }
           }
 
-          let [vMagX, vMagY] = velArr;
+          // Fix: prefer-const
+          const [vMagX, vMagY] = velArr;
           const [dirX, dirY] = dirArr;
           let vx = vMagX * dirX;
           let vy = vMagY * dirY;
@@ -377,8 +385,8 @@ export default function DomeGallery({
       backface-visibility: hidden;
       transition: transform 300ms;
       transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)))) 
-                 rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)))) 
-                 translateZ(var(--radius));
+               rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)))) 
+               translateZ(var(--radius));
     }
     
     @media (max-aspect-ratio: 1/1) {
@@ -407,13 +415,14 @@ export default function DomeGallery({
       <div
         ref={rootRef}
         className="sphere-root relative w-full h-full"
+        // Fix: Removed 'as any', used Record<string, string|number> or React.CSSProperties
         style={
           {
-            ['--segments-x' as any]: segments,
-            ['--segments-y' as any]: segments,
-            ['--overlay-blur-color' as any]: overlayBlurColor,
-            ['--tile-radius' as any]: imageBorderRadius,
-            ['--image-filter' as any]: grayscale ? 'grayscale(1)' : 'none'
+            '--segments-x': segments,
+            '--segments-y': segments,
+            '--overlay-blur-color': overlayBlurColor,
+            '--tile-radius': imageBorderRadius,
+            '--image-filter': grayscale ? 'grayscale(1)' : 'none'
           } as React.CSSProperties
         }
       >
@@ -431,6 +440,9 @@ export default function DomeGallery({
                 <div
                   key={`${it.x},${it.y},${i}`}
                   className="sphere-item absolute m-auto"
+                  // Fix: Removed 'as any' from data attributes or keep consistent if needed by library, 
+                  // but for style prop below, using explicit casting.
+                  // React 16+ supports data- attributes natively without any.
                   data-src={it.src}
                   data-alt={it.alt}
                   data-offset-x={it.x}
@@ -439,10 +451,10 @@ export default function DomeGallery({
                   data-size-y={it.sizeY}
                   style={
                     {
-                      ['--offset-x' as any]: it.x,
-                      ['--offset-y' as any]: it.y,
-                      ['--item-size-x' as any]: it.sizeX,
-                      ['--item-size-y' as any]: it.sizeY,
+                      '--offset-x': it.x,
+                      '--offset-y': it.y,
+                      '--item-size-x': it.sizeX,
+                      '--item-size-y': it.sizeY,
                       top: '-999px',
                       bottom: '-999px',
                       left: '-999px',
@@ -458,16 +470,19 @@ export default function DomeGallery({
                       backfaceVisibility: 'hidden'
                     }}
                   >
-                    <img
-                      src={it.src}
-                      draggable={false}
-                      alt={it.alt}
-                      className="w-full h-full object-cover pointer-events-none"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
-                      }}
-                    />
+                    {/* Fix: Replaced <img> with Next.js <Image /> */}
+                    <div className="relative w-full h-full">
+                        <Image
+                            src={it.src}
+                            alt={it.alt}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 33vw"
+                            className="object-cover pointer-events-none"
+                            style={{
+                                filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
+                            }}
+                        />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -476,31 +491,39 @@ export default function DomeGallery({
 
           <div
             className="absolute inset-0 m-auto z-[3] pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, ${overlayBlurColor}) 100%)`
-            }}
+            style={
+              {
+                backgroundImage: `radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, ${overlayBlurColor}) 100%)`
+              } as React.CSSProperties
+            }
           />
 
           <div
             className="absolute inset-0 m-auto z-[3] pointer-events-none"
-            style={{
-              WebkitMaskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              maskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              backdropFilter: 'blur(3px)'
-            }}
+            style={
+              {
+                WebkitMaskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
+                maskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
+                backdropFilter: 'blur(3px)'
+              } as React.CSSProperties
+            }
           />
 
           <div
             className="absolute left-0 right-0 top-0 h-[120px] z-[5] pointer-events-none rotate-180"
-            style={{
-              background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
+            style={
+              {
+                background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
+              } as React.CSSProperties
+            }
           />
           <div
             className="absolute left-0 right-0 bottom-0 h-[120px] z-[5] pointer-events-none"
-            style={{
-              background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
+            style={
+              {
+                background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
+              } as React.CSSProperties
+            }
           />
         </main>
       </div>

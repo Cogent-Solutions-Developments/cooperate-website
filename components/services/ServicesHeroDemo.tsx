@@ -51,6 +51,31 @@ export default function ServicesHeroDemo() {
         }}
       />
 
+      {/* Subtle background blobs */}
+      <div 
+        className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full"
+        style={{
+          background: `radial-gradient(circle, rgba(29, 48, 157, 0.06) 0%, transparent 70%)`,
+        }}
+      />
+      <div 
+        className="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] rounded-full"
+        style={{
+          background: `radial-gradient(circle, rgba(29, 48, 157, 0.07) 0%, transparent 70%)`,
+        }}
+      />
+      <div 
+        className="absolute top-[30%] right-[10%] w-[400px] h-[400px] rounded-full"
+        style={{
+          background: `radial-gradient(circle, rgba(29, 48, 157, 0.04) 0%, transparent 70%)`,
+        }}
+      />
+      <div 
+        className="absolute bottom-[20%] left-[5%] w-[350px] h-[350px] rounded-full"
+        style={{
+          background: `radial-gradient(circle, rgba(29, 48, 157, 0.035) 0%, transparent 70%)`,
+        }}
+      />
 
       {/* Main Container */}
       <div className="relative w-full min-h-screen flex items-center justify-center">
@@ -70,7 +95,7 @@ export default function ServicesHeroDemo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   // UPDATED STYLE FOR "CUT" EFFECT
-                  border: `1px solid rgba(29, 48, 157, 0.05)`,
+                  border: `1px solid rgba(29, 48, 157, 0.05)`, 
                   boxShadow: `
                     inset 0px 3px 6px rgba(0,0,0,0.08), 
                     0px 1px 0px rgba(255,255,255,0.8)
@@ -79,30 +104,17 @@ export default function ServicesHeroDemo() {
               />
             ))}
 
-            {/* Glowing Sweep Animation */}
-            <div
-              className="absolute rounded-full animate-spin"
-              style={{
-                width: RINGS[1].radius * 2,
-                height: RINGS[1].radius * 2,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                background: `conic-gradient(from 0deg, transparent 0deg, rgba(29,48,157,0.1) 60deg, transparent 120deg)`,
-                filter: "blur(40px)",
-                animationDuration: "25s",
-              }}
-            />
+            {/* Glowing Sweep Animation - removed */}
           </div>
         </div>
 
         {/* ========= FLOATING ORBITAL ITEMS (OPTIMIZED) ========= */}
         <div className="absolute inset-0 pointer-events-none">
           {ORBITAL_ITEMS.map((item, i) => (
-            <OrbitingIcon
-              key={i}
-              item={item}
-              radius={RINGS[item.ring - 1]?.radius || 400}
+            <OrbitingIcon 
+              key={i} 
+              item={item} 
+              radius={RINGS[item.ring - 1]?.radius || 400} 
             />
           ))}
         </div>
@@ -220,7 +232,7 @@ export default function ServicesHeroDemo() {
 function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
   // Use Framer Motion's time hook (returns ms)
   const time = useTime();
-
+  
   // Determine direction: Odd rings clockwise, Even rings counter-clockwise
   const direction = item.ring % 2 === 0 ? 1 : -1;
   const speed = 0.006; // Degrees per millisecond (Adjust for speed)
@@ -229,7 +241,7 @@ function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
   // We add the item.angle as the starting offset
   const rotate = useTransform(time, (t) => {
     const rawAngle = (t * speed * direction) + item.angle;
-    return rawAngle;
+    return rawAngle; 
   });
 
   // Calculate X and Y based on the rotation angle using trigonometry
@@ -237,7 +249,7 @@ function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
   const x = useTransform(rotate, (angle) => {
     return Math.cos((angle * Math.PI) / 180) * radius;
   });
-
+  
   const y = useTransform(rotate, (angle) => {
     return Math.sin((angle * Math.PI) / 180) * radius;
   });
@@ -249,20 +261,20 @@ function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
         width: item.size,
         height: item.size,
         // Center the orbit origin
-        left: "50%",
+        left: "50%", 
         top: "50%",
         // Apply the calculated X/Y
         x,
         y,
       }}
       // Use standard translate to center the element on its own anchor point
-      initial={{ translateX: "-50%", translateY: "-50%" }}
+      initial={{ translateX: "-50%", translateY: "-50%" }} 
       whileHover={{ scale: 1.3, zIndex: 50 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       {/* Subtle Radar Pulse Ring */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div
+        <div 
           className="absolute rounded-full animate-ping"
           style={{
             width: item.size + 10,

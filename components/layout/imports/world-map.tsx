@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import DottedMap from "dotted-map";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 interface MapProps {
   dots?: Array<{
@@ -43,10 +44,11 @@ export default function WorldMap({
   return (
     <div className="w-full aspect-[2/1] relative font-sans overflow-hidden">
       {/* Transparent dotted map */}
-      <img
+      <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full opacity-100 pointer-events-none select-none"
         alt="world map"
+        fill
         draggable={false}
       />
 

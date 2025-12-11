@@ -1,6 +1,5 @@
 "use client";
 import WorldMap from "./world-map";
-import { motion } from "framer-motion";
 
 export function WorldMapDemo() {
   return (

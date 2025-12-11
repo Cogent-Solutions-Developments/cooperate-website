@@ -16,12 +16,12 @@ export default function ContactForm() {
           className="space-y-8 text-center lg:text-left"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.15]">
-            <span className="text-[#1D309D]">Let's Start</span> the <br />
+            <span className="text-[#1D309D]">Let&apos;s Start</span> the <br />
             <span className="text-black">Conversation</span>
           </h2>
 
           <p className="text-neutral-700 max-w-md text-[15.5px] leading-relaxed mx-auto lg:mx-0">
-            Whether You're Planning An Event, Exploring Sponsorships, Or Looking For A 
+            Whether You&apos;re Planning An Event, Exploring Sponsorships, Or Looking For A 
             Strategic Partnership Our Team Is Here To Support Your Goals With Clarity 
             And Expertise.
           </p>
@@ -148,8 +148,7 @@ export default function ContactForm() {
           <div className="mt-4 flex justify-center lg:justify-start">
             <button
               className="button relative z-[10000]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
-            >
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}            >
               <span className="button__icon-wrapper">
                 <svg
                   viewBox="0 0 14 15"

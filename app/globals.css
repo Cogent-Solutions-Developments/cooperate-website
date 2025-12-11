@@ -137,15 +137,3 @@ body {
   transform: translate(0);
 }
 
-@keyframes spinGlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spinGlow {
-  animation: spinGlow 3s linear infinite;
-}

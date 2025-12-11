@@ -51,6 +51,7 @@ export default function ServicesHeroDemo() {
         }}
       />
 
+
       {/* Main Container */}
       <div className="relative w-full min-h-screen flex items-center justify-center">
 
@@ -69,7 +70,7 @@ export default function ServicesHeroDemo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   // UPDATED STYLE FOR "CUT" EFFECT
-                  border: `1px solid rgba(29, 48, 157, 0.05)`, 
+                  border: `1px solid rgba(29, 48, 157, 0.05)`,
                   boxShadow: `
                     inset 0px 3px 6px rgba(0,0,0,0.08), 
                     0px 1px 0px rgba(255,255,255,0.8)
@@ -98,10 +99,10 @@ export default function ServicesHeroDemo() {
         {/* ========= FLOATING ORBITAL ITEMS (OPTIMIZED) ========= */}
         <div className="absolute inset-0 pointer-events-none">
           {ORBITAL_ITEMS.map((item, i) => (
-            <OrbitingIcon 
-              key={i} 
-              item={item} 
-              radius={RINGS[item.ring - 1]?.radius || 400} 
+            <OrbitingIcon
+              key={i}
+              item={item}
+              radius={RINGS[item.ring - 1]?.radius || 400}
             />
           ))}
         </div>
@@ -212,83 +213,81 @@ export default function ServicesHeroDemo() {
     </section>
   );
 }
+
 // ==============================================
-// 1. REFINED ORBIT COMPONENT (Radar + Glass Only)
+// 1. NEW OPTIMIZED ORBIT COMPONENT WITH RADAR PULSE
 // ==============================================
 function OrbitingIcon({ item, radius }: { item: any; radius: number }) {
+  // Use Framer Motion's time hook (returns ms)
   const time = useTime();
-  const direction = item.ring % 2 === 0 ? 1 : -1;
-  const speed = 0.006;
 
-  // Calculate Rotation
+  // Determine direction: Odd rings clockwise, Even rings counter-clockwise
+  const direction = item.ring % 2 === 0 ? 1 : -1;
+  const speed = 0.006; // Degrees per millisecond (Adjust for speed)
+
+  // Transform time into a continuous rotation angle (0 -> 360)
+  // We add the item.angle as the starting offset
   const rotate = useTransform(time, (t) => {
-    return (t * speed * direction) + item.angle;
+    const rawAngle = (t * speed * direction) + item.angle;
+    return rawAngle;
   });
 
+  // Calculate X and Y based on the rotation angle using trigonometry
+  // This runs on the animation frame, not the React render cycle
   const x = useTransform(rotate, (angle) => {
     return Math.cos((angle * Math.PI) / 180) * radius;
   });
-  
+
   const y = useTransform(rotate, (angle) => {
     return Math.sin((angle * Math.PI) / 180) * radius;
   });
 
   return (
     <motion.div
-      className="absolute cursor-pointer pointer-events-auto flex items-center justify-center group"
+      className="absolute cursor-pointer pointer-events-auto"
       style={{
         width: item.size,
         height: item.size,
-        left: "50%", 
+        // Center the orbit origin
+        left: "50%",
         top: "50%",
+        // Apply the calculated X/Y
         x,
         y,
       }}
-      initial={{ translateX: "-50%", translateY: "-50%" }} 
-      whileHover={{ scale: 1.2, zIndex: 100 }}
+      // Use standard translate to center the element on its own anchor point
+      initial={{ translateX: "-50%", translateY: "-50%" }}
+      whileHover={{ scale: 1.3, zIndex: 50 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      {/* --- FEATURE A: Radar Pulse Effect --- */}
-      {/* Kept this as requested: A subtle ripple behind the icon */}
-      <motion.div
-        className="absolute inset-0 rounded-full z-0"
-        style={{
-           border: "1px solid rgba(29, 48, 157, 0.2)",
-           backgroundColor: "rgba(29, 48, 157, 0.05)"
-        }}
-        animate={{
-          scale: [1, 1.8],
-          opacity: [0.5, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeOut",
-          delay: Math.random() * 2, // Random delay for organic feel
-        }}
-      />
+      {/* Subtle Radar Pulse Ring */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className="absolute rounded-full animate-ping"
+          style={{
+            width: item.size + 10,
+            height: item.size + 10,
+            border: "1px solid rgba(29, 48, 157, 0.08)",
+            animationDuration: "3s",
+          }}
+        />
+      </div>
 
-      {/* --- The Icon Container --- */}
+      {/* Main Image */}
       <div
         className="relative w-full h-full rounded-full overflow-hidden bg-white z-10"
         style={{
-          border: "3px solid white", // Clean border
-          boxShadow: "0 4px 20px rgba(0,0,0,0.15)", // Drop shadow to lift it off the page
+          border: "3px solid white",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+          backgroundImage: `url(${item.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
-      >
-        {/* Image - Fills the circle completely now */}
-        <div 
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${item.src})` }}
-        />
-
-        {/* --- FEATURE B: Glassy Glint (Shine) --- */}
-        {/* Adds a premium 'shine' across the face on hover */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      </div>
+      />
     </motion.div>
   );
 }
+
 // ==============================================
 // 2. STAT COUNTER
 // ==============================================

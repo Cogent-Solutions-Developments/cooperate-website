@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -71,7 +72,7 @@ export default function NavBar() {
                 }
               `}
             >
-              <img
+              <Image
                 src="/images/cogent-logo.png"
                 width={140}
                 height={40}
@@ -127,7 +128,7 @@ export default function NavBar() {
               }
             `}
           >
-            <img
+            <Image
               src="/images/cogent-logo.png"
               width={130}
               height={40}
@@ -178,10 +179,11 @@ export default function NavBar() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 p-4 md:p-6 pt-1 md:pt-2">
                 {/* IMAGE SIDE */}
                 <div className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[400px] flex items-end">
-                  <img
+                  <Image
                     src="/images/navbarmodelimagelight.webp"
                     className="absolute inset-0 w-full h-full object-cover"
                     alt=""
+                    fill
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
 
@@ -196,7 +198,7 @@ export default function NavBar() {
                     <div className="flex justify-end">
                       <button
               className="button relative z-[6]"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg

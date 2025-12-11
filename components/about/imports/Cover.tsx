@@ -18,8 +18,8 @@ export const Cover = ({
 
   useEffect(() => {
     if (ref.current) {
-      setContainerWidth(ref.current?.clientWidth ?? 0);
-      const height = ref.current?.clientHeight ?? 0;
+      setContainerWidth(ref.current.clientWidth ?? 0);
+      const height = ref.current.clientHeight ?? 0;
       const numberOfBeams = Math.floor(height / 10);
       const positions = Array.from(
         { length: numberOfBeams },
@@ -27,7 +27,7 @@ export const Cover = ({
       );
       setBeamPositions(positions);
     }
-  }, [ref.current]);
+  }, []); 
 
   return (
     <div
@@ -35,7 +35,6 @@ export const Cover = ({
       onMouseLeave={() => setHovered(false)}
       ref={ref}
       className={twMerge(
-        // ✅ Changed hover + bg colors to light tones
         "relative group/cover inline-block bg-[#ffffff] hover:bg-[#fbfbfb] px-2 py-3 transition duration-200 rounded-md ",
         className
       )}
@@ -63,7 +62,7 @@ export const Cover = ({
                 maxSize={1}
                 particleDensity={450}
                 className="w-full h-full"
-                particleColor="#172573" // ✅ Cogent blue sparkles
+                particleColor="#172573" 
               />
               <SparklesCore
                 background="transparent"
@@ -105,12 +104,6 @@ export const Cover = ({
       >
         {children}
       </motion.span>
-
-      {/* Corner icons (still subtle gray dots) */}
-      {/* <CircleIcon className="absolute -right-[2px] -top-[2px]" />
-      <CircleIcon className="absolute -bottom-[2px] -right-[2px]" delay={0.4} />
-      <CircleIcon className="absolute -left-[2px] -top-[2px]" delay={0.8} />
-      <CircleIcon className="absolute -bottom-[2px] -left-[2px]" delay={1.6} /> */}
     </div>
   );
 };
@@ -161,14 +154,13 @@ export const Beam = ({
             y2: 0,
           }}
           transition={{
-            duration: hovered ? 0.5 : duration ?? 2,
+            duration: hovered ? 0.5 : (duration ?? 2),
             ease: "linear",
             repeat: Infinity,
             delay: hovered ? Math.random() * (1 - 0.2) + 0.2 : 0,
-            repeatDelay: hovered ? Math.random() * (2 - 1) + 1 : delay ?? 1,
+            repeatDelay: hovered ? Math.random() * (2 - 1) + 1 : (delay ?? 1),
           }}
         >
-          {/* ✅ Beams use Cogent blue too */}
           <stop stopColor="#172573" stopOpacity="0" />
           <stop stopColor="#3b82f6" />
           <stop offset="1" stopColor="#172573" stopOpacity="0" />
@@ -181,10 +173,8 @@ export const Beam = ({
 // === Corner dots ===
 export const CircleIcon = ({
   className,
-  delay,
 }: {
   className?: string;
-  delay?: number;
 }) => {
   return (
     <div

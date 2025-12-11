@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Search, Target, CheckCircle, Users, CalendarDays } from "lucide-react";
 
 export default function HowWeOperateAppwriteStyleFixedSize() {
-  const cogentBlue = "#1D309D"; // Your primary brand blue
-  const neutralBlack = "#1A1A1A"; // For primary text
-  const darkGray = "#4A5568";     // For secondary text
-  const dividerGray = "#E0E4EB";   // For the subtle grid lines
+  const cogentBlue = "#1D309D"; 
+  const neutralBlack = "#1A1A1A"; 
+  const darkGray = "#4A5568";    
+  const dividerGray = "#E0E4EB";   
 
   const steps = [
     {
@@ -39,13 +38,6 @@ icon: <Users className="w-7 h-7 sm:w-5 sm:h-5" style={{ color: cogentBlue }} />,
       desc: "Every event is meticulously organized and executed for your pre-qualified audience, maximizing impact and fostering productive interactions.",
 icon: <CalendarDays className="w-7 h-7 sm:w-5 sm:h-5" style={{ color: cogentBlue }} />,
     },
-    // Optional: Add a 6th dummy item if you strictly need a perfect 3x2 grid.
-    // {
-    //   num: "06",
-    //   title: "Continuous Improvement",
-    //   desc: "Regular feedback loops and performance analysis ensure our processes are constantly optimized for future success.",
-    //   icon: <Activity size={20} style={{ color: cogentBlue }} />,
-    // },
   ];
 
   return (

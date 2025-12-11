@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Orb from "./imports/Orb";
-import Link from "next/link";
 import { AnimatedTooltip } from "./imports/AnimatedTooltip";
 
 export default function HelpCenterHero() {
@@ -12,28 +11,28 @@ export default function HelpCenterHero() {
       name: "General",
       designation: "info@cogentsolutions.com",
       image:
-        "https://plus.unsplash.com/premium_photo-1681487874673-976050b1dcab?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "/images/general.jpeg",
     },
     {
       id: 2,
       name: "Marketing",
       designation: "marketing@cogentsolutions.com",
       image:
-        "https://plus.unsplash.com/premium_photo-1681487872232-fa622a6dd59e?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D",
+        "/images/marketing.jpeg",
     },
     {
       id: 3,
       name: "Sales",
       designation: "sales@cogentsolutions.com",
       image:
-        "https://plus.unsplash.com/premium_photo-1681488188364-20b8f14db588?q=80&w=1542&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "/images/sales.jpeg",
     },
     {
       id: 4,
       name: "Delegates",
       designation: "delegates@cogentsolutions.com",
       image:
-        "https://plus.unsplash.com/premium_photo-1726797756953-30e3edeea563?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "/images/delegates.jpeg",
     },
   ];
 
@@ -115,7 +114,7 @@ export default function HelpCenterHero() {
             "
           >
             <p className="text-sm md:text-base text-white/90 font-semibold leading-snug text-center md:text-left">
-              We're Here to, <br />
+              We&apos;re Here to, <br />
               <span className="text-[#f4f4f4]">Guide You Through</span>
             </p>
 

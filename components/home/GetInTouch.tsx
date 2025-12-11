@@ -52,7 +52,7 @@ export default function GetInTouch() {
             <div className="mt-8">
               <button
                 className="button relative z-0"
-                style={{ ["--clr" as any]: "#2f53bd" }}
+                style={{ "--clr": "#2f53bd" } as React.CSSProperties}
               >
                 <span className="button__icon-wrapper">
                   <svg
@@ -189,7 +189,7 @@ export default function GetInTouch() {
           >
             <button
               className="button relative z-0"
-              style={{ ["--clr" as any]: "#2f53bd" }}
+              style={{ "--clr": "#2f53bd" } as React.CSSProperties}
             >
               <span className="button__icon-wrapper">
                 <svg

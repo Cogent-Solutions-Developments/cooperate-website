@@ -1,22 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import BounceCards from "./imports/BounceCards";
 import { Cover } from "./imports/Cover";
 
 export default function AboutHero() {
   const [hovered, setHovered] = useState(false);
-  const [showFade, setShowFade] = useState(false);
 
   const NAV_HEIGHT = 88;
 
   const images = [
-    "	https://cogentsolutions.ae/views/img/explore-logos/2nd-dnfbp-logo.webp",
-    "	https://cogentsolutions.ae/views/img/explore-logos/12th-regtech.webp",
-    "	https://cogentsolutions.ae/views/img/explore-logos/stadium_congress.png",
-    "		https://cogentsolutions.ae/views/img/explore-logos/2nd-water-management.png",
-    "https://cogentsolutions.ae/views/img/logos/asset-integrity-mgmt.png",
+    "/images/explore/cards/dp/2nd-dnfbp-logo.webp",
+    "/images/explore/cards/dp/11th-regtech.webp",
+    "/images/explore/cards/dp/stadium_congress.png",
+    "/images/explore/cards/dp/2nd-water-management.png",
+    "/images/explore/cards/dp/AIM-11th-edition.png",
   ];
 
   const transforms = [
@@ -27,18 +26,10 @@ export default function AboutHero() {
     "rotate(6deg) translate(230px, -5px)",
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowFade(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
       className="relative w-full bg-white overflow-hidden hero"
-      style={{ ["--nav-h" as any]: `${NAV_HEIGHT}px` }}
+      style={{ "--nav-h": `${NAV_HEIGHT}px` } as React.CSSProperties}
     >
       {/* Spacer = Nav Height */}
       <div className="h-[var(--nav-h)]" />
@@ -71,10 +62,10 @@ export default function AboutHero() {
                     animate={
                       hovered
                         ? {
-                          scale: [1, 0.98, 0.96, 0.93, 0.91, 0.9],
-                          x: [0, -0.5, 0.5, -0.7, 0.7, 0],
-                          y: [0, -0.6, -0.5, -0.8, 0.8, 0],
-                        }
+                            scale: [1, 0.98, 0.96, 0.93, 0.91, 0.9],
+                            x: [0, -0.5, 0.5, -0.7, 0.7, 0],
+                            y: [0, -0.6, -0.5, -0.8, 0.8, 0],
+                          }
                         : { scale: 1, x: 0, y: 0 }
                     }
                     transition={{
@@ -101,7 +92,7 @@ export default function AboutHero() {
             <div className="mt-5">
               <button
                 className="button relative z-[10]"
-                style={{ ["--clr" as any]: "#2f53bd" }}
+                style={{ "--clr": "#2f53bd" } as React.CSSProperties}
               >
                 <span className="button__icon-wrapper">
                   <svg
@@ -138,14 +129,14 @@ export default function AboutHero() {
           {/* === BOUNCE CARDS === */}
           <div
             className="
-    relative 
-    mt-[20px] 
-    md:mt-[-60px]
-    lg:mt-[-20px]
-    xl:mt-[-40px]
-    2xl:mt-[0px]
-    flex justify-center
-  "
+              relative 
+              mt-[20px] 
+              md:mt-[-60px]
+              lg:mt-[-20px]
+              xl:mt-[-40px]
+              2xl:mt-[0px]
+              flex justify-center
+            "
           >
             {/* Desktop Version — with scaling */}
             <BounceCards
@@ -158,13 +149,13 @@ export default function AboutHero() {
               easeType="elastic.out(1, 0.6)"
               enableHover={false}
               className="
-      hidden md:flex 
-      scale-100 
-      lg:scale-[1.15] 
-      xl:scale-[1.15] 
-      2xl:scale-[1.3] 
-      origin-center
-    "
+                hidden md:flex 
+                scale-100 
+                lg:scale-[1.15] 
+                xl:scale-[1.15] 
+                2xl:scale-[1.3] 
+                origin-center
+              "
             />
 
             {/* Mobile Version */}

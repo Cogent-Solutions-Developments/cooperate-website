@@ -12,7 +12,7 @@ const slides = [
       <>
         <p className="text-neutral-300 leading-relaxed">
           At our core, we are a{" "}
-          <b className="text-white">"customer-centric events agency"</b>{" "}
+          <b className="text-white">&rdquo;customer-centric events agency&rdquo;</b>{" "}
           founded on the fundamental principle of delivering the right
           information to the right individuals at the opportune moment.
         </p>

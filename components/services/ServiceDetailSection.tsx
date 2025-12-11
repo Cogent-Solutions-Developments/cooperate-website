@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-
-const NAV_HEIGHT = 80;
+import Image from "next/image";
 
 type Service = {
   id: number;
@@ -104,7 +103,6 @@ export default function ServiceCommandCenter() {
               <Scene
                 key={s.id}
                 service={s}
-                index={i}
                 onInView={() => setActiveIndex(i)}
               />
             ))}
@@ -118,11 +116,9 @@ export default function ServiceCommandCenter() {
 /* Scene Component */
 function Scene({
   service,
-  index,
   onInView,
 }: {
   service: Service;
-  index: number;
   onInView: () => void;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -152,11 +148,15 @@ function Scene({
           className="absolute inset-0 w-full h-full object-cover"
         />
       ) : (
-        <img
-          src={service.image || ""}
-          alt={service.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        // FIX: Replaced <img> with next/image and used 'fill'
+        <div className="relative w-full h-full">
+            <Image
+            src={service.image || ""}
+            alt={service.title}
+            fill
+            className="object-cover"
+            />
+        </div>
       )}
 
       {/* Strong Dark Gradient */}
@@ -189,7 +189,8 @@ function Scene({
         >
           <button
             className="button relative z-[10000]"
-            style={{ ["--clr" as any]: "#2f53bd" }}
+            // FIX: Fixed type error for CSS variable
+            style={{ "--clr": "#2f53bd" } as React.CSSProperties}
           >
             <span className="button__icon-wrapper">
               <svg

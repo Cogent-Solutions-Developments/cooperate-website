@@ -10,7 +10,6 @@ export default function ServicesPage() {
     <>
     <NavBar/> 
      <Hero />
-     {/* <TestimonialsHero /> */}
      <TestimonialsBreaker />
      <TestimonialsVideo />
      <Footer />

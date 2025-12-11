@@ -26,7 +26,7 @@ export default function ContactHero() {
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-tight"
             >
-              <span className="text-[#1D309D]">We're Here to</span>{" "}
+              <span className="text-[#1D309D]">We&apos;re Here to</span>{" "}
               <br className="hidden sm:block" />
               <span className="text-black">Support You</span>
             </motion.h1>
@@ -37,7 +37,7 @@ export default function ContactHero() {
               transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
               className="mt-5 max-w-xl text-neutral-700 text-base sm:text-lg md:text-[17px] leading-relaxed mx-auto lg:mx-0"
             >
-              Tell Us What You're Looking For Partnerships, Event Collaborations, Speaker Information, Or General Inquiries. Our Team Ensures Your Message Reaches The Right Experts.
+              Tell Us What You&apos;re Looking For Partnerships, Event Collaborations, Speaker Information, Or General Inquiries. Our Team Ensures Your Message Reaches The Right Experts.
             </motion.p>
           </div>
         </div>

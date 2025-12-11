@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import CompactModernTabsSection from "./StoryTabs";
+import Image from "next/image";
 
 export function FeaturesSectionDemo() {
   const features = [
@@ -110,7 +111,7 @@ export const SkeletonOne = () => {
       <div className="w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2  ">
           {/* TODO */}
-          <img
+          <Image
             src="/linear.webp"
             alt="header"
             width={800}
@@ -137,8 +138,8 @@ export const SkeletonThree = () => {
         <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
           {/* TODO */}
           <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-          <img
-            src="https://cogentsolutions.ae/views/img/team/01.jpg"
+          <Image
+            src="/images/Nizam.webp"
             alt="header"
             width={800}
             height={800}
@@ -157,6 +158,9 @@ export const SkeletonTwo = () => {
     "/images/csrap2.webp",
   ];
 
+  // Fixed rotation values instead of Math.random()
+  const rotations = [-5, 3, -7];
+
   const imageVariants = {
     whileHover: {
       scale: 1.1,
@@ -169,33 +173,33 @@ export const SkeletonTwo = () => {
       zIndex: 100,
     },
   };
+
   return (
     <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      {/* TODO */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
           <motion.div
             variants={imageVariants}
             key={"images-first" + idx}
             style={{
-              rotate: Math.random() * 20 - 10,
+              rotate: rotations[idx], // Use fixed value instead of Math.random()
             }}
             whileHover="whileHover"
             whileTap="whileTap"
             className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden"
           >
-            <img
+            <Image
               src={image}
               alt="bali images"
-              width="500"
-              height="500"
+              width={500}
+              height={500}
               className="rounded-lg h-40 w-40 md:h-40 md:w-40 object-cover shrink-0"
             />
           </motion.div>
         ))}
       </div>
-      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black dark:from-black to-transparent  h-full pointer-events-none" />
-      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black dark:from-black  to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black dark:from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black dark:from-black to-transparent h-full pointer-events-none" />
     </div>
   );
 };

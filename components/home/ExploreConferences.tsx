@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Folder from "./imports/Folder";
 
 export default function ExploreConferences() {
@@ -24,7 +23,7 @@ export default function ExploreConferences() {
             <div className="flex justify-center lg:justify-start">
               <button
                 className="button relative z-[10000]"
-                style={{ ["--clr" as any]: "#2f53bd" }}
+                style={{ "--clr": "#2f53bd" } as React.CSSProperties}
               >
                 <span className="button__icon-wrapper">
                   <svg

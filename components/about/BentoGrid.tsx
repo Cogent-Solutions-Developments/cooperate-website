@@ -158,6 +158,9 @@ export const SkeletonTwo = () => {
     "/images/csrap2.webp",
   ];
 
+  // Fixed rotation values instead of Math.random()
+  const rotations = [-5, 3, -7];
+
   const imageVariants = {
     whileHover: {
       scale: 1.1,
@@ -170,16 +173,16 @@ export const SkeletonTwo = () => {
       zIndex: 100,
     },
   };
+
   return (
     <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      {/* TODO */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
           <motion.div
             variants={imageVariants}
             key={"images-first" + idx}
             style={{
-              rotate: Math.random() * 20 - 10,
+              rotate: rotations[idx], // Use fixed value instead of Math.random()
             }}
             whileHover="whileHover"
             whileTap="whileTap"
@@ -188,15 +191,15 @@ export const SkeletonTwo = () => {
             <Image
               src={image}
               alt="bali images"
-              width="500"
-              height="500"
+              width={500}
+              height={500}
               className="rounded-lg h-40 w-40 md:h-40 md:w-40 object-cover shrink-0"
             />
           </motion.div>
         ))}
       </div>
-      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black dark:from-black to-transparent  h-full pointer-events-none" />
-      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black dark:from-black  to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black dark:from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black dark:from-black to-transparent h-full pointer-events-none" />
     </div>
   );
 };

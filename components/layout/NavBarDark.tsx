@@ -177,8 +177,9 @@ export default function NavBarDark() {
                 <div className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[400px] flex items-end">
                   <Image
                     src="/images/navbarmodelimagedark.webp"
-                    alt="Business Conference"
-                    className="absolute inset-0 w-full h-full object-cover"
+                     className="absolute inset-0 w-full h-full object-cover"
+                    alt=""
+                    fill
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/60 to-black/0" />

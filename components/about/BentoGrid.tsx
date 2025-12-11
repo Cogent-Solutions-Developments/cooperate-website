@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import CompactModernTabsSection from "./StoryTabs";
+import Image from "next/image";
 
 export function FeaturesSectionDemo() {
   const features = [
@@ -110,7 +111,7 @@ export const SkeletonOne = () => {
       <div className="w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2  ">
           {/* TODO */}
-          <img
+          <Image
             src="/linear.webp"
             alt="header"
             width={800}
@@ -137,8 +138,8 @@ export const SkeletonThree = () => {
         <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
           {/* TODO */}
           <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-          <img
-            src="https://cogentsolutions.ae/views/img/team/01.jpg"
+          <Image
+            src="/images/Nizam.webp"
             alt="header"
             width={800}
             height={800}
@@ -184,7 +185,7 @@ export const SkeletonTwo = () => {
             whileTap="whileTap"
             className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden"
           >
-            <img
+            <Image
               src={image}
               alt="bali images"
               width="500"

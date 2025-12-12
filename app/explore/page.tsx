@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ExploreHero from "@/components/explore/ExploreHero";
+import ExploreHero from "@/components/explore/Hero";
 import ExploreSwitch from "@/components/explore/ExploreSwitch";
 import ConferencesSection from "@/components/explore/sections/ConferencesSection";
 import NavBar from "@/components/layout/NavBar";

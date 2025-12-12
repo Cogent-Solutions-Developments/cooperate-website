@@ -6,7 +6,7 @@ const Lanyard = dynamic(() => import("./imports/Lanyard"), { ssr: false });
 
 export default function ContactHero() {
   return (
-    <section className="relative w-full min-h-screen lg:h-screen bg-white text-black overflow-hidden">
+    <section className="relative w-full min-h-screen lg:h-screen bg-white text-black overflow-hidden hero">
       {/* 2-column layout, stacks on mobile */}
       <div className="grid grid-cols-1 lg:grid-cols-2 h-full max-w-7xl mx-auto px-6 lg:px-12 gap-0 lg:gap-8">
         {/* === Left: 3D card placeholder === */}

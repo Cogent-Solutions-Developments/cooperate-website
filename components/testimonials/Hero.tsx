@@ -5,7 +5,7 @@ import { CometCard } from "./imports/comet-card";
 
 export default function Hero() {
   return (
-    <section className="w-full bg-white min-h-[calc(100vh-80px)] flex items-center">
+    <section className="w-full bg-white min-h-[calc(100vh-80px)] flex items-center hero">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between px-6 gap-10">
         {/* LEFT SIDE */}
         <div className="leading-tight max-w-3xl pt-36 md:pt-32 lg:pt-24 text-center lg:text-left">

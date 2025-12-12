@@ -16,7 +16,7 @@ export default function ExploreHero3() {
 
   return (
     <section
-      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
+      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white hero"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;

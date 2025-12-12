@@ -49,7 +49,7 @@ const COLOR = "#1D309D";
 
 export default function ServicesHeroDemo() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-white">
+    <section className="relative w-full min-h-screen overflow-hidden bg-white hero">
       {/* Background Pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"

@@ -3,6 +3,7 @@ import NavBar from "@/components/layout/NavBar";
 import TestimonialsBreaker from "@/components/testimonials/TestimonialsBreaker";
 import TestimonialsVideo from "@/components/testimonials/TestimonialsVideo";
 import Hero from "@/components/testimonials/Hero";
+import SocialsTab from "@/components/layout/SocialsTab";
 import Footer from "@/components/layout/Footer";
 
 export default function ServicesPage() {
@@ -12,6 +13,7 @@ export default function ServicesPage() {
      <Hero />
      <TestimonialsBreaker />
      <TestimonialsVideo />
+     <SocialsTab />
      <Footer />
     </>
   );

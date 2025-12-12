@@ -12,7 +12,7 @@ export default function AboutPage() {
     <>
       <NavBar />
       <section className="relative h-screen">
-        <Hero />
+      <Hero />
       </section>
       <FeaturesSectionDemo />
       <HowWeOpe />

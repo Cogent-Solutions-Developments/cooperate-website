@@ -37,7 +37,7 @@ export default function HelpCenterHero() {
   ];
 
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden">
+    <section className="relative w-full h-screen bg-black overflow-hidden hero">
 
       {/* === TOP ORB === */}
       <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">

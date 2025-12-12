@@ -2,6 +2,7 @@ import ServicesBreaker from "@/components/services/ServicesBreaker";
 import NavBar from "@/components/layout/NavBar";
 import ServiceDetailSection from "@/components/services/ServiceDetailSection";
 import ServicesHeroDemo from "@/components/services/Hero";
+import SocialsTab from "@/components/layout/SocialsTab";
 import Footer from "@/components/layout/Footer";
 
 export default function ServicesPage() {
@@ -11,6 +12,7 @@ export default function ServicesPage() {
       <ServicesHeroDemo />
       <ServicesBreaker />
       <ServiceDetailSection />
+      <SocialsTab />
       <Footer />
     </>
   );

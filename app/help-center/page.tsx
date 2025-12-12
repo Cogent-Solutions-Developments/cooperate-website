@@ -6,6 +6,7 @@ import FAQSection from "@/components/help-center/FAQSection";
 import PrivacyPolicy from "@/components/help-center/PrivacyPolicy";
 import TermsAndConditions from "@/components/help-center/Terms&Conditions";
 import PaymentPolicy from "@/components/help-center/PaymentPolicy";
+import SocialsTab from "@/components/layout/SocialsTab";
 import Footer from "@/components/layout/Footer";
 
 export default function HelpCenterPage() {
@@ -17,6 +18,7 @@ export default function HelpCenterPage() {
       <PrivacyPolicy />
       <TermsAndConditions />
       <PaymentPolicy />
+      <SocialsTab />
       <Footer />
     </>
   );

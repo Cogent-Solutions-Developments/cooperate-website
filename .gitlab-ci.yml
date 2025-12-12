@@ -1,0 +1,36 @@
+stages:
+  - build
+  - test
+  - deploy
+
+default:
+  image: node:22
+
+build-job:
+  stage: build
+  script:
+    - echo "Project Ready for the Build"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "production")
+  
+
+test-job:
+  stage: test
+  script:
+    - echo "Project ready for Test"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+deploy_preview:
+  stage: deploy
+  script:
+    - echo "Project Ready for Diploye Preview"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Project Ready for Diploye Production"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "production"
